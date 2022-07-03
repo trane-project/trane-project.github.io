@@ -1,6 +1,6 @@
 ---
 title: "Introducing Trane"
-date: 2022-07-02T15:59:53-07:00
+date: 2022-07-02T17:29:53-07:00
 draft: false
 ---
 
