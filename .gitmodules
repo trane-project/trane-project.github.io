@@ -1,0 +1,6 @@
+[submodule "themes/hugo-tex"]
+	path = themes/hugo-tex
+	url = https://github.com/kaisugi/HugoTeX
+[submodule "themes/hugotex"]
+	path = themes/hugotex
+	url = https://github.com/kaisugi/HugoTeX
