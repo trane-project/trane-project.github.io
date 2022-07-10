@@ -1,6 +1,9 @@
 [book]
-authors = ["Martin Martinez Rivera"]
+authors = ["The Trane Project"]
 language = "en"
 multilingual = false
 src = "src"
 title = "The Trane Book"
+
+[build]
+build-dir = "docs"
