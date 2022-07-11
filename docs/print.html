@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="concepts.html"><strong aria-hidden="true">1.</strong> Concepts</a></li><li class="chapter-item expanded "><a href="theory.html"><strong aria-hidden="true">2.</strong> Theory</a></li><li class="chapter-item expanded "><a href="vision.html"><strong aria-hidden="true">3.</strong> Vision</a></li><li class="chapter-item expanded "><a href="using_trane.html"><strong aria-hidden="true">4.</strong> Using Trane</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="trane.html"><strong aria-hidden="true">4.1.</strong> trane</a></li><li class="chapter-item expanded "><a href="trane-cli.html"><strong aria-hidden="true">4.2.</strong> trane-cli</a></li><li class="chapter-item expanded "><a href="trane-server.html"><strong aria-hidden="true">4.3.</strong> trane-server</a></li></ol></li><li class="chapter-item expanded "><a href="writing_courses.html"><strong aria-hidden="true">5.</strong> Writing Trane Courses</a></li><li class="chapter-item expanded "><a href="official_courses.html"><strong aria-hidden="true">6.</strong> Official Trane Courses</a></li><li class="chapter-item expanded "><a href="contributing.html"><strong aria-hidden="true">7.</strong> Contributing to Trane</a></li><li class="chapter-item expanded affix "><a href="a_love_supreme.html">A Love Supreme</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="concepts.html"><strong aria-hidden="true">1.</strong> Concepts</a></li><li class="chapter-item expanded "><a href="theory.html"><strong aria-hidden="true">2.</strong> Theory</a></li><li class="chapter-item expanded "><a href="vision.html"><strong aria-hidden="true">3.</strong> Vision</a></li><li class="chapter-item expanded "><a href="using_trane.html"><strong aria-hidden="true">4.</strong> Using Trane</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="trane.html"><strong aria-hidden="true">4.1.</strong> trane</a></li><li class="chapter-item expanded "><a href="trane-cli.html"><strong aria-hidden="true">4.2.</strong> trane-cli</a></li><li class="chapter-item expanded "><a href="trane-app.html"><strong aria-hidden="true">4.3.</strong> trane-app</a></li><li class="chapter-item expanded "><a href="trane-server.html"><strong aria-hidden="true">4.4.</strong> trane-server</a></li></ol></li><li class="chapter-item expanded "><a href="writing_courses.html"><strong aria-hidden="true">5.</strong> Writing Trane Courses</a></li><li class="chapter-item expanded "><a href="official_courses.html"><strong aria-hidden="true">6.</strong> Official Trane Courses</a></li><li class="chapter-item expanded "><a href="licensing.html"><strong aria-hidden="true">7.</strong> Licensing</a></li><li class="chapter-item expanded "><a href="contributing.html"><strong aria-hidden="true">8.</strong> Contributing to Trane</a></li><li class="chapter-item expanded affix "><a href="a_love_supreme.html">A Love Supreme</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,7 +159,81 @@ but applied to arbitrary skills, specified in plain-text files which are easy to
 train (as in the vehicle) to describe the overwhelming power of his playing. It is used here as a
 play on its homophone (as in &quot;<em>trane</em> a new skill&quot;).</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="concepts"><a class="header" href="#concepts">Concepts</a></h1>
+<p>This section defines basic concepts used in Trane, useful both for using it and for creating new
+material.</p>
+<h2 id="mastery-score"><a class="header" href="#mastery-score">Mastery Score.</a></h2>
+<p>When presented an exercise, a user performs it and assigns it a score signifying their mastery of
+the task. The scores range from one to five, with one meaning the skill is just being introduced
+(e.g. reading a section of a music score and figuring out the notes and movements required to play
+it) and five meaning complete mastery of the material (e.g. effortlessly playing the section and
+improvising on it).</p>
+<h2 id="units"><a class="header" href="#units">Units</a></h2>
+<p>There are three types of units in Trane:</p>
+<ul>
+<li>Exercise: An exercise is just a task that needs to be performed and assigned a score.</li>
+<li>Lesson: A set of related exercises, which ideally follow the same format.</li>
+<li>Course: A set of lessons on a related topic.</li>
+</ul>
+<p>A Trane library is a set of courses stored under the same directory. Trane stores its configuration
+under a directory called <code>.trane</code> in that directory. Users might want to have multiple separate
+libraries if they are learning separate skills (e.g. music and chess), and they want to keep their
+practice separate.</p>
+<p>Units are defined in JSON files called manifests, which are serialized versions of structs defined
+in the data module. The ID, name, description, locations of any external files (e.g. the files
+storing the front and back of a flashcard), etc., are defined in those files.</p>
+<h2 id="blacklist"><a class="header" href="#blacklist">Blacklist</a></h2>
+<p>Each Trane library has a blacklist. A unit in a blacklist can be any exercise, lesson, or course. If
+a unit is in the blacklist, Trane will not show any exercises from it. If a lesson or course depend
+on a blacklisted unit, the scheduling algorithm will act as if the blacklisted unit has been
+mastered.</p>
+<p>A unit should be added to the blacklist if the user already has mastered the material (e.g. an
+accomplished musician will want to skip the course teaching the notes in the major scale) or if they
+have no interest in learning the material (e.g. someone interested in learning the guitar might want
+to skip units which are focused on another instrument).</p>
+<h2 id="filters"><a class="header" href="#filters">Filters</a></h2>
+<p>In its normal mode of operation, Trane looks for exercises in the entire library. There are times
+when users might want to focus on a smaller section. Filters provide users with the ability to
+select specific exercises. There are three types of filters.</p>
+<ul>
+<li>Lesson filter: Only present exercises from the given lesson. For example, users might want to only
+practice exercises from a lesson covering a section of a song.</li>
+<li>Course filter: Only present exercises from the given course. The dependency relationships among
+the lessons in the course are respected. For example, users might want to only practice exercises
+from a course covering an entire song.</li>
+<li>Metadata filter: Courses and lessons can have key-value pairs as metadata. A metadata filter acts
+on this metadata to present exercises exclusively from units which match the filter, while also
+preserving the dependency relationships between those lessons. Lessons which do not pass the
+filter are considered as mastered so that the scheduler can continue the search. For example, a
+user might want to only practice exercises from lessons and courses for the guitar and in a
+specific key.</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="theory"><a class="header" href="#theory">Theory</a></h1>
+<h2 id="spaced-repetition"><a class="header" href="#spaced-repetition">Spaced Repetition</a></h2>
+<p>Spaced repetition is a long-established way to efficiently memorize new information and to transfer
+that information to long-term memory. Trane applies spaced repetition to exercises that require
+memorization (e.g. recalling the notes in the chord A7) and to those which require mastery of an
+action (e.g. playing a section of a song). </p>
+<p>The space repetition algorithm in Trane is fairly simple and relies on computing a score for a given
+exercise based on previous trials rather than computing the optimal time at which the exercise needs
+to be presented again. This will most likely result in exercises being presented more often than
+they would in other spaced repetition software. Trane is not focused on memorization but on the
+repetition of individual skills until they are mastered, so I do not believe this to be a problem.</p>
+<h2 id="mastery-learning"><a class="header" href="#mastery-learning">Mastery Learning</a></h2>
+<p>Mastery learning states that students must achieve a level of mastery in a skill before moving on to
+learning the skills which depend on the current skill.</p>
+<p>Trane applies mastery learning by preventing the user from moving on to the dependents of a unit
+until the material in the unit is sufficiently mastered. It also excludes units whose dependencies
+have not been fully met. Otherwise, a user might be presented with material that lies too outside
+their current abilities and become frustrated. If a user's performance on a previously mastered unit
+degrades, Trane will make the user practice the material until it is mastered again.</p>
+<h2 id="chunking"><a class="header" href="#chunking">Chunking</a></h2>
+<p>Chunking consists of breaking up a complex skill into smaller components that can be practiced
+independently.</p>
+<p>Trane applies chunking by allowing users to define lessons and courses with arbitrary dependency
+relationships. For example, learning to improvise over chord progressions might be broken into units
+to learn the notes in each chord, learn the fingerings of each chord, or improvise over single
+chords. The user can then define a unit that exercises the union of all the previous skills and
+claim the other lessons as a dependency.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vision"><a class="header" href="#vision">Vision</a></h1>
 <p>Trane aims to offer a coherent and powerful user experience that is capable of taking students of
 any level and allowing them to make the most out of their practice sessions, as well as offering
@@ -229,10 +303,60 @@ piece.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="using-trane"><a class="header" href="#using-trane">Using Trane</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="trane"><a class="header" href="#trane">trane</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="trane-cli"><a class="header" href="#trane-cli">trane-cli</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="trane-app"><a class="header" href="#trane-app">trane-app</a></h1>
+<p><strong>UPCOMING:</strong> trane-app is a graphic interface for Trane. It is currently under construction.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="trane-server"><a class="header" href="#trane-server">trane-server</a></h1>
+<p><strong>UPCOMING:</strong> trane-server is a server for Trane to allow other applications to use Trane without
+requiring the use of Rust or for applications incompatible with the GPLv3 License. It is currently
+under construction.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="writing-trane-courses"><a class="header" href="#writing-trane-courses">Writing Trane Courses</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="official-trane-courses"><a class="header" href="#official-trane-courses">Official Trane Courses</a></h1>
+<p>The Trane Project also aims to offer quality official courses to go along with the software. Here's
+the list of all official courses.</p>
+<ul>
+<li><a href="https://github.com/trane-project/trane-music/">trane-music</a>: Courses on music. Still under
+construction but a lot more courses are in the works.</li>
+<li><a href="https://github.com/trane-project/trane-rustlings">trane-rustlings</a>: A course showcasing how Trane
+can be used to extend existing educational materials. This course augments
+<a href="https://github.com/rust-lang/rustlings">rustlings</a>, a course to learn the Rust programming
+language.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="licensing"><a class="header" href="#licensing">Licensing</a></h1>
+<p>All code in Trane is licensed under the GPLv3 license with the following exceptions:</p>
+<ul>
+<li>The <code>data</code> and <code>course_builder</code> modules in the <code>trane</code> library so that the data formats for Trane
+and the utilities to build can be shared using a less restrictive license.</li>
+<li>The upcoming <code>trane-server</code> project so that other projects that are incompatible with the GPLv3
+license can stil use Trane.</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="contributing-to-trane"><a class="header" href="#contributing-to-trane">Contributing to Trane</a></h1>
+<p>Trane is accepting contributions, specially for
+<a href="https://github.com/trane-project/trane-music">trane-music</a>. Here's a list of ways to contribute:</p>
+<h2 id="code-contributions"><a class="header" href="#code-contributions">Code contributions</a></h2>
+<p>Trane and its associated projects are still in a very early stage, so I am not looking for code
+contributions at this time. However, feel free to open a PR if you notice a bug or an issue with my
+usage of Rust, since I am new to the language.</p>
+<h2 id="suggesting-new-material-in-one-of-the-official-courses"><a class="header" href="#suggesting-new-material-in-one-of-the-official-courses">Suggesting new material in one of the official courses</a></h2>
+<p>Easiest way to contribute is by simply opening an issue in the appropriate repo and suggesting new
+courses or lessons to be added. It is especially useful to detail how the material in those units
+relates to other material (either in existing courses or ones that have not been added yet) and how
+you would break the material into smaller lessons, if it is necessary. Either links to reference
+material or example exercises are also useful.</p>
+<p>If you are a domain expert but can't (or want) to code any material yourself, this is a great way to
+contribute as a large part of the task at hand is breaking down skills and knowledge into smaller
+units and figuring a sensible order in which they should be introduced to students.</p>
+<h2 id="planning-new-material"><a class="header" href="#planning-new-material">Planning new material</a></h2>
+<p>This is a more involved version of the above. You still don't need to code any material yourself but
+if you already know exactly how the material you want to add translates to courses, lessons, and
+exercises, you can write them in a simplified format in plain text and propose the course is added
+by opening and issue and sharing your work. Once all the details have been ironed out and your
+proposal has been accepted, someone else can work into translating it into working code.</p>
+<h2 id="coding-new-material"><a class="header" href="#coding-new-material">Coding new material</a></h2>
+<p>You can also contribute by adding the code to generate new courses and lessons. The best way to
+learn is to look at how existing courses are defined. You can either create courses for material you
+have designed yourself or generate new material that has been proposed and approved but still needs
+to be added as code. Make sure you have gotten an approval to work on new material before submitting
+a PR.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="a-love-supreme"><a class="header" href="#a-love-supreme">A Love Supreme</a></h1>
 
                     </main>
