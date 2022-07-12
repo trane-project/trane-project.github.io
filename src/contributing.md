@@ -6,8 +6,8 @@ Trane is accepting contributions, specially for
 ## Code contributions
 
 Trane and its associated projects are still in a very early stage, so I am not looking for code
-contributions at this time. However, feel free to open a PR if you notice a bug or an issue with my
-usage of Rust, since I am new to the language.
+contributions at this time. However, feel free to open an issue if you notice a bug or an issue with
+my usage of Rust, since I am new to the language.
 
 ## Suggesting new material in one of the official courses
 

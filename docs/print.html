@@ -448,6 +448,36 @@ also shown by running the <code>filter list-saved</code> command.</p>
 requiring the use of Rust or for applications incompatible with the GPLv3 License. It is currently
 under construction.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="writing-trane-courses"><a class="header" href="#writing-trane-courses">Writing Trane Courses</a></h1>
+<p>Trane courses have the following directory structure:</p>
+<pre><code>course_root/
+    course_manifest.json
+    &lt;LESSON_DIR&gt;/
+        lesson_manifest.json
+        &lt;EXERCISE_DIR&gt;/
+            exercise_manifest.json
+</code></pre>
+<p>There can be multiple lessons in a course and multiple exercises in a lesson. In addition, there can
+be asset files (e.g. markdown files) anywhere in the course directory, but it's best to put each of
+them in the same directory as the manifest that refers to it.</p>
+<p>So writing a course for Trane consists of generating the manifest files in this directory structure
+and placing any assets in the right paths. While this process is easy for small courses, it can
+quickly get out of hands if you are generating courses with a lot of exercises or if you are
+planning on creating a lot of courses.</p>
+<p>For this reason, Trane provides utilities to help you write courses inside the <code>course_builder</code>
+module in Trane. These utilities help you define the courses, lessons, and exercises as Rust code
+and contain methods to generate all the files (including assets) while also performing several
+sanity checks. While the decision of generating courses by writing Rust source files might seem
+strange at first, it's actually a lot easier and less annoying than writing a course by hand.
+Another advantage is that any breaking change to the manifest data structures in Trane will result
+in a compile error, so you can be confident that your courses will work with a specific version of
+Trane as long as the code compiles.</p>
+<p>These utilities can be augmented to help you write more easily specific types of courses. For
+example, inside the <code>course_builder</code> module, there is a <code>CirclesFifthCourse</code> struct that can be used
+to generate courses that require a lesson for each key and which follow the order of the circles of
+fifths, starting with the key of C and going clockwise and counterclockwise into each of the other
+keys.</p>
+<p>You can look at any of the <a href="./official_courses.html">official Trane courses</a> for example of how
+courses are written.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="official-trane-courses"><a class="header" href="#official-trane-courses">Official Trane Courses</a></h1>
 <p>The Trane Project also aims to offer quality official courses to go along with the software. Here's
 the list of all official courses.</p>
@@ -472,8 +502,8 @@ license can stil use Trane.</li>
 <a href="https://github.com/trane-project/trane-music">trane-music</a>. Here's a list of ways to contribute:</p>
 <h2 id="code-contributions"><a class="header" href="#code-contributions">Code contributions</a></h2>
 <p>Trane and its associated projects are still in a very early stage, so I am not looking for code
-contributions at this time. However, feel free to open a PR if you notice a bug or an issue with my
-usage of Rust, since I am new to the language.</p>
+contributions at this time. However, feel free to open an issue if you notice a bug or an issue with
+my usage of Rust, since I am new to the language.</p>
 <h2 id="suggesting-new-material-in-one-of-the-official-courses"><a class="header" href="#suggesting-new-material-in-one-of-the-official-courses">Suggesting new material in one of the official courses</a></h2>
 <p>Easiest way to contribute is by simply opening an issue in the appropriate repo and suggesting new
 courses or lessons to be added. It is especially useful to detail how the material in those units
@@ -496,6 +526,16 @@ have designed yourself or generate new material that has been proposed and appro
 to be added as code. Make sure you have gotten an approval to work on new material before submitting
 a PR.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="a-love-supreme"><a class="header" href="#a-love-supreme">A Love Supreme</a></h1>
+<blockquote>
+<p>This album is a humble offering to Him. An attempt to say &quot;THANK YOU GOD&quot; through our work, even
+as we do in our hearts and with our tongues. May He help and strengthen all men in every good
+endeavor.</p>
+<p><em>A Love Supreme</em> liner notes</p>
+</blockquote>
+<p>Trane and all associated projects are dedicated to the memory of John Coltrane. Trane is free
+software as are all of its official courses and the authors are committed to keep it so in the same
+spirit of love and generosity of his music. May all users of Trane learn and master the skills they
+desire for the benefit of all beings.</p>
 
                     </main>
 
