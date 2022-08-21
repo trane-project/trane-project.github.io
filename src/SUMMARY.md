@@ -2,8 +2,7 @@
 
 [Introduction](./introduction.md)
 
-- [Concepts](./concepts.md)
-- [Theory](./theory.md)
+- [Concepts and Theory](./concepts.md)
 - [Vision](./vision.md)
 - [Using Trane](./using_trane.md)
     - [trane](./trane.md)
