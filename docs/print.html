@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="concepts.html"><strong aria-hidden="true">1.</strong> Concepts and Theory</a></li><li class="chapter-item expanded "><a href="vision.html"><strong aria-hidden="true">2.</strong> Vision</a></li><li class="chapter-item expanded "><a href="using_trane.html"><strong aria-hidden="true">3.</strong> Using Trane</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="trane.html"><strong aria-hidden="true">3.1.</strong> trane</a></li><li class="chapter-item expanded "><a href="trane-cli.html"><strong aria-hidden="true">3.2.</strong> trane-cli</a></li><li class="chapter-item expanded "><a href="trane-app.html"><strong aria-hidden="true">3.3.</strong> trane-app</a></li><li class="chapter-item expanded "><a href="trane-server.html"><strong aria-hidden="true">3.4.</strong> trane-server</a></li></ol></li><li class="chapter-item expanded "><a href="writing_courses.html"><strong aria-hidden="true">4.</strong> Writing Trane Courses</a></li><li class="chapter-item expanded "><a href="official_courses.html"><strong aria-hidden="true">5.</strong> Official Trane Courses</a></li><li class="chapter-item expanded "><a href="licensing.html"><strong aria-hidden="true">6.</strong> Licensing</a></li><li class="chapter-item expanded "><a href="contributing.html"><strong aria-hidden="true">7.</strong> Contributing to Trane</a></li><li class="chapter-item expanded affix "><a href="a_love_supreme.html">A Love Supreme</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="quick_start.html"><strong aria-hidden="true">1.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="concepts.html"><strong aria-hidden="true">2.</strong> Concepts and Theory</a></li><li class="chapter-item expanded "><a href="vision.html"><strong aria-hidden="true">3.</strong> Vision</a></li><li class="chapter-item expanded "><a href="using_trane.html"><strong aria-hidden="true">4.</strong> Using Trane</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="trane.html"><strong aria-hidden="true">4.1.</strong> trane</a></li><li class="chapter-item expanded "><a href="trane-cli.html"><strong aria-hidden="true">4.2.</strong> trane-cli</a></li><li class="chapter-item expanded "><a href="trane-app.html"><strong aria-hidden="true">4.3.</strong> trane-app</a></li><li class="chapter-item expanded "><a href="trane-server.html"><strong aria-hidden="true">4.4.</strong> trane-server</a></li></ol></li><li class="chapter-item expanded "><a href="writing_courses.html"><strong aria-hidden="true">5.</strong> Writing Trane Courses</a></li><li class="chapter-item expanded "><a href="official_courses.html"><strong aria-hidden="true">6.</strong> Official Trane Courses</a></li><li class="chapter-item expanded "><a href="licensing.html"><strong aria-hidden="true">7.</strong> Licensing</a></li><li class="chapter-item expanded "><a href="contributing.html"><strong aria-hidden="true">8.</strong> Contributing to Trane</a></li><li class="chapter-item expanded affix "><a href="a_love_supreme.html">A Love Supreme</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -158,6 +158,34 @@ but applied to arbitrary skills, specified in plain-text files which are easy to
 <p>Trane is named after John Coltrane, whose nickname Trane was often used in wordplay with the word
 train (as in the vehicle) to describe the overwhelming power of his playing. It is used here as a
 play on its homophone (as in &quot;<em>trane</em> a new skill&quot;).</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="quick-start"><a class="header" href="#quick-start">Quick Start</a></h1>
+<h2 id="for-technical-users"><a class="header" href="#for-technical-users">For technical users</a></h2>
+<p>This section assumes you know how to use git, the terminal for your operating system, and can
+install software in a place where your terminal can find it.</p>
+<h3 id="install-trane-cli"><a class="header" href="#install-trane-cli">Install trane-cli</a></h3>
+<p><a href="https://github.com/trane-project/trane-cli">trane-cli</a> is the command-line interface for Trane. To
+install it download the appropriate binary for your operating system and CPU architecture from the
+<a href="https://github.com/trane-project/trane-cli/releases">Releases</a> page. Then move the binary to a
+directory in your <code>PATH</code> environment variable.</p>
+<h3 id="create-your-first-trane-library"><a class="header" href="#create-your-first-trane-library">Create your first Trane library</a></h3>
+<p>A Trane library is simply a directory with a <code>.trane</code> directory in it. Your progress and options are
+stored under this directory. This directory is created and populated automatically the first time
+you open it with Trane. Thus, the only thing needed to create a new Trane library is to create a new
+directory.</p>
+<h3 id="downloading-material-for-trane"><a class="header" href="#downloading-material-for-trane">Downloading material for Trane.</a></h3>
+<p>For this guide, we'll use the official Trane course
+<a href="https://github.com/trane-project/trane-music">trane-music</a>. Open a terminal, navigate inside the
+directory you created in the previous step, and run the following command:</p>
+<pre><code>git clone https://github.com/trane-project/trane-music.git
+</code></pre>
+<p>This will download all the course's contents to your computer.</p>
+<h3 id="opening-your-trane-library"><a class="header" href="#opening-your-trane-library">Opening your Trane library</a></h3>
+<p>From the same terminal, run the command <code>trane</code>. You should see a prompt like this:</p>
+<pre><code>trane &gt;&gt; 
+</code></pre>
+<p>Inside this command-line interface, type <code>open ./</code>. You should see a message saying that the library
+is open. To see a new exercise, type <code>next</code>. To score the exercise, type <code>score &lt;YOUR 1-5 score&gt;</code>. 
+For more documentation, check out the <a href="./trane-cli.html">trane-cli</a> section.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="concepts-and-theory"><a class="header" href="#concepts-and-theory">Concepts and Theory</a></h1>
 <h2 id="theory"><a class="header" href="#theory">Theory</a></h2>
 <p>This section defines basic concepts used in Trane, useful both for using it and for creating new

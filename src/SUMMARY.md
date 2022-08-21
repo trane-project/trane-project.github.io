@@ -2,6 +2,7 @@
 
 [Introduction](./introduction.md)
 
+- [Quick Start](./quick_start.md)
 - [Concepts and Theory](./concepts.md)
 - [Vision](./vision.md)
 - [Using Trane](./using_trane.md)
