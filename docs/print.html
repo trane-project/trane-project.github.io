@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="quick_start.html"><strong aria-hidden="true">1.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="concepts.html"><strong aria-hidden="true">2.</strong> Concepts and Theory</a></li><li class="chapter-item expanded "><a href="vision.html"><strong aria-hidden="true">3.</strong> Vision</a></li><li class="chapter-item expanded "><a href="using_trane.html"><strong aria-hidden="true">4.</strong> Using Trane</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="trane.html"><strong aria-hidden="true">4.1.</strong> trane</a></li><li class="chapter-item expanded "><a href="trane-cli.html"><strong aria-hidden="true">4.2.</strong> trane-cli</a></li><li class="chapter-item expanded "><a href="trane-app.html"><strong aria-hidden="true">4.3.</strong> trane-app</a></li><li class="chapter-item expanded "><a href="trane-server.html"><strong aria-hidden="true">4.4.</strong> trane-server</a></li></ol></li><li class="chapter-item expanded "><a href="writing_courses.html"><strong aria-hidden="true">5.</strong> Writing Trane Courses</a></li><li class="chapter-item expanded "><a href="official_courses.html"><strong aria-hidden="true">6.</strong> Official Trane Courses</a></li><li class="chapter-item expanded "><a href="licensing.html"><strong aria-hidden="true">7.</strong> Licensing</a></li><li class="chapter-item expanded "><a href="contributing.html"><strong aria-hidden="true">8.</strong> Contributing to Trane</a></li><li class="chapter-item expanded affix "><a href="a_love_supreme.html">A Love Supreme</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="quick_start.html"><strong aria-hidden="true">1.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="concepts.html"><strong aria-hidden="true">2.</strong> Concepts and Theory</a></li><li class="chapter-item expanded "><a href="vision.html"><strong aria-hidden="true">3.</strong> Vision</a></li><li class="chapter-item expanded "><a href="using_trane.html"><strong aria-hidden="true">4.</strong> Using Trane</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="trane.html"><strong aria-hidden="true">4.1.</strong> trane</a></li><li class="chapter-item expanded "><a href="trane-cli.html"><strong aria-hidden="true">4.2.</strong> trane-cli</a></li><li class="chapter-item expanded "><a href="trane-app.html"><strong aria-hidden="true">4.3.</strong> trane-app</a></li><li class="chapter-item expanded "><a href="trane-server.html"><strong aria-hidden="true">4.4.</strong> trane-server</a></li></ol></li><li class="chapter-item expanded "><a href="writing_courses.html"><strong aria-hidden="true">5.</strong> Writing Trane Courses</a></li><li class="chapter-item expanded "><a href="official_courses.html"><strong aria-hidden="true">6.</strong> Official Trane Courses</a></li><li class="chapter-item expanded "><a href="licensing.html"><strong aria-hidden="true">7.</strong> Licensing</a></li><li class="chapter-item expanded "><a href="contributing.html"><strong aria-hidden="true">8.</strong> Contributing to Trane</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">9.</strong> FAQ</a></li><li class="chapter-item expanded affix "><a href="a_love_supreme.html">A Love Supreme</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -582,6 +582,51 @@ learn is to look at how existing courses are defined. You can either create cour
 have designed yourself or generate new material that has been proposed and approved but still needs
 to be added as code. Make sure you have gotten an approval to work on new material before submitting
 a PR.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="faq"><a class="header" href="#faq">FAQ</a></h1>
+<h2 id="what-is-the-current-state-of-the-project"><a class="header" href="#what-is-the-current-state-of-the-project">What is the current state of the project?</a></h2>
+<p>Trane is in an early state and subject to change. However, I do not expect a lot of changes to
+happen in the core scheduling logic. The only state stored by Trane depends on the ID of a unit, so
+as long as that is not changed, updating the files is the only thing needed to make Trane pick up
+updated versions.</p>
+<h2 id="how-well-does-trane-work"><a class="header" href="#how-well-does-trane-work">How well does Trane work?</a></h2>
+<p>The honest answer is that I am not sure. One of the goals of releasing Trane to the public is to get
+feedback and user reports in the hope that I can fine-tune it. I suspect Trane will work fairly well
+in learning skills that require the repetition of complex chains of patterns until mastery of each
+and the whole is achieved. Playing music mostly follows this pattern, but I would like to figure out
+how it can be applied to other skills. </p>
+<h2 id="how-do-i-use-trane"><a class="header" href="#how-do-i-use-trane">How do I use Trane?</a></h2>
+<p>At the moment, there is only a command line interface for using Trane. The code and releases are in
+the <a href="https://github.com/trane-project/trane-cli">trane-cli</a> repository.</p>
+<h2 id="how-do-i-get-content-for-trane"><a class="header" href="#how-do-i-get-content-for-trane">How do I get content for Trane.</a></h2>
+<p>The repository <a href="https://github.com/trane-project/trane-music">trane-music</a> contains the first
+courses available that you can use to experiment with Trane. More are coming, and I am open to
+contributions. I am also looking into creating courses for other skills to figure out how to apply
+Trane to skills other than music. Some candidates at the moment are chess, programming, and
+languages.</p>
+<p>Since Trane courses are just collections of plain-text files, you can also create your own content.
+This content can freely reference other courses, even those written by others. For example, you
+could add new courses that link to a course in <code>trane-music</code>, or add additional exercises to one of
+the lessons.</p>
+<p>You can also experiment with augmenting existing educational materials by translating them into
+Trane exercises, lessons, and courses. For example, if you are learning the flute and have a book of
+études you would like to master, you could break each into a course, each large section of the piece
+into a lesson, and each small subsection into an exercise. This process does not require you to port
+any of the actual material into Trane. Creating flashcards that say &quot;Play étude 4, measures 12
+through 16&quot; is enough. Used in this manner, Trane can integrate materials from multiple sources into
+one centralized practice system.</p>
+<h2 id="are-there-plans-to-have-a-graphic-interface"><a class="header" href="#are-there-plans-to-have-a-graphic-interface">Are there plans to have a graphic interface?</a></h2>
+<p>Eventually. I am not too familiar with front-end or GUI development, so it could take a while.
+However, the command-line version should be enough to get going for now. The main thing to be gained
+from a graphic interface is to allow external resources (e.g., images or a score from soundslice.com)
+to be embedded into the application.</p>
+<h2 id="why-not-anki-or-another-existing-software"><a class="header" href="#why-not-anki-or-another-existing-software">Why not Anki or another existing software?</a></h2>
+<p>Originally, I tried to use Anki for practicing music but quickly found some limitations. First, Anki
+and similar software are optimized for memorization, not for practicing the same skill until it is
+mastered. Most importantly, defining arbitrary dependencies between subsets of flashcards <em>and</em>
+having the algorithm use those dependencies to select the flashcards to present is not supported.</p>
+<p>The solution given by Anki is to create multiple decks. However, asking users to manually decide
+which deck to practice and which decks should be practiced once the current one is sufficiently
+mastered sort of defeats the purpose of using an automated system in the first place.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="a-love-supreme"><a class="header" href="#a-love-supreme">A Love Supreme</a></h1>
 <blockquote>
 <p>This album is a humble offering to Him. An attempt to say &quot;THANK YOU GOD&quot; through our work, even

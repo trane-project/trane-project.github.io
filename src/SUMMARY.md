@@ -14,5 +14,6 @@
 - [Official Trane Courses](./official_courses.md)
 - [Licensing](./licensing.md)
 - [Contributing to Trane](./contributing.md)
+- [FAQ](./faq.md)
 
 [A Love Supreme](./a_love_supreme.md)
