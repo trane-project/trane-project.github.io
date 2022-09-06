@@ -20,8 +20,8 @@ piece.
 
 When presented an exercise, a user performs it and assigns it a score signifying their mastery of
 the task. The scores range from one to five, with one meaning the skill is just being introduced
-(e.g. reading a section of a music score and figuring out the notes and movements required to play
-it) and five meaning complete mastery of the material (e.g. effortlessly playing the section and
+(e.g., reading a section of a music score and figuring out the notes and movements required to play
+it) and five meaning complete mastery of the material (e.g., effortlessly playing the section and
 improvising on it).
 
 
@@ -49,14 +49,14 @@ There are three types of units in Trane:
   depend on other courses and lessons.
 
 A Trane library is a set of courses stored under the same directory. Courses can be stored under any
-directory structure but the content of each course follows a predetermined structure (See the
-section on [Writing Trane Courses](./writing_courses.md). Trane stores its configuration
+directory structure, but the content of each course follows a predetermined structure (See the
+section on [Writing Trane Courses](./writing_courses.md)). Trane stores its configuration
 under a directory called `.trane` in that directory. Users might want to have multiple separate
-libraries if they are learning separate skills (e.g. music and chess), and they want to keep their
+libraries if they are learning separate skills (e.g., music and chess), and they want to keep their
 practice separate.
 
 Units are defined in JSON files called manifests, which are serialized versions of structs defined
-in the data module. The ID, name, description, dependencies, locations of any external files (e.g.
+in the data module. The ID, name, description, dependencies, locations of any external files (e.g.,
 the files storing the front and back of a flashcard), etc., are defined in those files.
 
 ### Blacklist
@@ -66,10 +66,10 @@ a unit is in the blacklist, Trane will not show any exercises from it. If a less
 on a blacklisted unit, the scheduling algorithm will act as if the blacklisted unit has been
 mastered.
 
-A unit should be added to the blacklist if the user already has mastered the material (e.g. an
-accomplished musician will want to skip the course teaching the notes in the major scale) or if they
-have no interest in learning the material (e.g. someone interested in learning the guitar might want
- to skip units which are focused on another instrument).
+A unit should be added to the blacklist if the user already has mastered the material (e.g., an
+accomplished musician will want to skip the course teaching the notes in the major scale). It can
+also be added if the user has no interest in learning the material (e.g., someone interested in
+ learning the guitar might want to skip units which are focused on another instrument).
 
 ### Filters
 
@@ -89,6 +89,12 @@ select specific exercises. There are three types of filters.
   user might want to only practice exercises from lessons and courses for the guitar and in a
   specific key.
 
+### Review List
+
+The review list stores units which the student feels should be given special attention. Trane
+includes a special filtering mode which only presents exercises from the review list. If a course or
+lesson is added to the review list, all of its exercises can appear in this mode.
+
 ## Theory
 
 This section describes the ideas behind Trane and its design.
@@ -97,8 +103,8 @@ This section describes the ideas behind Trane and its design.
 
 Spaced repetition is a long-established way to efficiently memorize new information and to transfer
 that information to long-term memory. Trane applies spaced repetition to exercises that require
-memorization (e.g. recalling the notes in the chord A7) and to those which require mastery of an
-action (e.g. playing a section of a song). 
+memorization (e.g., recalling the notes in the chord A7) and to those which require mastery of an
+action (e.g., playing a section of a song). 
 
 The space repetition algorithm in Trane is fairly simple and relies on computing a score for a given
 exercise based on previous trials rather than computing the optimal time at which the exercise needs
