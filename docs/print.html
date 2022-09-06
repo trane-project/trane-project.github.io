@@ -202,8 +202,8 @@ piece. </p>
 <h3 id="mastery-score"><a class="header" href="#mastery-score">Mastery Score.</a></h3>
 <p>When presented an exercise, a user performs it and assigns it a score signifying their mastery of
 the task. The scores range from one to five, with one meaning the skill is just being introduced
-(e.g. reading a section of a music score and figuring out the notes and movements required to play
-it) and five meaning complete mastery of the material (e.g. effortlessly playing the section and
+(e.g., reading a section of a music score and figuring out the notes and movements required to play
+it) and five meaning complete mastery of the material (e.g., effortlessly playing the section and
 improvising on it).</p>
 <h3 id="skills-dependencies"><a class="header" href="#skills-dependencies">Skills dependencies</a></h3>
 <p>Just as skills can be broken down into multiple smaller skills, they can also be built up in order
@@ -225,23 +225,23 @@ same skill. Lessons can depend on other lessons and courses.</li>
 depend on other courses and lessons.</li>
 </ul>
 <p>A Trane library is a set of courses stored under the same directory. Courses can be stored under any
-directory structure but the content of each course follows a predetermined structure (See the
-section on <a href="./writing_courses.html">Writing Trane Courses</a>. Trane stores its configuration
+directory structure, but the content of each course follows a predetermined structure (See the
+section on <a href="./writing_courses.html">Writing Trane Courses</a>). Trane stores its configuration
 under a directory called <code>.trane</code> in that directory. Users might want to have multiple separate
-libraries if they are learning separate skills (e.g. music and chess), and they want to keep their
+libraries if they are learning separate skills (e.g., music and chess), and they want to keep their
 practice separate.</p>
 <p>Units are defined in JSON files called manifests, which are serialized versions of structs defined
-in the data module. The ID, name, description, dependencies, locations of any external files (e.g.
+in the data module. The ID, name, description, dependencies, locations of any external files (e.g.,
 the files storing the front and back of a flashcard), etc., are defined in those files.</p>
 <h3 id="blacklist"><a class="header" href="#blacklist">Blacklist</a></h3>
 <p>Each Trane library has a blacklist. A unit in a blacklist can be any exercise, lesson, or course. If
 a unit is in the blacklist, Trane will not show any exercises from it. If a lesson or course depend
 on a blacklisted unit, the scheduling algorithm will act as if the blacklisted unit has been
 mastered.</p>
-<p>A unit should be added to the blacklist if the user already has mastered the material (e.g. an
-accomplished musician will want to skip the course teaching the notes in the major scale) or if they
-have no interest in learning the material (e.g. someone interested in learning the guitar might want
-to skip units which are focused on another instrument).</p>
+<p>A unit should be added to the blacklist if the user already has mastered the material (e.g., an
+accomplished musician will want to skip the course teaching the notes in the major scale). It can
+also be added if the user has no interest in learning the material (e.g., someone interested in
+learning the guitar might want to skip units which are focused on another instrument).</p>
 <h3 id="filters"><a class="header" href="#filters">Filters</a></h3>
 <p>In its normal mode of operation, Trane looks for exercises in the entire library. There are times
 when users might want to focus on a smaller section. Filters provide users with the ability to
@@ -259,13 +259,17 @@ filter are considered as mastered so that the scheduler can continue the search.
 user might want to only practice exercises from lessons and courses for the guitar and in a
 specific key.</li>
 </ul>
+<h3 id="review-list"><a class="header" href="#review-list">Review List</a></h3>
+<p>The review list stores units which the student feels should be given special attention. Trane
+includes a special filtering mode which only presents exercises from the review list. If a course or
+lesson is added to the review list, all of its exercises can appear in this mode.</p>
 <h2 id="theory-1"><a class="header" href="#theory-1">Theory</a></h2>
 <p>This section describes the ideas behind Trane and its design.</p>
 <h3 id="spaced-repetition"><a class="header" href="#spaced-repetition">Spaced Repetition</a></h3>
 <p>Spaced repetition is a long-established way to efficiently memorize new information and to transfer
 that information to long-term memory. Trane applies spaced repetition to exercises that require
-memorization (e.g. recalling the notes in the chord A7) and to those which require mastery of an
-action (e.g. playing a section of a song). </p>
+memorization (e.g., recalling the notes in the chord A7) and to those which require mastery of an
+action (e.g., playing a section of a song). </p>
 <p>The space repetition algorithm in Trane is fairly simple and relies on computing a score for a given
 exercise based on previous trials rather than computing the optimal time at which the exercise needs
 to be presented again. This will most likely result in exercises being presented more often than
