@@ -15,5 +15,7 @@
 - [Licensing](./licensing.md)
 - [Contributing to Trane](./contributing.md)
 - [FAQ](./faq.md)
+- [Development Blog](./blog.md)
+    - [Semi-Literate Programming](./blog/semi_literate_programming.md)
 
 [A Love Supreme](./a_love_supreme.md)
