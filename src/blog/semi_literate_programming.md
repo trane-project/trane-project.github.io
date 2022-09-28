@@ -1,11 +1,12 @@
 # Semi-Literate Programming
 
-One of the goals of Trane is to make its source code as clear and easy to understand as possible.
-The reasons are both altruistic and selfish. The altruistic reason is that a clearer codebase would
-make it easier for potential collaborators to get started, either modifying Trane itself or writing
-courses for it. The selfish reason is that while I don't expect any monetary reward for releasing my
-work as free software, I want Trane to serve as a showcase of my programming skills. All in the
-hopes of never having to solve another algorithm and data structure problem during a job search.
+One of the goals of [Trane](https://github.com/trane-project/trane) is to make its source code as
+clear and easy to understand as possible. The reasons are both altruistic and selfish. The
+altruistic reason is that a clearer codebase would make it easier for potential collaborators to get
+started, either modifying Trane itself or writing courses for it. The selfish reason is that while I
+don't expect any monetary reward for releasing my work as free software, I want Trane to serve as a
+showcase of my programming skills. All in the hopes of never having to solve another algorithm and
+data structure problem during a job search.
 
 It was with great interest then that I came across the concept of [literate
 programming](https://en.wikipedia.org/wiki/Literate_programming). The idea and naming comes from
