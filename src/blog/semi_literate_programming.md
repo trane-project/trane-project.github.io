@@ -41,6 +41,8 @@ Below I present some of the guidelines I used to improve Trane's documentation.
 
 ## Rules of Semi-Literate Programming
 
+- This shouldn't even have to be said, but comments should be written in clear language free of
+  grammar and spelling mistakes.
 - Comments explaining the why of a section of code are more important than comments answering what
   or how. However, there's still use for the latter. They allow a reader to quickly skim what
   a section of code does without having to read a line of code. Below is an example from Trane's
@@ -206,6 +208,16 @@ Below I present some of the guidelines I used to improve Trane's documentation.
         ])
     }
   ```
+
+## Tools for semi-literate programming
+
+Here are a few of the tools that helped me while revamping the documentation for Trane.
+
+- An editor plugin to auto-wrap comment lines as you type. I develop in Visual Studio Code and use
+  the [Rewrap](https://marketplace.visualstudio.com/items?itemName=stkb.rewrap) extension.
+- An editor plugin to check the grammar and spelling of comments. I use the
+  [LTeX](https://marketplace.visualstudio.com/items?itemName=valentjn.vscode-ltex) plugin that
+  integrates VS Code with [LanguageTool](https://languagetool.org/).
 
 ## Results
 
