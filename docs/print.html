@@ -880,11 +880,11 @@ some minor refactoring while in the process of improving the documentation.</p>
 judgement falls on others. Whether it can be made to work for larger teams is also a question I
 cannot answer as Trane is currently a solo project.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="reaching-100-code-coverage-in-rust"><a class="header" href="#reaching-100-code-coverage-in-rust">Reaching 100% Code Coverage in Rust</a></h1>
-<p>As of commit <a href="https://github.com/trane-project/trane/commit/aa3536d0a1db3ff64679d70eae905cc4854ef068">aa3536d0</a>, Trane can
-boast a code coverage of 100%. I had difficulty finding a comprehensive guide when I was getting
-started, so this post is meant to explain how I got there, the tools I used, the problems I ran
-into, and the lessons I learned. Hopefully this will save time to someone else who is trying to add
-test coverage to a Rust project.</p>
+<p>As of commit <a href="https://github.com/trane-project/trane/commit/aa3536d0a1db3ff64679d70eae905cc4854ef068">aa3536d0</a>,
+<a href="https://github.com/trane-project/trane">Trane</a> can boast a code coverage of 100%. I had difficulty
+finding a comprehensive guide when I was getting started, so this post is meant to explain how I got
+there, the tools I used, the problems I ran into, and the lessons I learned. Hopefully this will
+save time to someone else who is trying to add test coverage to a Rust project.</p>
 <h2 id="the-tools"><a class="header" href="#the-tools">The Tools</a></h2>
 <p>I used <a href="https://github.com/mozilla/grcov">grcov</a> to generate the coverage information. This requires
 that the tests are run in the nightly version of Rust with special flags that create the 

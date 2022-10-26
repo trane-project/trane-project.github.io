@@ -1,11 +1,11 @@
 # Reaching 100% Code Coverage in Rust
 
 As of commit [aa3536d0](
-https://github.com/trane-project/trane/commit/aa3536d0a1db3ff64679d70eae905cc4854ef068), Trane can
-boast a code coverage of 100%. I had difficulty finding a comprehensive guide when I was getting
-started, so this post is meant to explain how I got there, the tools I used, the problems I ran
-into, and the lessons I learned. Hopefully this will save time to someone else who is trying to add
-test coverage to a Rust project.
+https://github.com/trane-project/trane/commit/aa3536d0a1db3ff64679d70eae905cc4854ef068),
+[Trane](https://github.com/trane-project/trane) can boast a code coverage of 100%. I had difficulty
+finding a comprehensive guide when I was getting started, so this post is meant to explain how I got
+there, the tools I used, the problems I ran into, and the lessons I learned. Hopefully this will
+save time to someone else who is trying to add test coverage to a Rust project.
 
 ## The Tools
 
