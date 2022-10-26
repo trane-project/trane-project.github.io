@@ -17,5 +17,6 @@
 - [FAQ](./faq.md)
 - [Development Blog](./blog.md)
     - [Semi-Literate Programming](./blog/semi_literate_programming.md)
+    - [Reaching 100% Code Coverage in Rust](./blog/100_code_coverage.md)
 
 [A Love Supreme](./a_love_supreme.md)

@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="quick_start.html"><strong aria-hidden="true">1.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="concepts.html"><strong aria-hidden="true">2.</strong> Concepts and Theory</a></li><li class="chapter-item expanded "><a href="vision.html"><strong aria-hidden="true">3.</strong> Vision</a></li><li class="chapter-item expanded "><a href="using_trane.html"><strong aria-hidden="true">4.</strong> Using Trane</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="trane.html"><strong aria-hidden="true">4.1.</strong> trane</a></li><li class="chapter-item expanded "><a href="trane-cli.html"><strong aria-hidden="true">4.2.</strong> trane-cli</a></li><li class="chapter-item expanded "><a href="trane-app.html"><strong aria-hidden="true">4.3.</strong> trane-app</a></li><li class="chapter-item expanded "><a href="trane-server.html"><strong aria-hidden="true">4.4.</strong> trane-server</a></li></ol></li><li class="chapter-item expanded "><a href="writing_courses.html"><strong aria-hidden="true">5.</strong> Writing Trane Courses</a></li><li class="chapter-item expanded "><a href="official_courses.html"><strong aria-hidden="true">6.</strong> Official Trane Courses</a></li><li class="chapter-item expanded "><a href="licensing.html"><strong aria-hidden="true">7.</strong> Licensing</a></li><li class="chapter-item expanded "><a href="contributing.html"><strong aria-hidden="true">8.</strong> Contributing to Trane</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">9.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="blog.html"><strong aria-hidden="true">10.</strong> Development Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="blog/semi_literate_programming.html"><strong aria-hidden="true">10.1.</strong> Semi-Literate Programming</a></li></ol></li><li class="chapter-item expanded "><a href="a_love_supreme.html">A Love Supreme</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="quick_start.html"><strong aria-hidden="true">1.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="concepts.html"><strong aria-hidden="true">2.</strong> Concepts and Theory</a></li><li class="chapter-item expanded "><a href="vision.html"><strong aria-hidden="true">3.</strong> Vision</a></li><li class="chapter-item expanded "><a href="using_trane.html"><strong aria-hidden="true">4.</strong> Using Trane</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="trane.html"><strong aria-hidden="true">4.1.</strong> trane</a></li><li class="chapter-item expanded "><a href="trane-cli.html"><strong aria-hidden="true">4.2.</strong> trane-cli</a></li><li class="chapter-item expanded "><a href="trane-app.html"><strong aria-hidden="true">4.3.</strong> trane-app</a></li><li class="chapter-item expanded "><a href="trane-server.html"><strong aria-hidden="true">4.4.</strong> trane-server</a></li></ol></li><li class="chapter-item expanded "><a href="writing_courses.html"><strong aria-hidden="true">5.</strong> Writing Trane Courses</a></li><li class="chapter-item expanded "><a href="official_courses.html"><strong aria-hidden="true">6.</strong> Official Trane Courses</a></li><li class="chapter-item expanded "><a href="licensing.html"><strong aria-hidden="true">7.</strong> Licensing</a></li><li class="chapter-item expanded "><a href="contributing.html"><strong aria-hidden="true">8.</strong> Contributing to Trane</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">9.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="blog.html"><strong aria-hidden="true">10.</strong> Development Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="blog/semi_literate_programming.html"><strong aria-hidden="true">10.1.</strong> Semi-Literate Programming</a></li><li class="chapter-item expanded "><a href="blog/100_code_coverage.html"><strong aria-hidden="true">10.2.</strong> Reaching 100% Code Coverage in Rust</a></li></ol></li><li class="chapter-item expanded "><a href="a_love_supreme.html">A Love Supreme</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -879,6 +879,152 @@ some minor refactoring while in the process of improving the documentation.</p>
 <p>Does it work to make it easier for others to understand and contribute to the code? I suppose that
 judgement falls on others. Whether it can be made to work for larger teams is also a question I
 cannot answer as Trane is currently a solo project.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="reaching-100-code-coverage-in-rust"><a class="header" href="#reaching-100-code-coverage-in-rust">Reaching 100% Code Coverage in Rust</a></h1>
+<p>As of commit <a href="https://github.com/trane-project/trane/commit/aa3536d0a1db3ff64679d70eae905cc4854ef068">aa3536d0</a>, Trane can
+boast a code coverage of 100%. I had difficulty finding a comprehensive guide when I was getting
+started, so this post is meant to explain how I got there, the tools I used, the problems I ran
+into, and the lessons I learned. Hopefully this will save time to someone else who is trying to add
+test coverage to a Rust project.</p>
+<h2 id="the-tools"><a class="header" href="#the-tools">The Tools</a></h2>
+<p>I used <a href="https://github.com/mozilla/grcov">grcov</a> to generate the coverage information. This requires
+that the tests are run in the nightly version of Rust with special flags that create the 
+coverage information. I used the <a href="https://github.com/rraval/actions-rs-grcov">grcov</a> GitHub Action
+to generate the report. This is a fork of the original repository, which appears to be abandoned.
+The fork is needed to support excluding lines from the coverage report (more on that later).</p>
+<p>For comparing the coverage reports I used <a href="https://coveralls.io/">Coveralls</a>. This is a free service
+for open-source repositories that provides a web interface for comparing the reports between
+commits. Here's the <a href="https://coveralls.io/builds/53511903">example report</a> of the commit mentioned
+above. I used the official Coveralls GitHub Action to upload the report to the service.</p>
+<p>Here are the configuration files for reference:</p>
+<ul>
+<li>The file to set up all the GitHub actions:
+<a href="https://github.com/trane-project/trane/blob/master/.github/workflows/coverage.yaml">coverage.yaml</a></li>
+<li>The file to configure grcov:
+<a href="https://github.com/trane-project/trane/blob/master/.github/actions-rs/grcov.yml">grcov.yml</a></li>
+</ul>
+<h3 id="configuring-grcov"><a class="header" href="#configuring-grcov">Configuring grcov</a></h3>
+<p>I ran into multiple issues with grcov which required some configuration to work around them.</p>
+<ul>
+<li>The initial report included coverage information for all the dependencies. Figuring out the fix
+for this issue took me a while, but I fixed by setting the <code>ignore</code> option in the configuration
+file to exclude any directory with <code>.cargo</code> in its path.</li>
+<li>The initial reports included branch coverage information. I decided to stick initially to line
+coverage, as I could not get it working with the fix to the previous issue. This required that I
+set the <code>branch</code> option to <code>false</code> in the configuration file. I might revisit this decision later
+and try to get branch coverage working.</li>
+<li>Some lines were marked as not covered, even though they don't contain actual code. They are
+ignored by setting the <code>excl-line</code> in the configuration file.
+<ul>
+<li>Some files have the first line marked as not covered. All my files have module-level comments,
+so I fixed the issue by excluding all lines that start with <code>//!</code> from the coverage report.</li>
+<li><code>#[derive...</code> lines are marked as not covered. This is because the code generated by those
+macros is not covered. Given that I trust the compiler to generate the correct code, I decided
+to ignore those lines.</li>
+</ul>
+</li>
+</ul>
+<h3 id="other-issues"><a class="header" href="#other-issues">Other issues</a></h3>
+<p>I ran into an issue in which fields in a struct or some variants of an enum would appear as not
+covered in the Coveralls report. This is related to the issue with <code>#[derive...]</code> lines. In
+particular, if a type implements the <code>Clone</code> trait, but the struct or some variant of an enum is not
+cloned anywhere in the code, some fields will appear as not covered. The fix is to remove the
+<code>Clone</code> trait if you are not using it or add tests that clone the type if it's an enum and not all
+variants are cloned in the code.</p>
+<p>Some other issues with partial hits using grcov and Rust have been reported. See this
+<a href="https://github.com/mozilla/grcov/issues/476">issue</a> for more details.</p>
+<p>There's also the problem that grcov does not appear to be maintained at the moment, apart from
+automated commits updating its dependencies. I do not know whether the software has been abandoned
+or is mostly complete at this point. However, issues have not been addressed in a while, which would
+indicate that the latter option is more likely.</p>
+<h2 id="getting-to-100-code-coverage"><a class="header" href="#getting-to-100-code-coverage">Getting to 100% Code Coverage</a></h2>
+<p>In this section, I will go over some of the steps I took to get to 100% code coverage. The first
+step was configuring grcov to exclude any arbitrary line or section from the coverage report. This
+is done in two steps.</p>
+<p>The first step was to modify the configuration file to exclude any line with the <code>grcov-excl-line</code>
+string from the final results. This allows me to exclude lines that are hard to test or not very
+relevant from the coverage report. For example:</p>
+<ul>
+<li>The modules that use SQLite call a method to prepare a statement. This is a fallible
+operation, but this particular line will never fail because the statement does not change. If a
+bad change to the statement were introduced, the tests would fail anyway. Here's an example
+from the <code>practice_stats</code> module, which stores the results of the user's practice sessions:
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Retrieve the exercise trials from the database.
+let connection = self.pool.get()?;
+let mut stmt = connection
+    .prepare_cached(
+        &quot;SELECT score, timestamp from practice_stats WHERE unit_uid = (
+          SELECT unit_uid FROM uids WHERE unit_id = ?1)
+          ORDER BY timestamp DESC LIMIT ?2;&quot;,
+    )
+    .with_context(|| &quot;cannot prepare statement&quot;)?; //grcov-excl-line
+<span class="boring">}
+</span></code></pre></pre>
+</li>
+<li>Adding an entry to the search index is also a fallible operation, but there are already tests
+that verify that search work, so there's little value in having a test that triggers this
+error. This is the code from the <code>course_library</code> module, which opens the courses stored in
+the file system for use with Trane:
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>  // Add the lesson manifest to the search index.
+  Self::add_to_index_writer(
+      index_writer,
+      lesson_manifest.id,
+      &amp;lesson_manifest.name,
+      &amp;lesson_manifest.description,
+      &amp;lesson_manifest.metadata,
+  )?; // grcov-excl-line
+<span class="boring">}
+</span></code></pre></pre>
+</li>
+</ul>
+<p>The second step was to configure grcov to exclude entire sections of code from the report. For
+example, the <code>Trane</code> struct that is the main entry point for the library reimplements all the
+interfaces so that users do not have to access the fields of the struct to call those methods. Thus,
+those lines appeared as uncovered in the report but are actually covered by the all the other tests.
+I fixed this by configuring the <code>excl-start</code> and <code>excl-stop</code> options to exclude sections of the code
+from the final report. Here's an example of some of the code that was excluded:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl ReviewList for Trane {
+    fn add_to_review_list(&amp;mut self, unit_id: &amp;Ustr) -&gt; Result&lt;()&gt; {
+        self.review_list.write().add_to_review_list(unit_id)
+    }
+
+    fn remove_from_review_list(&amp;mut self, unit_id: &amp;Ustr) -&gt; Result&lt;()&gt; {
+        self.review_list.write().remove_from_review_list(unit_id)
+    }
+
+    fn all_review_list_entries(&amp;self) -&gt; Result&lt;Vec&lt;Ustr&gt;&gt; {
+        self.review_list.read().all_review_list_entries()
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Once those two steps were configured, the coverage was around 90%. The remaining 10% consisted of
+edge cases that had not been tested yet. For example, there was no test to ensure that trying to
+open a Trane library with an invalid path would fail. Below is a list of example commits that
+introduce additional tests to cover those edge cases:</p>
+<ul>
+<li><a href="https://github.com/trane-project/trane/commit/b9ea4c02a414da9fcdddc69e4abfa450a7c06817">Improve code coverage for scheduler
+module.</a></li>
+<li><a href="https://github.com/trane-project/trane/commit/0a34aa37f49a15f95f712c59786a5c2591a2d7f8">Improve code coverage for graph
+module.</a></li>
+<li><a href="https://github.com/trane-project/trane/commit/1af5fc520760ca4a5b4b8f6f820802ac6143eee5">Improve code coverage of <code>course_builder</code>
+module.</a></li>
+</ul>
+<p>There are about a dozen more commits that gradually took the coverage to 100%. Finally, the commit
+linked at the top of the post was the first one to reach 100% code coverage. This commit adds a test
+to verify that the score cache does not return a score for courses that have all of its lessons
+added to the blacklist. </p>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>The effort to get to 100% code coverage was not very time-consuming and uncovered some minor bugs
+that had gone unnoticed. However, the core of the logic was already covered by existing tests and
+none of the bugs that were uncovered were critical. Still, I think the effort has given me more
+confidence to make changes to the code base without worrying about introducing new bugs or modifying
+existing behavior.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="a-love-supreme"><a class="header" href="#a-love-supreme">A Love Supreme</a></h1>
 <blockquote>
 <p>This album is a humble offering to Him. An attempt to say &quot;THANK YOU GOD&quot; through our work, even
