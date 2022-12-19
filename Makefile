@@ -11,6 +11,12 @@ verso_build = "verso_build"
 assets = "src/assets"
 
 verso-build:
+	# Clean the verso_build directory.
+	rm -rf $(verso_build)
+
+	# Create the verso_build directory.
+	mkdir $(verso_build)
+
 	# List all the Rust files in the Trane source directory, pass the list to
 	# verso. Then, pipe the output to a command that gets all the list of
 	# markdown files in the mdbook source and passes that list to recto.
