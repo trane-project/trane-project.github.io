@@ -7,3 +7,6 @@ title = "The Trane Book"
 
 [build]
 build-dir = "docs"
+
+[output.html]
+additional-css = ["custom.css"]
