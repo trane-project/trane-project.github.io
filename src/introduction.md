@@ -1,6 +1,6 @@
 # Introduction
 
-![John Coltrane](./coltrane.jpg)
+![John Coltrane](assets/coltrane.jpg)
 
 Trane is an automated learning system for the acquisition of complex and highly hierarchical skills.
 It is based on the principles of spaced repetition, mastery learning, and chunking.
