@@ -2,7 +2,7 @@
 authors = ["The Trane Project"]
 language = "en"
 multilingual = false
-src = "src"
+src = "verso_build/src"
 title = "The Trane Book"
 
 [build]
