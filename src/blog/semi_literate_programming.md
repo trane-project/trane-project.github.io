@@ -48,44 +48,9 @@ Below I present some of the guidelines I used to improve Trane's documentation.
   a section of code does without having to read a line of code. Below is an example from Trane's
   `scheduler` module.
   
-  ```rust
-    /// Returns an initial stack with all the starting units in the graph that
-    /// are used to search the entire graph.
-    fn get_initial_stack(
-        &self,
-        metadata_filter: Option<&MetadataFilter>
-    ) -> Vec<StackItem> {
-        // First get all the starting units and then all of their starting lessons.
-        let starting_units = self.get_all_starting_units();
-        let mut initial_stack: Vec<StackItem> = vec![];
-        for course_id in starting_units {
-            let lesson_ids = self
-                .get_course_valid_starting_lessons(&course_id, metadata_filter)
-                .unwrap_or_default();
-
-            if lesson_ids.is_empty() {
-                // For units with no lessons, insert the unit itself as a starting
-                // unit so that its dependents are traversed.
-                initial_stack.push(StackItem {
-                    unit_id: course_id,
-                    num_hops: 0,
-                });
-            } else {
-                // Insert all the starting lessons in the stack.
-                initial_stack
-                    .extend(lesson_ids.into_iter().map(|unit_id| StackItem {
-                        unit_id,
-                        num_hops: 0,
-                    }));
-            }
-        }
-
-        // Shuffle the lessons to follow a different ordering each time a new
-        // batch is requested.
-        initial_stack.shuffle(&mut thread_rng());
-        initial_stack
-    }
-  ```
+```rust
+@@lp-example-1 
+```
 
 - Each file (or module, package, etc. depending on the language) should have a top-level comment
   that explains the purpose of the file and how it fits into the larger system. This comment should
@@ -93,39 +58,17 @@ Below I present some of the guidelines I used to improve Trane's documentation.
   design decisions that lead to structuring the code in this way. Below is an example from Trane's
   `scheduler::cache` module.
 
-  ```rust
-    //! Defines a cache that is used to retrieve unit scores and stores
-    //! previously computed exercise and lesson scores
-    //!
-    //! During performance testing, it was found that caching exercise
-    //! and lesson scores significantly improved the performance of
-    //! exercise scheduling. Caching course scores had a negligible impact,
-    //! so they are not cached, although they are still computed through
-    //! this cache for consistency.
-  ```
+```rust
+@@lp-example-2 
+```
+
 - The main file (or module, package, etc.) should explain what the whole library or program does and
   also contain a short explanation of the structure of the code to allow readers to better navigate
   the codebase. Below is the relevant section from Trane's `lib.rs` file:
 
-  ``` rust
-    //! Here's an overview of some of the most important modules in this
-    //! crate and their purpose:
-    //! - [data](crate::data): Contains the basic data structures used by Trane.
-    //! - [graph](crate::graph): Defines the graph used by Trane to list
-    //!   the units of material and the dependencies among them.
-    //! - [course_library](crate::course_library): Reads a collection of
-    //!   courses, lessons, and exercises from the file system and provides
-    //!   basic utilities for working with them.
-    //! - [scheduler](crate::scheduler): Defines the algorithm used by Trane
-    //!   to select exercises to present to the user.
-    //! - [practice_stats](crate::practice_stats): Stores the results of practice
-    //!   sessions for use in determining the next batch of exercises.
-    //! - [blacklist](crate::blacklist): Defines the list of units the student
-    //!   wishes to hide, either because their material has already been mastered
-    //!   or they do not wish to learn it.
-    //! - [scorer](crate::scorer): Calculates a score for an exercise based on the
-    //!   results and timestamps of previous trials.
-  ```
+```rust
+@@lp-example-3 
+```
 
 - Document what each struct, enum, field, function, etc. does, even if it seems obvious to you. It's
   hard to gauge what will be obvious to the readers of your code, which include future you. If the
@@ -133,81 +76,21 @@ Below I present some of the guidelines I used to improve Trane's documentation.
   obvious, document why that is so. Below there are examples of both situations taken from Trane's
   `data` module.
 
-  ```rust
-    /// The result of a single trial.
-    #[derive(Clone, Copy, Debug, PartialEq)]
-    pub struct ExerciseTrial {
-        /// The score assigned to the exercise after the trial.
-        pub score: f32,
+```rust
+@@lp-example-4
+```
 
-        /// The timestamp at which the trial happened.
-        pub timestamp: i64,
-    }
-  ```
-
-  ```rust
-    /// A manifest describing the contents of a course.
-    #[derive(Builder, Clone, Debug, Deserialize, Serialize)]
-    #[serde(deny_unknown_fields)]
-    pub struct CourseManifest {
-        [...]
-
-        //// A mapping of String keys to a list of String values.
-        /// For example, ("genre", ["jazz"]) could be attached to a
-        /// course named "Basic Jazz Chords on Guitar".
-        ///
-        /// The purpose of this metadata is to allow students to focus
-        /// on more specific material during a study session which does
-        /// not belong to a single lesson or course. For example, a student
-        /// might want to only focus on guitar scales or ear training.
-        #[builder(default)]
-        pub metadata: Option<BTreeMap<String, Vec<String>>>,
-
-        [...]
-    }
-  ```
+```rust
+@@lp-example-5
+```
 
 - Document situations in which the design was changed and the reasons why. This is part of using the
   documentation of your code to tell the story behind the design decisions. Below is an example from
   Trane's `practice_stats` module.
   
-  ```rust
-    /// Returns all the migrations needed to set up the database.
-    fn migrations() -> Migrations<'static> {
-        Migrations::new(vec![
-            // Create a table with a mapping of unit IDs to a unique
-            // integer ID. The purpose of this table is to save space
-            // when storing the exercise trials by not having to store
-            // the entire ID of the unit.
-            M::up("CREATE TABLE uids(unit_uid INTEGER PRIMARY KEY,
-                unit_id TEXT NOT NULL UNIQUE);")
-                .down("DROP TABLE uids;"),
-            // Create a table storing all the exercise trials.
-            M::up(
-                "CREATE TABLE practice_stats(
-                id INTEGER PRIMARY KEY,
-                unit_uid INTEGER NOT NULL REFERENCES uids(unit_uid),
-                score REAL, timestamp INTEGER);",
-            )
-            .down("DROP TABLE practice_stats"),
-            // Create an index of `unit_ids`.
-            M::up("CREATE INDEX unit_ids ON uids (unit_id);")
-            .down("DROP INDEX unit_ids"),
-            // Originally the trials were indexed solely by `unit_uid`.
-            // This index was replaced so this migration is immediately
-            // canceled by the one right below. Remove both of them
-            // altogether in a later version.
-            M::up("CREATE INDEX unit_scores ON practice_stats (unit_uid);")
-                .down("DROP INDEX unit_scores"),
-            M::up("DROP INDEX unit_scores")
-                .down("CREATE INDEX unit_scores ON practice_stats (unit_uid);"),
-            // Create a combined index of `unit_uid` and `timestamp`
-            // for fast trial retrieval.
-            M::up("CREATE INDEX trials ON practice_stats (unit_uid, timestamp);")
-                .down("DROP INDEX trials"),
-        ])
-    }
-  ```
+```rust
+@@lp-example-6
+```
 
 ## Tools for semi-literate programming
 

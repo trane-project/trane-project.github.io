@@ -182,189 +182,137 @@ which most languages do.</p>
 <p>Below I present some of the guidelines I used to improve Trane's documentation.</p>
 <h2 id="rules-of-semi-literate-programming"><a class="header" href="#rules-of-semi-literate-programming">Rules of Semi-Literate Programming</a></h2>
 <ul>
-<li>
-<p>This shouldn't even have to be said, but comments should be written in clear language free of
-grammar and spelling mistakes.</p>
-</li>
-<li>
-<p>Comments explaining the why of a section of code are more important than comments answering what
+<li>This shouldn't even have to be said, but comments should be written in clear language free of
+grammar and spelling mistakes.</li>
+<li>Comments explaining the why of a section of code are more important than comments answering what
 or how. However, there's still use for the latter. They allow a reader to quickly skim what
 a section of code does without having to read a line of code. Below is an example from Trane's
-<code>scheduler</code> module.</p>
+<code>scheduler</code> module.</li>
+</ul>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>  /// Returns an initial stack with all the starting units in the graph that
-  /// are used to search the entire graph.
-  fn get_initial_stack(
-      &amp;self,
-      metadata_filter: Option&lt;&amp;MetadataFilter&gt;
-  ) -&gt; Vec&lt;StackItem&gt; {
-      // First get all the starting units and then all of their starting lessons.
-      let starting_units = self.get_all_starting_units();
-      let mut initial_stack: Vec&lt;StackItem&gt; = vec![];
-      for course_id in starting_units {
-          let lesson_ids = self
-              .get_course_valid_starting_lessons(&amp;course_id, metadata_filter)
-              .unwrap_or_default();
+</span>    /// Returns an initial stack with all the starting units in the graph that are used to search
+    /// the entire graph.
+    fn get_initial_stack(&amp;self, metadata_filter: Option&lt;&amp;MetadataFilter&gt;) -&gt; Vec&lt;StackItem&gt; {
+        // First get all the starting units and then all of their starting lessons.
+        let starting_units = self.get_all_starting_units();
+        let mut initial_stack: Vec&lt;StackItem&gt; = vec![];
+        for course_id in starting_units {
+            let lesson_ids = self
+                .get_course_valid_starting_lessons(&amp;course_id, metadata_filter)
+                .unwrap_or_default();
 
-          if lesson_ids.is_empty() {
-              // For units with no lessons, insert the unit itself as a starting
-              // unit so that its dependents are traversed.
-              initial_stack.push(StackItem {
-                  unit_id: course_id,
-                  num_hops: 0,
-              });
-          } else {
-              // Insert all the starting lessons in the stack.
-              initial_stack
-                  .extend(lesson_ids.into_iter().map(|unit_id| StackItem {
-                      unit_id,
-                      num_hops: 0,
-                  }));
-          }
-      }
+            if lesson_ids.is_empty() {
+                // For units with no lessons, insert the unit itself as a starting unit so that its
+                // dependents are traversed.
+                initial_stack.push(StackItem {
+                    unit_id: course_id,
+                    num_hops: 0,
+                });
+            } else {
+                // Insert all the starting lessons in the stack.
+                initial_stack.extend(lesson_ids.into_iter().map(|unit_id| StackItem {
+                    unit_id,
+                    num_hops: 0,
+                }));
+            }
+        }
 
-      // Shuffle the lessons to follow a different ordering each time a new
-      // batch is requested.
-      initial_stack.shuffle(&amp;mut thread_rng());
-      initial_stack
-  }
+        // Shuffle the lessons to follow a different ordering each time a new batch is requested.
+        initial_stack.shuffle(&amp;mut thread_rng());
+        initial_stack
+    }
 <span class="boring">}
 </span></code></pre></pre>
-</li>
-<li>
-<p>Each file (or module, package, etc. depending on the language) should have a top-level comment
+<ul>
+<li>Each file (or module, package, etc. depending on the language) should have a top-level comment
 that explains the purpose of the file and how it fits into the larger system. This comment should
 not explain the code in any or too much detail but present the reader with an account of the main
 design decisions that lead to structuring the code in this way. Below is an example from Trane's
-<code>scheduler::cache</code> module.</p>
+<code>scheduler::cache</code> module.</li>
+</ul>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>  //! Defines a cache that is used to retrieve unit scores and stores
-  //! previously computed exercise and lesson scores
-  //!
-  //! During performance testing, it was found that caching exercise
-  //! and lesson scores significantly improved the performance of
-  //! exercise scheduling. Caching course scores had a negligible impact,
-  //! so they are not cached, although they are still computed through
-  //! this cache for consistency.
+</span>//! Defines a cache that is used to retrieve unit scores and stores previously computed exercise and
+//! lesson scores
+//!
+//! During performance testing, it was found that caching exercise and lesson scores significantly
+//! improved the performance of exercise scheduling. Caching course scores had a negligible impact,
+//! so they are not cached, although they are still computed through this cache for consistency.
 <span class="boring">}
 </span></code></pre></pre>
-</li>
-<li>
-<p>The main file (or module, package, etc.) should explain what the whole library or program does and
+<ul>
+<li>The main file (or module, package, etc.) should explain what the whole library or program does and
 also contain a short explanation of the structure of the code to allow readers to better navigate
-the codebase. Below is the relevant section from Trane's <code>lib.rs</code> file:</p>
+the codebase. Below is the relevant section from Trane's <code>lib.rs</code> file:</li>
+</ul>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>  //! Here's an overview of some of the most important modules in this
-  //! crate and their purpose:
-  //! - [data](crate::data): Contains the basic data structures used by Trane.
-  //! - [graph](crate::graph): Defines the graph used by Trane to list
-  //!   the units of material and the dependencies among them.
-  //! - [course_library](crate::course_library): Reads a collection of
-  //!   courses, lessons, and exercises from the file system and provides
-  //!   basic utilities for working with them.
-  //! - [scheduler](crate::scheduler): Defines the algorithm used by Trane
-  //!   to select exercises to present to the user.
-  //! - [practice_stats](crate::practice_stats): Stores the results of practice
-  //!   sessions for use in determining the next batch of exercises.
-  //! - [blacklist](crate::blacklist): Defines the list of units the student
-  //!   wishes to hide, either because their material has already been mastered
-  //!   or they do not wish to learn it.
-  //! - [scorer](crate::scorer): Calculates a score for an exercise based on the
-  //!   results and timestamps of previous trials.
+</span>//! Here's an overview of some of the most important modules in this crate and their purpose:
+//! - [data](crate::data): Contains the basic data structures used by Trane.
+//! - [graph](crate::graph): Defines the graph used by Trane to list the units of material and the
+//!   dependencies among them.
+//! - [course_library](crate::course_library): Reads a collection of courses, lessons, and exercises
+//!   from the file system and provides basic utilities for working with them.
+//! - [scheduler](crate::scheduler): Defines the algorithm used by Trane to select exercises to
+//!   present to the user.
+//! - [practice_stats](crate::practice_stats): Stores the results of practice sessions for use in
+//!   determining the next batch of exercises.
+//! - [blacklist](crate::blacklist): Defines the list of units the student wishes to hide, either
+//!   because their material has already been mastered or they do not wish to learn it.
+//! - [scorer](crate::scorer): Calculates a score for an exercise based on the results and
+//!   timestamps of previous trials.
 <span class="boring">}
 </span></code></pre></pre>
-</li>
-<li>
-<p>Document what each struct, enum, field, function, etc. does, even if it seems obvious to you. It's
+<ul>
+<li>Document what each struct, enum, field, function, etc. does, even if it seems obvious to you. It's
 hard to gauge what will be obvious to the readers of your code, which include future you. If the
 purpose is obvious, no more than a short sentence is needed. If there's a detail which is not
 obvious, document why that is so. Below there are examples of both situations taken from Trane's
-<code>data</code> module.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>  /// The result of a single trial.
-  #[derive(Clone, Copy, Debug, PartialEq)]
-  pub struct ExerciseTrial {
-      /// The score assigned to the exercise after the trial.
-      pub score: f32,
-
-      /// The timestamp at which the trial happened.
-      pub timestamp: i64,
-  }
-<span class="boring">}
-</span></code></pre></pre>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>  /// A manifest describing the contents of a course.
-  #[derive(Builder, Clone, Debug, Deserialize, Serialize)]
-  #[serde(deny_unknown_fields)]
-  pub struct CourseManifest {
-      [...]
-
-      //// A mapping of String keys to a list of String values.
-      /// For example, (&quot;genre&quot;, [&quot;jazz&quot;]) could be attached to a
-      /// course named &quot;Basic Jazz Chords on Guitar&quot;.
-      ///
-      /// The purpose of this metadata is to allow students to focus
-      /// on more specific material during a study session which does
-      /// not belong to a single lesson or course. For example, a student
-      /// might want to only focus on guitar scales or ear training.
-      #[builder(default)]
-      pub metadata: Option&lt;BTreeMap&lt;String, Vec&lt;String&gt;&gt;&gt;,
-
-      [...]
-  }
-<span class="boring">}
-</span></code></pre></pre>
-</li>
-<li>
-<p>Document situations in which the design was changed and the reasons why. This is part of using the
-documentation of your code to tell the story behind the design decisions. Below is an example from
-Trane's <code>practice_stats</code> module.</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>  /// Returns all the migrations needed to set up the database.
-  fn migrations() -&gt; Migrations&lt;'static&gt; {
-      Migrations::new(vec![
-          // Create a table with a mapping of unit IDs to a unique
-          // integer ID. The purpose of this table is to save space
-          // when storing the exercise trials by not having to store
-          // the entire ID of the unit.
-          M::up(&quot;CREATE TABLE uids(unit_uid INTEGER PRIMARY KEY,
-              unit_id TEXT NOT NULL UNIQUE);&quot;)
-              .down(&quot;DROP TABLE uids;&quot;),
-          // Create a table storing all the exercise trials.
-          M::up(
-              &quot;CREATE TABLE practice_stats(
-              id INTEGER PRIMARY KEY,
-              unit_uid INTEGER NOT NULL REFERENCES uids(unit_uid),
-              score REAL, timestamp INTEGER);&quot;,
-          )
-          .down(&quot;DROP TABLE practice_stats&quot;),
-          // Create an index of `unit_ids`.
-          M::up(&quot;CREATE INDEX unit_ids ON uids (unit_id);&quot;)
-          .down(&quot;DROP INDEX unit_ids&quot;),
-          // Originally the trials were indexed solely by `unit_uid`.
-          // This index was replaced so this migration is immediately
-          // canceled by the one right below. Remove both of them
-          // altogether in a later version.
-          M::up(&quot;CREATE INDEX unit_scores ON practice_stats (unit_uid);&quot;)
-              .down(&quot;DROP INDEX unit_scores&quot;),
-          M::up(&quot;DROP INDEX unit_scores&quot;)
-              .down(&quot;CREATE INDEX unit_scores ON practice_stats (unit_uid);&quot;),
-          // Create a combined index of `unit_uid` and `timestamp`
-          // for fast trial retrieval.
-          M::up(&quot;CREATE INDEX trials ON practice_stats (unit_uid, timestamp);&quot;)
-              .down(&quot;DROP INDEX trials&quot;),
-      ])
-  }
-<span class="boring">}
-</span></code></pre></pre>
-</li>
+<code>data</code> module.</li>
 </ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// The result of a single trial.
+pub struct ExerciseTrial {
+    /// The score assigned to the exercise after the trial.
+    pub score: f32,
+
+    /// The timestamp at which the trial happened.
+    pub timestamp: i64,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    //// A mapping of String keys to a list of String values. For example, (&quot;genre&quot;, [&quot;jazz&quot;]) could
+    /// be attached to a course named &quot;Basic Jazz Chords on Guitar&quot;.
+    ///
+    /// The purpose of this metadata is to allow students to focus on more specific material during
+    /// a study session which does not belong to a single lesson or course. For example, a student
+    /// might want to only focus on guitar scales or ear training.
+    #[builder(default)]
+    pub metadata: Option&lt;BTreeMap&lt;String, Vec&lt;String&gt;&gt;&gt;,
+
+<span class="boring">}
+</span></code></pre></pre>
+<ul>
+<li>Document situations in which the design was changed and the reasons why. This is part of using the
+documentation of your code to tell the story behind the design decisions. Below is an example from
+Trane's <code>practice_stats</code> module.</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>            // Originally the trials were indexed solely by `unit_uid`. This index was replaced so
+            // this migration is immediately canceled by the one right below. They cannot be removed
+            // from the migration list without breaking databases created in an earlier version than
+            // the one which removes them, so they are kept here for now.
+            M::up(&quot;CREATE INDEX unit_scores ON practice_stats (unit_uid);&quot;)
+                .down(&quot;DROP INDEX unit_scores&quot;),
+            M::up(&quot;DROP INDEX unit_scores&quot;)
+                .down(&quot;CREATE INDEX unit_scores ON practice_stats (unit_uid);&quot;),
+<span class="boring">}
+</span></code></pre></pre>
 <h2 id="tools-for-semi-literate-programming"><a class="header" href="#tools-for-semi-literate-programming">Tools for semi-literate programming</a></h2>
 <p>Here are a few of the tools that helped me while revamping the documentation for Trane.</p>
 <ul>
