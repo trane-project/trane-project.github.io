@@ -2,7 +2,7 @@
 
 ![John Coltrane](assets/coltrane.jpg)
 
-Trane is an automated practice system for the acquisition of arbitrary complex and highly
+Trane is an automated practice system for the acquisition of arbitrary, complex, and highly
 hierarchical skills. That's quite a mouthful, so let's break it down.
 
 - **Practice system**: Deliberate practice is at the heart of the acquisition of new skills. Trane
@@ -17,7 +17,7 @@ hierarchical skills. That's quite a mouthful, so let's break it down.
 - **Arbitrary**: Although originally envisioned for practicing Jazz improvisation, Trane is not
   limited to a specific domain. Trane primarily works via plain-text files that are easily sharable
   and extendable. This allows student to create their own materials or to use materials created by
-  others. 
+  others, and to seamlessly combine them. 
 - **Complex and hierarchical skills**: Consider the job of a master improviser, such as the namesake
   of this software, John Coltrane. Through years of practice, Coltrane developed mastery over a
   large set of interconnected skills. A few examples include the breathing control required to play
@@ -36,8 +36,9 @@ periodically reinforce skills that have already been practiced and to include ne
 automatically when the skills that they depend on have been sufficiently mastered.
 
 If you are familiar with the experience of traversing the skill tree of a video game by grinding and
-becoming better at the game, but applied to arbitrary skills, specified in plain-text files that
-are easy to share and augment.
+becoming better at the game, Trane aims to provide a way to help students complete a similar
+process, but applied to arbitrary skills, specified in plain-text files that are easy to share and
+augment.
 
 Trane is named after John Coltrane, whose nickname Trane was often used in wordplay with the word
 train (as in the vehicle) to describe the overwhelming power of his playing. It is used here as a
