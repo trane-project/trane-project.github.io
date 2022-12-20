@@ -10,7 +10,7 @@ verso_build = "verso_build"
 # verso|recto only support UTF-8 text files.
 assets = "src/assets"
 
-verso-build:
+build:
 	# Clean the verso_build directory.
 	rm -rf $(verso_build)
 
@@ -25,3 +25,7 @@ verso-build:
 
 	# Copy the assets directory to the verso_build directory.
 	cp -r $(assets) $(verso_build)/src
+
+	# Build the mdbook. The configuration file already points out to the output
+	# of verso|recto.
+	mdbook build
