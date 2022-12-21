@@ -615,49 +615,71 @@ to be added as code. Make sure you have gotten an approval to work on new materi
 a PR.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="faq"><a class="header" href="#faq">FAQ</a></h1>
 <h2 id="what-is-the-current-state-of-the-project"><a class="header" href="#what-is-the-current-state-of-the-project">What is the current state of the project?</a></h2>
-<p>Trane is in an early state and subject to change. However, I do not expect a lot of changes to
-happen in the core scheduling logic. The only state stored by Trane depends on the ID of a unit, so
-as long as that is not changed, updating the files is the only thing needed to make Trane pick up
-updated versions.</p>
+<p>Trane is in an early state, but it works and should not break for most people. A lot of bugs were
+found and addressed in earlier versions in the process of testing the library and reaching 100% code
+coverage (see the <a href="./blog/100_code_coverage.html">blog post</a>). If you run into any bugs, feel free to
+report them in the relevant GitHub repository.</p>
+<p>Due to the early state of the project, Trane is subject changes to its API and data formats. The
+only state by Trane depends on the ID of a unit, so as long as that is not changed, updating the
+files to match any breaking changes is the only thing needed to make Trane pick up the updated
+versions and keep your progress.</p>
+<p>I do not expect big changes in the scheduling logic until there is enough user feedback to know what
+works and what does not. So far, I've only had to change the values of certain constants because
+initially progress through the units was a little slow.</p>
 <h2 id="how-well-does-trane-work"><a class="header" href="#how-well-does-trane-work">How well does Trane work?</a></h2>
 <p>The honest answer is that I am not sure. One of the goals of releasing Trane to the public is to get
 feedback and user reports in the hope that I can fine-tune it. I suspect Trane will work fairly well
 in learning skills that require the repetition of complex chains of patterns until mastery of each
 and the whole is achieved. Playing music mostly follows this pattern, but I would like to figure out
-how it can be applied to other skills. </p>
+how it can be applied to other skills.</p>
+<p>In my personal use, I have found Trane to work well. It is easy to practice for longer than I used
+to and if I can move on to practice other skills if I encounter an exercise that is too difficult
+and becomes frustrating. I have made more progress going through the exercises in EarMaster (with
+the help of <a href="https://github.com/trane-project/trane-earmaster">trane-earmaster</a>) than I ever did
+without Trane. However, I am still working regularly on Trane itself and in creating new material
+for it, so my practice time is limited at the moment.</p>
 <h2 id="how-do-i-use-trane"><a class="header" href="#how-do-i-use-trane">How do I use Trane?</a></h2>
-<p>At the moment, there is only a command line interface for using Trane. The code and releases are in
-the <a href="https://github.com/trane-project/trane-cli">trane-cli</a> repository.</p>
+<p>See the <a href="./quick_start.html">quick start guide</a> for instructions on how to get started.</p>
 <h2 id="how-do-i-get-content-for-trane"><a class="header" href="#how-do-i-get-content-for-trane">How do I get content for Trane.</a></h2>
-<p>The repository <a href="https://github.com/trane-project/trane-music">trane-music</a> contains the first
-courses available that you can use to experiment with Trane. More are coming, and I am open to
-contributions. I am also looking into creating courses for other skills to figure out how to apply
-Trane to skills other than music. Some candidates at the moment are chess, programming, and
-languages.</p>
+<p>For official courses, see the section on <a href="./official_courses.html">Official Courses</a>.</p>
 <p>Since Trane courses are just collections of plain-text files, you can also create your own content.
 This content can freely reference other courses, even those written by others. For example, you
 could add new courses that link to a course in <code>trane-music</code>, or add additional exercises to one of
-the lessons.</p>
+the lessons. See the section on <a href="./writing_courses.html">writing Trane courses</a> for more information.</p>
 <p>You can also experiment with augmenting existing educational materials by translating them into
-Trane exercises, lessons, and courses. For example, if you are learning the flute and have a book of
-études you would like to master, you could break each into a course, each large section of the piece
-into a lesson, and each small subsection into an exercise. This process does not require you to port
-any of the actual material into Trane. Creating flashcards that say &quot;Play étude 4, measures 12
-through 16&quot; is enough. Used in this manner, Trane can integrate materials from multiple sources into
-one centralized practice system.</p>
+Trane courses. The <code>trane-earmaster</code> course mentioned above is an example of this. It might not be
+possible at the moment to embed the material directly within Trane, but you can create flashcards
+that direct you to separate material. For example, you could create a flashcard that asks you to
+practice a certain section from a PDF music score you own or a flashcard to review a theorem from a
+math textbook.</p>
 <h2 id="are-there-plans-to-have-a-graphic-interface"><a class="header" href="#are-there-plans-to-have-a-graphic-interface">Are there plans to have a graphic interface?</a></h2>
-<p>Eventually. I am not too familiar with front-end or GUI development, so it could take a while.
-However, the command-line version should be enough to get going for now. The main thing to be gained
-from a graphic interface is to allow external resources (e.g., images or a score from soundslice.com)
-to be embedded into the application.</p>
+<p>I recognize the importance of having a graphical interface and the barrier it creates for less
+technical users, so it is on my plans to create one eventually. At the moment, I am focusing on the
+core library and the command-line interface. There are some problems with creating a graphical
+interface:</p>
+<ul>
+<li>I am not very familiar with modern GUI or web development. I can learn it, but it would take time
+away from working on the core library, which I do not have as I work a full-time job.</li>
+<li>At this moment, the Rust ecosystem for GUI development is not very mature. There are some
+promising projects, but they are still in an early stage. I would like to wait until they are
+more mature before committing to a particular one. If I were to use HTML/CSS/JS, I would have to
+figure out a way to integrate it with the Rust data structures, which is a problem of its own.</li>
+</ul>
+<p>If you are experienced in modern GUI and web development, and would like to help with this, feel
+free to contact me (making an issue in GitHub is fine). However, I cannot offer any compensation at
+the moment as this is a hobby project at this time, and I am not looking to monetize it any time
+soon, if ever.</p>
 <h2 id="why-not-anki-or-another-existing-software"><a class="header" href="#why-not-anki-or-another-existing-software">Why not Anki or another existing software?</a></h2>
 <p>Originally, I tried to use Anki for practicing music but quickly found some limitations. First, Anki
-and similar software are optimized for memorization, not for practicing the same skill until it is
-mastered. Most importantly, defining arbitrary dependencies between subsets of flashcards <em>and</em>
-having the algorithm use those dependencies to select the flashcards to present is not supported.</p>
+and similar software are optimized for memorization, not for practicing skills. Most importantly,
+defining arbitrary dependencies between subsets of flashcards <em>and</em> having the algorithm use those
+dependencies to select the flashcards to present is not supported.</p>
 <p>The solution given by Anki is to create multiple decks. However, asking users to manually decide
 which deck to practice and which decks should be practiced once the current one is sufficiently
 mastered sort of defeats the purpose of using an automated system in the first place.</p>
+<p>I tried looking for other software that would allow me to define arbitrary dependencies between
+flashcards. While some allow a limited version of this, none of them worked the way I envisioned and
+most were focused on memorization. Out of this frustration, Trane was born.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="development-blog"><a class="header" href="#development-blog">Development Blog</a></h1>
 <p>This is the developer blog for the Trane project. It is meant for sharing content that does not fit
 well into the main documentation or as a comment in the source code.</p>
