@@ -4,7 +4,7 @@
 > as we do in our hearts and with our tongues. May He help and strengthen all men in every good
 > endeavor.
 >
-> *A Love Supreme* liner notes
+- *A Love Supreme* liner notes
 
 Trane and all associated projects are dedicated to the memory of John Coltrane. Trane is free
 software as are all of its official courses and the authors are committed to keep it so in the same
