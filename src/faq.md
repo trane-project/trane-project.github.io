@@ -65,11 +65,6 @@ interface:
   more mature before committing to a particular one. If I were to use HTML/CSS/JS, I would have to
   figure out a way to integrate it with the Rust data structures, which is a problem of its own.
 
-If you are experienced in modern GUI and web development, and would like to help with this, feel
-free to contact me (making an issue in GitHub is fine). However, I cannot offer any compensation at
-the moment as this is a hobby project at this time, and I am not looking to monetize it any time
-soon, if ever.
-
 ## Why not Anki or another existing software?
 
 Originally, I tried to use Anki for practicing music but quickly found some limitations. First, Anki
