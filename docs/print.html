@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="quick_start.html"><strong aria-hidden="true">1.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="concepts.html"><strong aria-hidden="true">2.</strong> Concepts and Theory</a></li><li class="chapter-item expanded "><a href="vision.html"><strong aria-hidden="true">3.</strong> Vision</a></li><li class="chapter-item expanded "><a href="using_trane.html"><strong aria-hidden="true">4.</strong> Using Trane</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="trane.html"><strong aria-hidden="true">4.1.</strong> trane</a></li><li class="chapter-item expanded "><a href="trane-cli.html"><strong aria-hidden="true">4.2.</strong> trane-cli</a></li><li class="chapter-item expanded "><a href="trane-app.html"><strong aria-hidden="true">4.3.</strong> trane-app</a></li><li class="chapter-item expanded "><a href="trane-server.html"><strong aria-hidden="true">4.4.</strong> trane-server</a></li></ol></li><li class="chapter-item expanded "><a href="writing_courses.html"><strong aria-hidden="true">5.</strong> Writing Trane Courses</a></li><li class="chapter-item expanded "><a href="official_courses.html"><strong aria-hidden="true">6.</strong> Official Trane Courses</a></li><li class="chapter-item expanded "><a href="licensing.html"><strong aria-hidden="true">7.</strong> Licensing</a></li><li class="chapter-item expanded "><a href="contributing.html"><strong aria-hidden="true">8.</strong> Contributing to Trane</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">9.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="blog.html"><strong aria-hidden="true">10.</strong> Development Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="blog/semi_literate_programming.html"><strong aria-hidden="true">10.1.</strong> Semi-Literate Programming</a></li><li class="chapter-item expanded "><a href="blog/100_code_coverage.html"><strong aria-hidden="true">10.2.</strong> Reaching 100% Code Coverage in Rust</a></li></ol></li><li class="chapter-item expanded "><a href="a_love_supreme.html">A Love Supreme</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="quick_start.html"><strong aria-hidden="true">1.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="concepts.html"><strong aria-hidden="true">2.</strong> Concepts and Theory</a></li><li class="chapter-item expanded "><a href="vision.html"><strong aria-hidden="true">3.</strong> Vision</a></li><li class="chapter-item expanded "><a href="using_trane.html"><strong aria-hidden="true">4.</strong> Using Trane</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="trane.html"><strong aria-hidden="true">4.1.</strong> trane</a></li><li class="chapter-item expanded "><a href="trane-cli.html"><strong aria-hidden="true">4.2.</strong> trane-cli</a></li><li class="chapter-item expanded "><a href="trane-app.html"><strong aria-hidden="true">4.3.</strong> trane-app</a></li><li class="chapter-item expanded "><a href="trane-server.html"><strong aria-hidden="true">4.4.</strong> trane-server</a></li></ol></li><li class="chapter-item expanded "><a href="writing_courses.html"><strong aria-hidden="true">5.</strong> Writing Trane Courses</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="generated_courses.html"><strong aria-hidden="true">5.1.</strong> Generated Courses</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="generated_courses/knowledge_base.html"><strong aria-hidden="true">5.1.1.</strong> Knowledge Base Course Generator</a></li><li class="chapter-item expanded "><a href="generated_courses/music_piece.html"><strong aria-hidden="true">5.1.2.</strong> Music Piece Course Generator</a></li><li class="chapter-item expanded "><a href="generated_courses/improvisation.html"><strong aria-hidden="true">5.1.3.</strong> Improvisation Course Generator</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="generated_courses/improvisation/instructions.html"><strong aria-hidden="true">5.1.3.1.</strong> Improvisation Course Instructions</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="user_preferences.html"><strong aria-hidden="true">6.</strong> User Preferences</a></li><li class="chapter-item expanded "><a href="official_courses.html"><strong aria-hidden="true">7.</strong> Official Trane Courses</a></li><li class="chapter-item expanded "><a href="licensing.html"><strong aria-hidden="true">8.</strong> Licensing</a></li><li class="chapter-item expanded "><a href="contributing.html"><strong aria-hidden="true">9.</strong> Contributing to Trane</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">10.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="blog.html"><strong aria-hidden="true">11.</strong> Development Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="blog/semi_literate_programming.html"><strong aria-hidden="true">11.1.</strong> Semi-Literate Programming</a></li><li class="chapter-item expanded "><a href="blog/100_code_coverage.html"><strong aria-hidden="true">11.2.</strong> Reaching 100% Code Coverage in Rust</a></li></ol></li><li class="chapter-item expanded "><a href="a_love_supreme.html">A Love Supreme</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -566,6 +566,531 @@ fifths, starting with the key of C and going clockwise and counterclockwise into
 keys.</p>
 <p>You can look at any of the <a href="./official_courses.html">official Trane courses</a> for example of how
 courses are written.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="generated-courses"><a class="header" href="#generated-courses">Generated Courses</a></h1>
+<p><strong>Note</strong>: This page refers to unreleased features of Trane. The changes are currently available in
+the <code>master</code> branch of the repository but are subject to change until the next official release.</p>
+<p>Writing Trane courses in the way specified in the <a href="./writing_courses.html">Writing Trane Courses</a>
+section can get tedious quickly, even if you are automating the process. In order to make it easier
+to write courses for Trane, Trane can now automatically generate most of the manifest files
+specified in the previous section as long as your files fit the structure specified by each type of
+generated course.</p>
+<p>This has several advantages:</p>
+<ul>
+<li>Reduce the number of manifests needed to write a course. Generated courses still require a
+<code>course_manifest.json</code> file. This file specifies the type of generated course as well as any
+available options. However, you do not need to write any manifests for the lessons and exercises
+in the course.</li>
+<li>You can combine normal and generated courses seamlessly. Internally, Trane uses the generator
+config and the files in the course directory to generate all the manifests needed. This means that
+once those manifests are generated, Trane makes no distinction between normal and generated
+courses. Generated courses can include individual lessons that are specified via their manifests.
+Generated courses can depend on any other course or lesson. </li>
+<li>Less maintenance required for course authors. Trane's data formats and APIs are still subject to
+change. Since generated courses do not require you to write all but the course manifest, most
+changes to those formats should not require any changes on your part.</li>
+<li>Save on disk space. Normal courses can end up with a lot of manifests (one per the course, one per
+lesson, and another one per exercise). Generated courses only require at minimum one manifest per
+course but can contain more if there are lessons that are not generated.</li>
+<li>Generated courses enable custom learning experiences. For example, the improvisation course
+generator can take a folder containing the sheet music of any number of musical passages and
+create a course that guides the student through improvising on those passages. Lessons for every
+key and instrument the student is interested in practicing are automatically generated when
+needed. Lessons for practicing listening and singing the passage, and improvising on their rhythm,
+melody and harmony are also automatically generated.</li>
+</ul>
+<h2 id="how-to-write-a-generated-course"><a class="header" href="#how-to-write-a-generated-course">How to Write a Generated Course</a></h2>
+<p>The process is as follows:</p>
+<ol>
+<li>Create a directory for your course. And write the <code>course_manifest.json</code> file just as you would
+for a normal course. A new field called <code>course_generator</code> specifies which course generator to
+use for this course. Its value is <code>None</code> for normal courses. For generated courses, it must be
+specified along with any available options.</li>
+<li>Add files to your course directory. Each type of generated course requires a specific type of
+file structure. Refer to the documentation for each type of generated course for more details.</li>
+<li>Once that process is complete, open the Trane library to which this course belongs. All the
+required manifests will be generated automatically and added to Trane. After that, you can work
+with them in the same way as you would with any other course.</li>
+</ol>
+<h2 id="generated-course-config"><a class="header" href="#generated-course-config">Generated Course config</a></h2>
+<p>The specification for the <code>course_generator</code> field in the <code>course_manifest.json</code> file is as follows:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// A configuration used for generating special types of courses on the fly.
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+pub enum CourseGenerator {
+    /// The configuration for generating an improvisation course.
+    Improvisation(ImprovisationConfig),
+
+    /// The configuration for generating a knowledge base course. Currently, there are no
+    /// configuration options, but the struct was added to implement the [GenerateManifests] trait
+    /// and for future extensibility.
+    KnowledgeBase(KnowledgeBaseConfig),
+
+    /// The configuration for generating a music piece course.
+    MusicPiece(MusicPieceConfig),
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Refer to the documentation for each type of generated course for the specification for each type of
+config.</p>
+<h2 id="example-configs"><a class="header" href="#example-configs">Example configs</a></h2>
+<p>Refer to the documentation for each type of generated course for examples of the <code>course_generator</code>
+configuration.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="knowledge-base-course-generator"><a class="header" href="#knowledge-base-course-generator">Knowledge Base Course Generator</a></h1>
+<p>This course generator is the most generic of them and can be adopted to create courses for any
+subject or topic. The idea is to reduce the need to write manifests for the lessons and exercises by
+giving special meaning to the names of their files and directories. The documentation of the code
+contains the specification of the file structure that is used to generate the manifests, so it's
+reproduced below. Note that <code>Vec</code> is a list of values, <code>Ustr</code> is a unique string type that is
+treated just like a string, a <code>BTreeMap</code> is used to store the metadata as keys and their associated
+list of values, and <code>Option</code> is used to represent files that are not required.</p>
+<p>Here's the specification for an exercise:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Represents a knowledge base exercise.
+///
+/// Inside a knowledge base lesson directory, Trane will look for matching pairs of files with names
+/// `&lt;SHORT_EXERCISE_ID&gt;.front.md` and `&lt;SHORT_EXERCISE_ID&gt;.back.md`. The short ID is used to
+/// generate the final exercise ID, by combining it with the lesson ID. For example, files
+/// `e.front.md` and `e.back.md` in a course with ID `a::b::c` inside a lesson directory named
+/// `d.lesson` will generate and exercise with ID `a::b::c::d::e`.
+///
+/// Each the optional fields mirror one of the fields in the
+/// [ExerciseManifest](crate::data::ExerciseManifest) and their values can be set by writing a JSON
+/// file inside the lesson directory with the name `&lt;SHORT_EXERCISE_ID&gt;.&lt;PROPERTY_NAME&gt;.json`. This
+/// file should contain a JSON serialization of the desired value. For example, to set the
+/// exercise's name for an exercise with a short ID value of `ex1`, one would write a file named
+/// `ex1.name.json` containing a JSON string with the desired name.
+///
+/// Trane will ignore any markdown files that do not match the exercise name pattern or that do not
+/// have a matching pair of front and back files.
+pub struct KnowledgeBaseExercise {
+    /// The short ID of the lesson, which is used to easily identify the exercise and to generate
+    /// the final exercise ID.
+    pub short_id: String,
+
+    /// The short ID of the lesson to which this exercise belongs.
+    pub short_lesson_id: Ustr,
+
+    /// The ID of the course to which this lesson belongs.
+    pub course_id: Ustr,
+
+    /// The path to the file containing the front of the flashcard.
+    pub front_file: String,
+
+    /// The path to the file containing the back of the flashcard.
+    pub back_file: String,
+
+    /// The name of the exercise to be presented to the user.
+    pub name: Option&lt;String&gt;,
+
+    /// An optional description of the exercise.
+    pub description: Option&lt;String&gt;,
+
+    /// The type of knowledge the exercise tests. Currently, Trane does not make any distinction
+    /// between the types of exercises, but that will likely change in the future. The option to set
+    /// the type is provided, but most users should not need to use it.
+    pub exercise_type: Option&lt;ExerciseType&gt;,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>And here's the specification for a lesson:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Represents a knowledge base lesson.
+///
+/// In a knowledge base course, lessons are generated by searching for all directories with a name
+/// in the format `&lt;SHORT_LESSON_ID&gt;.lesson`. In this case, the short ID is not the entire lesson ID
+/// one would use in the lesson manifest, but rather a short identifier that is combined with the
+/// course ID to generate the final lesson ID. For example, a course with ID `a::b::c` which
+/// contains a directory of name `d.lesson` will generate the manifest for a lesson with ID
+/// `a::b::c::d`.
+///
+/// All the optional fields mirror one of the fields in the
+/// [LessonManifest](crate::data::LessonManifest) and their values can be set by writing a JSON file
+/// inside the lesson directory with the name `lesson.&lt;PROPERTY_NAME&gt;.json`. This file should
+/// contain a JSON serialization of the desired value. For example, to set the lesson's dependencies
+/// one would write a file named `lesson.dependencies.json` containing a JSON array of strings, each
+/// of them the ID of a dependency.
+///
+/// None of the `&lt;SHORT_LESSON_ID&gt;.lesson` directories should contain a `lesson_manifest.json` file,
+/// as that file would indicate to Trane that this is a regular lesson and not a generated lesson.
+pub struct KnowledgeBaseLesson {
+    /// The short ID of the lesson, which is used to easily identify the lesson and to generate the
+    /// final lesson ID.
+    pub short_id: Ustr,
+
+    /// The ID of the course to which this lesson belongs.
+    pub course_id: Ustr,
+
+    /// The IDs of all dependencies of this lesson. The values can be full lesson IDs or the short
+    /// ID of one of the other lessons in the course. If Trane finds a dependency with a short ID,
+    /// it will automatically generate the full lesson ID. Not setting this value will indicate that
+    /// the lesson has no dependencies.
+    pub dependencies: Option&lt;Vec&lt;Ustr&gt;&gt;,
+
+    /// The name of the lesson to be presented to the user.
+    pub name: Option&lt;String&gt;,
+
+    /// An optional description of the lesson.
+    pub description: Option&lt;String&gt;,
+
+    //// A mapping of String keys to a list of String values used to store arbitrary metadata about
+    ///the lesson. This value is set to a `BTreeMap` to ensure that the keys are sorted in a
+    ///consistent order when serialized. This is an implementation detail and does not affect how
+    ///the value should be written to a file. A JSON map of strings to list of strings works.
+    pub metadata: Option&lt;BTreeMap&lt;String, Vec&lt;String&gt;&gt;&gt;,
+
+    /// The path to a markdown file containing the instructions common to all exercises in the
+    /// lesson.
+    pub instructions: Option&lt;String&gt;,
+
+    /// The path to a markdown file containing the material covered in the lesson.
+    pub material: Option&lt;String&gt;,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>If we translate this specification into an example course with two lessons of two exercises each,
+the file structure is as follows:</p>
+<pre><code class="language-text">course_root/
+├── course_manifest.json
+├── lesson_1.lesson/
+|   ├── lesson.name.json
+|   ├── lesson.description.json
+|   ├── lesson.dependencies.json
+|   ├── lesson.metadata.json
+|   ├── lesson.instructions.json
+|   ├── lesson.material.json
+│   ├── exercise_1.front.md
+│   ├── exercise_1.back.md
+│   ├── exercise_1.name.json
+│   ├── exercise_1.description.json
+│   ├── exercise_1.type.json
+│   ├── exercise_2.front.md
+│   └── exercise_2.back.md
+│   ├── exercise_2.name.json
+│   ├── exercise_2.description.json
+│   ├── exercise_2.type.json
+└── lesson_2.lesson/
+    ├── exercise_3.front.md
+    ├── exercise_3.back.md
+    ├── exercise_4.front.md
+    └── exercise_4.back.md
+</code></pre>
+<p>The first lesson includes all the files that can be written to specify the properties of a lesson,
+the front, and back of exercises, and the properties of each exercise. The second lesson contains
+the minimum number of files required to specify the lesson and exercises. Not even the dependencies
+of a lesson are required. If they are missing, the lesson will be assumed to have no dependencies.
+The rest of the properties are given a sensible default.</p>
+<p>Most of the time, a course author will only need to specify the front and back of the exercises and
+the dependencies for each lesson. The flashcards already needed to be written anyway, and the
+dependencies are much easier to write than the entire manifest. Following this strategy, most of the
+extra effort to writing the course materials themselves that was previously required to complete the
+course is eliminated.</p>
+<h2 id="example-configuration"><a class="header" href="#example-configuration">Example Configuration</a></h2>
+<p>TODO: This section is under construction.</p>
+<pre><code class="language-json"></code></pre>
+<h2 id="example-course"><a class="header" href="#example-course">Example Course</a></h2>
+<p>The repository (TODO: add the link) is a knowledge base course that can be used to learn Trane, but
+its primary purpose is to act as an example of how you can use the knowledge base course generator
+and can be freely taken as a template for your own courses.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="music-piece-generator"><a class="header" href="#music-piece-generator">Music Piece Generator</a></h1>
+<p>This course generator is used to create courses that progressively teach mastery of a musical piece,
+starting at the smallest fragments and gradually building up to the entire piece. The course author
+must divide up the piece into fragments and write them down in the configuration of the course. </p>
+<p>The specification for the music asset containing the music sheet of the piece:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Represents a music asset to be practiced.
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+pub enum MusicAsset {
+    /// A link to a SoundSlice.
+    SoundSlice(String),
+
+    /// The path to a local file. For example, the path to a PDF of the sheet music.
+    LocalFile(String),
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>The specification for how musical passages are declared and divided up:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Represents a music passage to be practiced.
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+pub enum MusicPassage {
+    /// A single passage with no dependencies.
+    SimplePassage {
+        /// The start of the passage. For example, &quot;Measure 1&quot;, &quot;Measure 3, beat 2&quot;, &quot;Start of third
+        /// movement&quot;, etc. Start and end values are stored as strings to allow for flexibility in
+        /// defining their values.
+        start: String,
+
+        /// The end of the passage. For example, &quot;End of measure 3&quot;, &quot;End of movement 2&quot;, etc. Just
+        /// like start, it's defined as a string to allow for flexibility.
+        end: String,
+    },
+
+    /// A passage that requires mastery of other smaller passages. For example, a three-movement
+    /// piano concerto requires that the musician masters each of the individual movements.
+    ComplexPassage {
+        /// The start of the passage.
+        start: String,
+
+        /// The end of the passage.
+        end: String,
+
+        /// The sub-passages that must be mastered before this passage can be mastered. Each
+        /// sub-passage should be given a unique index which will be used to generate the lesson ID.
+        /// Those values should not change once they are defined or progress for this lesson will be
+        /// lost. This value is a map instead of a list because rearranging the order of the
+        /// passages in a list would also change the IDs of the generated lessons.
+        sub_passages: HashMap&lt;usize, MusicPassage&gt;,
+    },
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>The specification for the course configuration for music piece courses:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// The config to create a course that teaches a piece of music.
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+pub struct MusicPieceConfig {
+    /// The asset containing the music to be practiced.
+    pub music_asset: MusicAsset,
+
+    /// The passages in which the music is divided for practice.
+    pub passages: MusicPassage,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>The top musical passage should always ask the student to play the entire piece. Each of the
+dependencies asks the student to play a smaller fragment of the piece. There can be an arbitrary
+number of nested passages, which allow pieces to be divided into arbitrarily small fragments. To
+allow more flexibility, the start and end values of each passage are specified as a string.</p>
+<p>The musical asset specifies where the music sheet for the piece is located. It can be specified as a
+link to a SoundSlice or as the path to a local file.</p>
+<h2 id="example-configuration-1"><a class="header" href="#example-configuration-1">Example configuration</a></h2>
+<p>TODO: This section is under construction.</p>
+<p>Below is an example course generator config for this type of course. Only the relevant fragments
+from the course manifest are shown.</p>
+<pre><code class="language-json"></code></pre>
+<h2 id="example-course-1"><a class="header" href="#example-course-1">Example course</a></h2>
+<p>TODO: This section is under construction.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="improvisation-course-generator"><a class="header" href="#improvisation-course-generator">Improvisation Course Generator</a></h1>
+<p>This course generator can be used to practice improvisation based on a set of provided musical
+passage. The course has several stages which progressively introduced all the elements of the
+musical passages and ask the student to improvise and play with them, both with their voice and
+their preferred instruments. More information on each stage and the rest of the instructions can be
+found in the <a href="generated_courses/./improvisation/instructions.html">Course Instructions</a> page.</p>
+<p>The specification for a musical passage. The passages are picked up automatically if they are in the
+specified directory as shown further below.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// A single musical passage to be used in an improvisation course. A course can contain multiple
+/// passages but all of those passages are assumed to have the same key or mode.
+#[derive(Clone, Debug, Deserialize, Serialize)]
+pub struct ImprovisationPassage {
+    /// A unique ID to identify this passage. This ID is used to generate the IDs of the exercises
+    /// which use this passage.
+    pub id: String,
+
+    /// The path to the file containing the passage.
+    pub path: String,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>The specification for the course configuration for improvisation courses:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// The configuration for creating a new improvisation course.
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+pub struct ImprovisationConfig {
+    /// The dependencies on other improvisation courses. Specifying these dependencies here instead
+    /// of the [CourseManifest](crate::data::CourseManifest) allows Trane to generate more
+    /// fine-grained dependencies.
+    pub improvisation_dependencies: Vec&lt;Ustr&gt;,
+
+    /// If true, the course contains passages only have rhythm and contain no melodic nor harmonic
+    /// information. Lessons to learn the melody and harmony of the passages will not be generated.
+    pub rhythm_only: bool,
+
+    /// The directory where the passages are stored. The name of each file (minus the extension)
+    /// will be used to generate the ID for each exercise. Thus, each of those IDs must be unique.
+    /// For example, files `passage.pdf` and `passage.ly` break this rule, even though they have
+    /// unique file names.
+    ///
+    /// The directory can be written relative to the root of the course or as an absolute path. The
+    /// first option is recommended.
+    pub passage_directory: String,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><code>Vec&lt;Ustr&gt;</code> is an array of strings and is written as a normal list in the <code>course_manifest.json</code>
+file. The rhythm-only option is used for courses that contain passages that only have a rhythm. For
+example, a course that teaches drum licks would use this option.</p>
+<h2 id="user-preferences"><a class="header" href="#user-preferences">User Preferences</a></h2>
+<p>This course also allows the user to set their preferences. Specifically, the user can set the
+instruments that they want to practice, as well as additional instruments to be practiced
+exclusively in the rhythm lessons (drums, for example).</p>
+<p>The specification for an instrument:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Describes an instrument that can be used to practice in an improvisation course.
+#[derive(Clone, Debug, Deserialize, Serialize)]
+pub struct Instrument {
+    /// The name of the instrument. For example, &quot;Tenor Saxophone&quot;.
+    pub name: String,
+
+    /// An ID for this instrument used to generate lesson IDs. For example, &quot;tenor_saxophone&quot;.
+    pub id: String,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>The specification for the user preferences for the improvisation courses:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Settings for generating a new improvisation course that are specific to a user.
+#[derive(Clone, Debug, Default, Deserialize, Serialize)]
+pub struct ImprovisationPreferences {
+    /// The list of instruments the user wants to practice.
+    pub instruments: Vec&lt;Instrument&gt;,
+
+    /// The list of instruments that only use rhythm. Exercises for these instruments will only
+    /// show up in the rhythm lessons.
+    pub rhythm_only_instruments: Vec&lt;Instrument&gt;,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>See the <a href="generated_courses/../user_preferences.html">User Preferences</a> page for more information on how to set the user
+preferences in Trane.</p>
+<h2 id="example-configuration-2"><a class="header" href="#example-configuration-2">Example Configuration</a></h2>
+<p>TODO: This section is under construction.</p>
+<p>Example of a course generator configuration:</p>
+<pre><code class="language-json"></code></pre>
+<p>Example of a user preferences file:</p>
+<pre><code class="language-json"></code></pre>
+<h2 id="example-course-2"><a class="header" href="#example-course-2">Example Course</a></h2>
+<p>The repository (TODO) contains all the official improvisation courses. Contributions for this
+repository are welcome. See the <a href="generated_courses/../contributing.html">Contributing</a> section for more information.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="improvisation-course-instructions"><a class="header" href="#improvisation-course-instructions">Improvisation Course Instructions</a></h1>
+<p>This course is designed to help you learn how to improvise based on the musical passages that you
+provide. The aim of the exercises is not to play the passage as accurately as possible, but to learn
+how to improvise using the musical elements of the passage as a starting point. The passages should
+be musical and ideally come from real pieces of music.</p>
+<p>At each stage of the process, you first learn how to improvise using your voice, and then you learn
+how to do it for each of the instruments that you have selected in your user preferences. Changing
+your user preferences will update the lessons the next time you open Trane.</p>
+<p>If the exercise involves improvising on the melody or harmony of a passage, there will be separate
+lessons for each key, starting with the key of C (the key with no flats or sharps). Mastering the
+lesson for a key allows you to advance to the lesson for the key with one more flat or sharp.</p>
+<p>If the passage is not in the major mode, you should still use the same key signature, although the
+meaning is different. For example, the key of C Major becomes the key of A Minor, D Dorian, and so
+on.</p>
+<h2 id="sight-singing"><a class="header" href="#sight-singing">Sight-singing</a></h2>
+<p>The rhythm, melody, and harmony lessons involving singing should be done with the aid of a solfège
+system to help you associate each note with their feeling. You can choose any solfège system that
+you are comfortable with. Below there are a few examples.</p>
+<h3 id="rhythmic-sight-singing"><a class="header" href="#rhythmic-sight-singing">Rhythmic sight-singing</a></h3>
+<p>Sight-singing for the rhythm lessons is not as important as for the melody and harmony lessons. You
+can use a simple system. For example, a quarter note is a &quot;ta&quot;, a half note is a &quot;ta-a&quot;, and quick
+notes are sung &quot;ta-ka-ta-ka&quot;, etc. You are free to use an established system such as the Kodaly
+system. Accuracy and being able to clearly sing the syllables are more important than rigidly
+sticking to a system.</p>
+<h3 id="melodic-sight-singing"><a class="header" href="#melodic-sight-singing">Melodic sight-singing</a></h3>
+<p>Each of the following systems can be replaced with an equivalent system using numbers instead of
+solfège syllables. &quot;Do&quot; becomes 1, &quot;Re&quot; becomes 2, and so on. They are not mentioned separately for
+the sake brevity.</p>
+<h4 id="movable-do-la-solfège-recommended"><a class="header" href="#movable-do-la-solfège-recommended">Movable Do-La solfège (Recommended)</a></h4>
+<p>The syllable &quot;Do&quot; is placed in the note of the key and stays there even for modes other than major.
+For minor and other modes, the placing of the syllables is not modified. Instead, when sight-singing
+a melody in a minor key, for example, the root of the scale is sung a &quot;La&quot;, the second degree as
+&quot;Ti&quot;, the third degree as &quot;Do&quot;, and so on.</p>
+<p>This method has the advantage that all the modes can be sung using the same seven basic syllables.
+When sight-singing in a different mode, it's only our perception of the root that changes, not the
+syllables.</p>
+<h4 id="movable-do"><a class="header" href="#movable-do">Movable Do</a></h4>
+<p>This system is the same as the previous one, except that the syllable &quot;Do&quot; changes its place for
+different modes. For example, in the minor mode the root is sung as &quot;Do&quot;, the second degree as &quot;Re&quot;,
+the third degree as &quot;Me&quot;, and so on.</p>
+<p>This system has the advantage that &quot;Do&quot; always represents the first degree of the scale or mode, but
+it requires more syllables to be learned and the fact that all seven modes are made up of the same
+notes is not so readily apparent.</p>
+<h4 id="do-moves-to-the-root-of-the-chord"><a class="header" href="#do-moves-to-the-root-of-the-chord">Do moves to the root of the chord</a></h4>
+<p>This system is used by the Melodear app (more on that on the section on tools). In this system, the
+&quot;Do&quot; syllable moves to the first note of the chord and changes each time there is a chord change.</p>
+<p>This system has the advantage that the root of the chord is made more apparent, but it might not be
+the best choice for music that stays within the same key for a long time, as it obscures the
+relationships of the chords to the key of the music. For modal music which switches between
+different modes and stays there for a longer time, this system might be a better fit.</p>
+<p>See more discussion on the differences between the systems in this video:
+https://www.youtube.com/watch?v=x0vmjkX9cOk.</p>
+<h2 id="stages"><a class="header" href="#stages">Stages</a></h2>
+<p>The course is divided in several stages, each of which will help you become familiar with a
+different aspect of the material.</p>
+<h3 id="singing"><a class="header" href="#singing">Singing</a></h3>
+<p>This is the first stage of the course. In this stage, you must listen to each passage repeatedly
+until you can imagine it clearly in your mind. Then, you must sing the passage. At this stage, it's
+not required to use solfège syllables or numbers. There are no separate lessons for each key.
+Instead, you should select a random key each time you do the exercise.</p>
+<h3 id="rhythm"><a class="header" href="#rhythm">Rhythm</a></h3>
+<p>This stage is accessible after you have passed the singing stage. In this stage, you must improvise
+using the rhythm of the passage. You must first do it singing and then with each of the instruments
+you have selected.</p>
+<h3 id="melody"><a class="header" href="#melody">Melody</a></h3>
+<p>This stage is accessible after you have passed the singing stage. In this stage, you must improvise
+using the melodic elements of the passage. You must first do it singing and then with each of the
+instruments you have selected. This stage contains separate lessons for each key.</p>
+<h3 id="basic-harmony"><a class="header" href="#basic-harmony">Basic Harmony</a></h3>
+<p>This stage is accessible after you have passed the singing stage. In this stage, you must improvise
+using the harmonic elements of the passage. The basic harmony consists of the chord tones of each of
+the chords in the progression. You must first do it singing and then with each of the instruments
+you have selected. This stage contains separate lessons for each key.</p>
+<h3 id="advanced-harmony"><a class="header" href="#advanced-harmony">Advanced Harmony</a></h3>
+<p>This stage is accessible after you have passed the basic harmony stage. In this stage, you must
+improvise using all the harmonic elements of the passage, including chromatic notes. You must first
+do it singing and then with each of the instruments you have selected. This stage contains separate
+lessons for each key.</p>
+<h3 id="mastery"><a class="header" href="#mastery">Mastery</a></h3>
+<p>This stage is accessible after you have passed the rhythm, melody, and advanced harmony stages. In
+this stage you take everything that you have learned and apply it to your improvisation. You must
+first do it singing and then with each of the instruments you have selected. There are no separate
+lessons for each key. Instead, you should select a random key each time you do the exercise.</p>
+<h2 id="tools"><a class="header" href="#tools">Tools</a></h2>
+<h3 id="lilypond"><a class="header" href="#lilypond">Lilypond</a></h3>
+<p>Passages in the official improvisation courses are written using the plain-text Lilypond format. See
+the <a href="generated_courses/improvisation/./lilypond.html">Lilypond</a> section for more information.</p>
+<h3 id="soundslice"><a class="header" href="#soundslice">SoundSlice</a></h3>
+<p>The passages in this course can also be declared as links to a SoundSlice page. SoundSlice is a
+great tool that lets you play, loop, and transpose a musical score. It's not used in the course
+since it is a proprietary tool and requires online access, but it is a great tool, and you are free
+to use it in your own courses. There is no native integration with SoundSlice, but you can easily
+add a Markdown file with the link to the SoundSlice as its content.</p>
+<h3 id="melodear"><a class="header" href="#melodear">Melodear</a></h3>
+<p>The Melodear app is a great tool for sight-singing. It provides a grid of the tones of the selected
+chord and mode and gives you great visual feedback of where you are singing. The free version only
+lets you use a few chords, but it should be enough since you only need one chord if you are
+sight-singing with the recommended Do-La solfège system.</p>
+<p>See this <a href="https://melodear-app.com/melodear-training">page</a> for additional training on how to use
+Melodear.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="user-preferences-1"><a class="header" href="#user-preferences-1">User Preferences</a></h1>
+<p>The user preferences can be set to customize the behavior of Trane.</p>
+<p>The specification for the user preferences:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// The user-specific configuration
+#[derive(Clone, Debug, Default, Deserialize, Serialize)]
+pub struct UserPreferences {
+    /// The preferences for generating improvisation courses.
+    pub improvisation: Option&lt;ImprovisationPreferences&gt;,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>The user preferences can be set in the <code>user_preferences.json</code> file inside the <code>.trane</code> directory in
+a Trane library. The value is a serialized JSON object that matches the Rust type shown above. If
+none is found, Trane will create it with the default values.</p>
+<p>Currently, the only user preferences that are supported are the ones for the improvisation course.
+Refer to the <a href="./generated_courses/improvisation.html">Improvisation Course</a> page for more information
+on the user preferences for that course.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="official-trane-courses"><a class="header" href="#official-trane-courses">Official Trane Courses</a></h1>
 <p>The Trane Project also aims to offer quality official courses to go along with the software. Here's
 the list of all official courses.</p>
