@@ -29,3 +29,7 @@ build:
 	# Build the mdbook. The configuration file already points out to the output
 	# of verso|recto.
 	mdbook build
+
+serve: build
+	# Serve the mdbook.
+	mdbook serve
