@@ -817,35 +817,19 @@ pub enum MusicAsset {
 </span><span class="boring">fn main() {
 </span>/// Represents a music passage to be practiced.
 #[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
-pub enum MusicPassage {
-    /// A single passage with no dependencies.
-    SimplePassage {
-        /// The start of the passage. For example, &quot;Measure 1&quot;, &quot;Measure 3, beat 2&quot;, &quot;Start of third
-        /// movement&quot;, etc. Start and end values are stored as strings to allow for flexibility in
-        /// defining their values.
-        start: String,
+pub struct MusicPassage {
+    /// The start of the passage.
+    pub start: String,
 
-        /// The end of the passage. For example, &quot;End of measure 3&quot;, &quot;End of movement 2&quot;, etc. Just
-        /// like start, it's defined as a string to allow for flexibility.
-        end: String,
-    },
+    /// The end of the passage.
+    pub end: String,
 
-    /// A passage that requires mastery of other smaller passages. For example, a three-movement
-    /// piano concerto requires that the musician masters each of the individual movements.
-    ComplexPassage {
-        /// The start of the passage.
-        start: String,
-
-        /// The end of the passage.
-        end: String,
-
-        /// The sub-passages that must be mastered before this passage can be mastered. Each
-        /// sub-passage should be given a unique index which will be used to generate the lesson ID.
-        /// Those values should not change once they are defined or progress for this lesson will be
-        /// lost. This value is a map instead of a list because rearranging the order of the
-        /// passages in a list would also change the IDs of the generated lessons.
-        sub_passages: HashMap&lt;usize, MusicPassage&gt;,
-    },
+    /// The sub-passages that must be mastered before this passage can be mastered. Each
+    /// sub-passage should be given a unique index which will be used to generate the lesson ID.
+    /// Those values should not change once they are defined or progress for this lesson will be
+    /// lost. This value is a map instead of a list because rearranging the order of the
+    /// passages in a list would also change the IDs of the generated lessons.
+    pub sub_passages: HashMap&lt;usize, MusicPassage&gt;,
 }
 <span class="boring">}
 </span></code></pre></pre>
