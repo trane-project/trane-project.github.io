@@ -189,6 +189,10 @@ pub struct ImprovisationConfig {
     /// The directory can be written relative to the root of the course or as an absolute path. The
     /// first option is recommended.
     pub passage_directory: String,
+
+    /// The list of file extensions that are allowed for the passages. For example, `[&quot;pdf&quot;, &quot;ly&quot;]`.
+    /// All other files will be ignored.
+    pub file_extensions: Vec&lt;String&gt;,
 }
 <span class="boring">}
 </span></code></pre></pre>
@@ -224,21 +228,61 @@ pub struct ImprovisationPreferences {
 
     /// The list of instruments that only use rhythm. Exercises for these instruments will only
     /// show up in the rhythm lessons.
-    pub rhythm_only_instruments: Vec&lt;Instrument&gt;,
+    pub rhythm_instruments: Vec&lt;Instrument&gt;,
 }
 <span class="boring">}
 </span></code></pre></pre>
 <p>See the <a href="../user_preferences.html">User Preferences</a> page for more information on how to set the user
 preferences in Trane.</p>
 <h2 id="example-configuration"><a class="header" href="#example-configuration">Example Configuration</a></h2>
-<p>TODO: This section is under construction.</p>
 <p>Example of a course generator configuration:</p>
-<pre><code class="language-json"></code></pre>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;trane::music::improvisation::major_mode_1&quot;,
+  &quot;name&quot;: &quot;Major Mode Improvisation 1&quot;,
+  &quot;dependencies&quot;: [],
+  &quot;description&quot;: &quot;Improvise on basic patterns of the major mode&quot;,
+  &quot;authors&quot;: [
+    &quot;The Trane Project&quot;
+  ],
+  &quot;metadata&quot;: null,
+  &quot;course_material&quot;: null,
+  &quot;course_instructions&quot;: null,
+  &quot;generator_config&quot;: {
+    &quot;Improvisation&quot;: {
+      &quot;improvisation_dependencies&quot;: [],
+      &quot;rhythm_only&quot;: false,
+      &quot;passage_directory&quot;: &quot;passages&quot;,
+      &quot;file_extensions&quot;: [&quot;ly&quot;]
+    }
+  }
+}
+</code></pre>
 <p>Example of a user preferences file:</p>
-<pre><code class="language-json"></code></pre>
+<pre><code class="language-json">{
+  &quot;improvisation&quot;: {
+    &quot;instruments&quot;: [
+      {
+        &quot;name&quot;: &quot;Piano&quot;,
+        &quot;id&quot;: &quot;piano&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Guitar&quot;,
+        &quot;id&quot;: &quot;guitar&quot;
+      }
+    ],
+    &quot;rhythm_instruments&quot;: [
+      {
+        &quot;name&quot;: &quot;Drums&quot;,
+        &quot;id&quot;: &quot;drums&quot;
+      }
+    ]
+  }
+}
+</code></pre>
 <h2 id="example-course"><a class="header" href="#example-course">Example Course</a></h2>
-<p>The repository (TODO) contains all the official improvisation courses. Contributions for this
-repository are welcome. See the <a href="../contributing.html">Contributing</a> section for more information.</p>
+<p>The repository <a href="https://github.com/trane-project/trane-improvisation">trane-improvisation</a> contains
+all the official improvisation courses. Contributions for this repository are welcome. See the
+<a href="../contributing.html">Contributing</a> section for more information.</p>
 
                     </main>
 
