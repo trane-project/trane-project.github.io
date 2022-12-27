@@ -62,9 +62,23 @@ course is eliminated.
 
 ## Example Configuration
 
-TODO: This section is under construction.
-
+Example of a course manifest for a knowledge base course:
 ```json
+{
+  "id": "trane::example::knowledge_base",
+  "name": "Example Knowledge Base Course",
+  "dependencies": [],
+  "description": "An example knowledge base course.",
+  "authors": [
+    "The Trane Project"
+  ],
+  "metadata": null,
+  "course_material": null,
+  "course_instructions": null,
+  "generator_config": {
+    "KnowledgeBase": {}
+  }
+}
 ```
 
 ## Example Course

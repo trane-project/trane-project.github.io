@@ -42,17 +42,56 @@ preferences in Trane.
 
 ## Example Configuration
 
-TODO: This section is under construction.
-
 Example of a course generator configuration:
 ```json
+{
+  "id": "trane::music::improvisation::major_mode_1",
+  "name": "Major Mode Improvisation 1",
+  "dependencies": [],
+  "description": "Improvise on basic patterns of the major mode",
+  "authors": [
+    "The Trane Project"
+  ],
+  "metadata": null,
+  "course_material": null,
+  "course_instructions": null,
+  "generator_config": {
+    "Improvisation": {
+      "improvisation_dependencies": [],
+      "rhythm_only": false,
+      "passage_directory": "passages",
+      "file_extensions": ["ly"]
+    }
+  }
+}
 ```
 
 Example of a user preferences file:
 ```json
+{
+  "improvisation": {
+    "instruments": [
+      {
+        "name": "Piano",
+        "id": "piano"
+      },
+      {
+        "name": "Guitar",
+        "id": "guitar"
+      }
+    ],
+    "rhythm_instruments": [
+      {
+        "name": "Drums",
+        "id": "drums"
+      }
+    ]
+  }
+}
 ```
 
 ## Example Course
 
-The repository (TODO) contains all the official improvisation courses. Contributions for this
-repository are welcome. See the [Contributing](../contributing.md) section for more information.
+The repository [trane-improvisation](https://github.com/trane-project/trane-improvisation) contains
+all the official improvisation courses. Contributions for this repository are welcome. See the
+[Contributing](../contributing.md) section for more information.

@@ -295,8 +295,23 @@ dependencies are much easier to write than the entire manifest. Following this s
 extra effort to writing the course materials themselves that was previously required to complete the
 course is eliminated.</p>
 <h2 id="example-configuration"><a class="header" href="#example-configuration">Example Configuration</a></h2>
-<p>TODO: This section is under construction.</p>
-<pre><code class="language-json"></code></pre>
+<p>Example of a course manifest for a knowledge base course:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;trane::example::knowledge_base&quot;,
+  &quot;name&quot;: &quot;Example Knowledge Base Course&quot;,
+  &quot;dependencies&quot;: [],
+  &quot;description&quot;: &quot;An example knowledge base course.&quot;,
+  &quot;authors&quot;: [
+    &quot;The Trane Project&quot;
+  ],
+  &quot;metadata&quot;: null,
+  &quot;course_material&quot;: null,
+  &quot;course_instructions&quot;: null,
+  &quot;generator_config&quot;: {
+    &quot;KnowledgeBase&quot;: {}
+  }
+}
+</code></pre>
 <h2 id="example-course"><a class="header" href="#example-course">Example Course</a></h2>
 <p>The repository (TODO: add the link) is a knowledge base course that can be used to learn Trane, but
 its primary purpose is to act as an example of how you can use the knowledge base course generator

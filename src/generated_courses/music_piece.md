@@ -29,12 +29,43 @@ link to a SoundSlice or as the path to a local file.
 
 ## Example configuration
 
-TODO: This section is under construction.
-
-Below is an example course generator config for this type of course. Only the relevant fragments
-from the course manifest are shown.
-
+Below is an example course generator config for this type of course.
 ```json
+{
+  "id": "trane::example::knowledge_base",
+  "name": "Example Knowledge Base Course",
+  "dependencies": [],
+  "description": "An example knowledge base course.",
+  "authors": [
+    "The Trane Project"
+  ],
+  "metadata": null,
+  "course_material": null,
+  "course_instructions": null,
+  "generator_config": {
+    "MusicPiece": {
+      "music_asset": {
+        "LocalFile": "music_sheet.pdf"
+      },
+      "passages": {
+        "start": "start of the piece",
+        "end": "end of the piece",
+        "sub_passages": [
+          {
+            "start": "start of bar 1",
+            "end": "end of bar 10",
+            "sub_passages": []
+          },
+          {
+            "start": "start of bar 10",
+            "end": "end of bar 20",
+            "sub_passages": []
+          }
+        ]
+      }
+    }
+  }
+}
 ```
 
 ## Example course

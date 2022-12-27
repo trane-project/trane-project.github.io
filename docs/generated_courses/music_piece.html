@@ -203,10 +203,43 @@ allow more flexibility, the start and end values of each passage are specified a
 <p>The musical asset specifies where the music sheet for the piece is located. It can be specified as a
 link to a SoundSlice or as the path to a local file.</p>
 <h2 id="example-configuration"><a class="header" href="#example-configuration">Example configuration</a></h2>
-<p>TODO: This section is under construction.</p>
-<p>Below is an example course generator config for this type of course. Only the relevant fragments
-from the course manifest are shown.</p>
-<pre><code class="language-json"></code></pre>
+<p>Below is an example course generator config for this type of course.</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;trane::example::knowledge_base&quot;,
+  &quot;name&quot;: &quot;Example Knowledge Base Course&quot;,
+  &quot;dependencies&quot;: [],
+  &quot;description&quot;: &quot;An example knowledge base course.&quot;,
+  &quot;authors&quot;: [
+    &quot;The Trane Project&quot;
+  ],
+  &quot;metadata&quot;: null,
+  &quot;course_material&quot;: null,
+  &quot;course_instructions&quot;: null,
+  &quot;generator_config&quot;: {
+    &quot;MusicPiece&quot;: {
+      &quot;music_asset&quot;: {
+        &quot;LocalFile&quot;: &quot;music_sheet.pdf&quot;
+      },
+      &quot;passages&quot;: {
+        &quot;start&quot;: &quot;start of the piece&quot;,
+        &quot;end&quot;: &quot;end of the piece&quot;,
+        &quot;sub_passages&quot;: [
+          {
+            &quot;start&quot;: &quot;start of bar 1&quot;,
+            &quot;end&quot;: &quot;end of bar 10&quot;,
+            &quot;sub_passages&quot;: []
+          },
+          {
+            &quot;start&quot;: &quot;start of bar 10&quot;,
+            &quot;end&quot;: &quot;end of bar 20&quot;,
+            &quot;sub_passages&quot;: []
+          }
+        ]
+      }
+    }
+  }
+}
+</code></pre>
 <h2 id="example-course"><a class="header" href="#example-course">Example course</a></h2>
 <p>TODO: This section is under construction.</p>
 
