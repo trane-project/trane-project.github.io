@@ -29,7 +29,7 @@ exclusively in the rhythm lessons (drums, for example).
 
 The specification for an instrument:
 ```rust
-@@improvisation-instrument
+@@instrument
 ```
 
 The specification for the user preferences for the improvisation courses:
