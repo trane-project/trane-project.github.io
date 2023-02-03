@@ -681,8 +681,9 @@ pub struct KnowledgeBaseExercise {
     /// The path to the file containing the front of the flashcard.
     pub front_file: String,
 
-    /// The path to the file containing the back of the flashcard.
-    pub back_file: String,
+    /// The path to the file containing the back of the flashcard. This path is optional, because a
+    /// flashcard is not required to provide an answer.
+    pub back_file: Option&lt;String&gt;,
 
     /// The name of the exercise to be presented to the user.
     pub name: Option&lt;String&gt;,
@@ -715,6 +716,10 @@ pub struct KnowledgeBaseExercise {
 /// contain a JSON serialization of the desired value. For example, to set the lesson's dependencies
 /// one would write a file named `lesson.dependencies.json` containing a JSON array of strings, each
 /// of them the ID of a dependency.
+///
+/// The material and instructions of the lesson do not follow this convention. Instead, the files
+/// `lesson.instructoins.md` and `lesson.material.md` contain the instructions and material of the
+/// lesson.
 ///
 /// None of the `&lt;SHORT_LESSON_ID&gt;.lesson` directories should contain a `lesson_manifest.json` file,
 /// as that file would indicate to Trane that this is a regular lesson and not a generated lesson.
@@ -778,13 +783,14 @@ the file structure is as follows:</p>
     ├── exercise_3.front.md
     ├── exercise_3.back.md
     ├── exercise_4.front.md
-    └── exercise_4.back.md
 </code></pre>
 <p>The first lesson includes all the files that can be written to specify the properties of a lesson,
 the front, and back of exercises, and the properties of each exercise. The second lesson contains
 the minimum number of files required to specify the lesson and exercises. Not even the dependencies
 of a lesson are required. If they are missing, the lesson will be assumed to have no dependencies.
-The rest of the properties are given a sensible default.</p>
+The rest of the properties are given a sensible default. Also note that an exercise is not required
+to have a back file, such as <code>exercise_4</code> in the example above. This can happen, for example, if the
+exercise is open-ended or refers to an external resource.</p>
 <p>Most of the time, a course author will only need to specify the front and back of the exercises and
 the dependencies for each lesson. The flashcards already needed to be written anyway, and the
 dependencies are much easier to write than the entire manifest. Following this strategy, most of the

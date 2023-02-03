@@ -45,14 +45,15 @@ course_root/
     ├── exercise_3.front.md
     ├── exercise_3.back.md
     ├── exercise_4.front.md
-    └── exercise_4.back.md
 ```
 
 The first lesson includes all the files that can be written to specify the properties of a lesson,
 the front, and back of exercises, and the properties of each exercise. The second lesson contains
 the minimum number of files required to specify the lesson and exercises. Not even the dependencies
 of a lesson are required. If they are missing, the lesson will be assumed to have no dependencies.
-The rest of the properties are given a sensible default.
+The rest of the properties are given a sensible default. Also note that an exercise is not required
+to have a back file, such as `exercise_4` in the example above. This can happen, for example, if the
+exercise is open-ended or refers to an external resource.
 
 Most of the time, a course author will only need to specify the front and back of the exercises and
 the dependencies for each lesson. The flashcards already needed to be written anyway, and the
