@@ -82,8 +82,16 @@ Example of a course manifest for a knowledge base course:
 }
 ```
 
-## Example Course
+## Example Courses
 
-The repository (TODO: add the link) is a knowledge base course that can be used to learn Trane, but
-its primary purpose is to act as an example of how you can use the knowledge base course generator
-and can be freely taken as a template for your own courses.
+Below there are a few examples of official Trane courses that are using this course generator to
+give you a better idea of how it is used:
+
+- [Long tones for the tenor
+  saxophone](https://github.com/trane-project/trane-saxophone/tree/master/courses/tenor_saxophone/long_tones):
+  A course to teach you how to produce long tones on the tenor saxophone, starting at the first
+  octave and gradually working your way up.
+- [Art of Problem Solving
+  1](https://github.com/trane-project/trane-math/tree/master/courses/olympiads/aops/aops_1): The
+  "Art of Problem Solving" book series is intended to begin preparing students for competing in math
+  Olympiads. This course translates the first volume of that series into a Trane course.
