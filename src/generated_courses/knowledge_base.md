@@ -29,8 +29,8 @@ course_root/
 |   ├── lesson.description.json
 |   ├── lesson.dependencies.json
 |   ├── lesson.metadata.json
-|   ├── lesson.instructions.json
-|   ├── lesson.material.json
+|   ├── lesson.instructions.md
+|   ├── lesson.material.md
 │   ├── exercise_1.front.md
 │   ├── exercise_1.back.md
 │   ├── exercise_1.name.json
