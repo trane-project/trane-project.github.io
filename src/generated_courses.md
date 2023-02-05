@@ -1,8 +1,5 @@
 # Generated Courses
 
-**Note**: This page refers to unreleased features of Trane. The changes are currently available in
-the `master` branch of the repository but are subject to change until the next official release.
-
 Writing Trane courses in the way specified in the [Writing Trane Courses](./writing_courses.md)
 section can get tedious quickly, even if you are automating the process. In order to make it easier
 to write courses for Trane, Trane can now automatically generate most of the manifest files
