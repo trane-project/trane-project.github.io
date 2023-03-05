@@ -143,7 +143,7 @@ to learn the notes in each chord, learn the fingerings of each chord, or improvi
 chords. The user can then define a unit that exercises the union of all the previous skills and
 claim the other lessons as a dependency.
 
-## Interleaving
+### Interleaving
 
 Interleaving is the practice of mixing up the order in which skills are presented, instead of
 showing consecutive exercises that test the same or similar skills. This strategy has been shown to
@@ -157,7 +157,7 @@ batch. The probability of an exercise being included in the batch is weighted ba
 factors, such as the exercise's score, the depth of the exercise within the dependency graph, and
 the number of times it has been shown in the same session.
 
-## Mixed Difficulties
+### Mixed Difficulties
 
 Similar to interleaving, mixed difficulties consists of mixing exercises of different difficulty
 when presenting them to the student. This strategy is meant to avoid showing too many easy
