@@ -169,13 +169,13 @@ stream of notes that characterize his style, the aural training to recognize and
 and the fine motor skills to play the intricate lines of his solos. All these skills came together
 to create his unique and spiritually powerful sound. Trane is designed to allow students to easily
 express these complex relationships and to take advantage of them to guide the student's practice.
-This is perhaps the feature that is at the core of Trane and the main differentiation between it
-and similar software, such as Anki, which already make use of some of the same learning principles.</li>
+This is the feature that is at the core of Trane and the main difference between it and similar
+software, such as Anki, which already make use of some of the same learning principles.</li>
 </ul>
-<p>Trane is based on multiple proven principles of skill acquisition, such as spaced repetition,
-mastery learning, and chunking. For example, Trane makes sure that not too many very easy or hard
-exercises are shown to a student to avoid both extremes of frustration and boredom. Trane makes sure
-to periodically reinforce skills that have already been practiced and to include new skills
+<p>Trane is based on multiple proven principles of skill acquisition, like spaced repetition, mastery
+learning, interleaving, and chunking. For example, Trane makes sure that not too many very easy or
+hard exercises are shown to a student to avoid both extremes of frustration and boredom. Trane makes
+sure to periodically reinforce skills that have already been practiced and to include new skills
 automatically when the skills that they depend on have been sufficiently mastered.</p>
 <p>If you are familiar with the experience of traversing the skill tree of a video game by grinding and
 becoming better at the game, Trane aims to provide a way to help students complete a similar
@@ -213,7 +213,7 @@ directory you created in the previous step, and run the following command:</p>
 is open. To see a new exercise, type <code>next</code>. To score the exercise, type <code>score &lt;YOUR 1-5 score&gt;</code>. 
 For more documentation, check out the <a href="./trane-cli.html">trane-cli</a> section.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="concepts-and-theory"><a class="header" href="#concepts-and-theory">Concepts and Theory</a></h1>
-<h2 id="theory"><a class="header" href="#theory">Theory</a></h2>
+<h2 id="concepts"><a class="header" href="#concepts">Concepts</a></h2>
 <p>This section defines basic concepts used in Trane, useful both for using it and for creating new
 material.</p>
 <h3 id="skills"><a class="header" href="#skills">Skills</a></h3>
@@ -225,13 +225,13 @@ when considering the need to retrieve an answer quickly and without error when p
 calculations. Skills can often be divided into smaller tasks that can be practiced separately. For
 example, learning a new piece of music can be broken down into learning individual sections of the
 piece. </p>
-<h3 id="mastery-score"><a class="header" href="#mastery-score">Mastery Score.</a></h3>
+<h3 id="mastery-score"><a class="header" href="#mastery-score">Mastery Score</a></h3>
 <p>When presented an exercise, a user performs it and assigns it a score signifying their mastery of
 the task. The scores range from one to five, with one meaning the skill is just being introduced
 (e.g., reading a section of a music score and figuring out the notes and movements required to play
 it) and five meaning complete mastery of the material (e.g., effortlessly playing the section and
 improvising on it).</p>
-<h3 id="skills-dependencies"><a class="header" href="#skills-dependencies">Skills dependencies</a></h3>
+<h3 id="dependency-graph"><a class="header" href="#dependency-graph">Dependency Graph</a></h3>
 <p>Just as skills can be broken down into multiple smaller skills, they can also be built up in order
 to perform more complicated tasks. This process requires that the dependency relationships between
 skills are described. For two given skills S1 and S2, S1 is a dependency of S2 if S2 cannot be
@@ -250,24 +250,24 @@ same skill. Lessons can depend on other lessons and courses.</li>
 <li>Course: A set of lessons on a related topic which test and build up related skills. Courses can
 depend on other courses and lessons.</li>
 </ul>
+<p>Units are defined in plain text files that are read by Trane during startup. The format of these
+files is described in the section on <a href="./writing_courses.html">Writing Trane Courses</a>.</p>
+<h2 id="library"><a class="header" href="#library">Library</a></h2>
 <p>A Trane library is a set of courses stored under the same directory. Courses can be stored under any
 directory structure, but the content of each course follows a predetermined structure (See the
 section on <a href="./writing_courses.html">Writing Trane Courses</a>). Trane stores its configuration
 under a directory called <code>.trane</code> in that directory. Users might want to have multiple separate
 libraries if they are learning separate skills (e.g., music and chess), and they want to keep their
 practice separate.</p>
-<p>Units are defined in JSON files called manifests, which are serialized versions of structs defined
-in the data module. The ID, name, description, dependencies, locations of any external files (e.g.,
-the files storing the front and back of a flashcard), etc., are defined in those files.</p>
 <h3 id="blacklist"><a class="header" href="#blacklist">Blacklist</a></h3>
 <p>Each Trane library has a blacklist. A unit in a blacklist can be any exercise, lesson, or course. If
 a unit is in the blacklist, Trane will not show any exercises from it. If a lesson or course depend
 on a blacklisted unit, the scheduling algorithm will act as if the blacklisted unit has been
 mastered.</p>
 <p>A unit should be added to the blacklist if the user already has mastered the material (e.g., an
-accomplished musician will want to skip the course teaching the notes in the major scale). It can
-also be added if the user has no interest in learning the material (e.g., someone interested in
-learning the guitar might want to skip units which are focused on another instrument).</p>
+accomplished guitarist will want to skip the course teaching how to tune the guitar). It can also be
+added if the user has no interest in learning the material (e.g., someone interested in learning the
+guitar might want to skip units which are focused on another instrument).</p>
 <h3 id="filters"><a class="header" href="#filters">Filters</a></h3>
 <p>In its normal mode of operation, Trane looks for exercises in the entire library. There are times
 when users might want to focus on a smaller section. Filters provide users with the ability to
@@ -284,39 +284,68 @@ preserving the dependency relationships between those lessons. Lessons which do 
 filter are considered as mastered so that the scheduler can continue the search. For example, a
 user might want to only practice exercises from lessons and courses for the guitar and in a
 specific key.</li>
+<li>Dependent filter: Given a set of courses or lessons, Trane will search for exercises in those and
+all the units that are dependent on them. For example, a user might want to practice exercises
+from all the lessons with intermediate or higher difficulty while skipping easier lessons.</li>
+<li>Dependency filter: Given a set of courses or lessons and a depth, Trane will search for all the
+units that are dependent on the given units up to the given depth. For example, a student that
+encounters some difficulties in a course, might want to practice exercises from the course and all
+the units that immediately precede it to refresh their memory.</li>
 </ul>
 <h3 id="review-list"><a class="header" href="#review-list">Review List</a></h3>
 <p>The review list stores units which the student feels should be given special attention. Trane
 includes a special filtering mode which only presents exercises from the review list. If a course or
 lesson is added to the review list, all of its exercises can appear in this mode.</p>
-<h2 id="theory-1"><a class="header" href="#theory-1">Theory</a></h2>
+<h2 id="theory"><a class="header" href="#theory">Theory</a></h2>
 <p>This section describes the ideas behind Trane and its design.</p>
-<h3 id="spaced-repetition"><a class="header" href="#spaced-repetition">Spaced Repetition</a></h3>
-<p>Spaced repetition is a long-established way to efficiently memorize new information and to transfer
-that information to long-term memory. Trane applies spaced repetition to exercises that require
-memorization (e.g., recalling the notes in the chord A7) and to those which require mastery of an
-action (e.g., playing a section of a song). </p>
-<p>The space repetition algorithm in Trane is fairly simple and relies on computing a score for a given
-exercise based on previous trials rather than computing the optimal time at which the exercise needs
-to be presented again. This will most likely result in exercises being presented more often than
-they would in other spaced repetition software. Trane is not focused on memorization but on the
-repetition of individual skills until they are mastered, so I do not believe this to be a problem.</p>
 <h3 id="mastery-learning"><a class="header" href="#mastery-learning">Mastery Learning</a></h3>
 <p>Mastery learning states that students must achieve a level of mastery in a skill before moving on to
-learning the skills which depend on the current skill.</p>
+learning the skills which depend on the current skill. Conversely, students must sufficiently master
+all the dependencies of a skill before they can learn it.</p>
 <p>Trane applies mastery learning by preventing the user from moving on to the dependents of a unit
 until the material in the unit is sufficiently mastered. It also excludes units whose dependencies
-have not been fully met. Otherwise, a user might be presented with material that lies too outside
-their current abilities and become frustrated. If a user's performance on a previously mastered unit
-degrades, Trane will make the user practice the material until it is mastered again.</p>
+have not been fully met. Otherwise, a user might be presented with material that lies outside their
+current abilities and become frustrated. If a user's performance on a previously mastered unit
+degrades, Trane will ensure that the unit is mastered again before showing any of its dependents.</p>
+<h3 id="spaced-repetition"><a class="header" href="#spaced-repetition">Spaced Repetition</a></h3>
+<p>Spaced repetition is a long-established way to efficiently memorize new information and to transfer
+that information to long-term memory. When a concept or skill is first introduced, it is presented
+more frequently. Progressively, as the student gains mastery of it, the frequency is reduced,
+although mastered exercises are still shown from time to time for review and maintenance.</p>
+<p>Trane applies spaced repetition to exercises that require memorization (e.g., recalling the notes in
+the chord A7) and to those which require mastery of an action (e.g., playing a section of a song).
+The space repetition algorithm in Trane is fairly simple and relies on computing a score for a given
+exercise based on previous trials rather than computing the optimal time at which the exercise needs
+to be presented again. </p>
 <h3 id="chunking"><a class="header" href="#chunking">Chunking</a></h3>
 <p>Chunking consists of breaking up a complex skill into smaller components that can be practiced
-independently.</p>
+independently, before the individual components are combined in more complex skills.</p>
 <p>Trane applies chunking by allowing users to define lessons and courses with arbitrary dependency
 relationships. For example, learning to improvise over chord progressions might be broken into units
 to learn the notes in each chord, learn the fingerings of each chord, or improvise over single
 chords. The user can then define a unit that exercises the union of all the previous skills and
 claim the other lessons as a dependency.</p>
+<h2 id="interleaving"><a class="header" href="#interleaving">Interleaving</a></h2>
+<p>Interleaving is the practice of mixing up the order in which skills are presented, instead of
+showing consecutive exercises that test the same or similar skills. This strategy has been shown to
+lead to improved retention and recall of the material.</p>
+<p>Trane applies interleaving as follows. In the first phase of computing a batch of exercises to
+study, Trane randomly selects branches of the dependency graph when searching for exercises that the
+student is allowed to practice. In the second phase, which consists of reducing the exercises found
+in the first phase into the final batch, Trane randomly selects which exercises to include in the
+batch. The probability of an exercise being included in the batch is weighted based on a number of
+factors, such as the exercise's score, the depth of the exercise within the dependency graph, and
+the number of times it has been shown in the same session.</p>
+<h2 id="mixed-difficulties"><a class="header" href="#mixed-difficulties">Mixed Difficulties</a></h2>
+<p>Similar to interleaving, mixed difficulties consists of mixing exercises of different difficulty
+when presenting them to the student. This strategy is meant to avoid showing too many easy
+exercises, which would bore the student and slow progress on more relevant exercises, or too many
+hard exercises, which would frustrate the student and lead to a loss of motivation.</p>
+<p>Trane applies mixed difficulties by selecting exercises from a range of difficulties. In the second
+phase outlined in the previous section, Trane groups exercises into buckets based on some ranges
+difficulties, and selects a fixed percentage from each bucket. A small percentage of the exercises
+will be selected from the easiest and hardest buckets, while the majority will be from one of the
+buckets in the middle.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vision"><a class="header" href="#vision">Vision</a></h1>
 <p>Trane aims to offer a coherent and powerful user experience that is capable of taking students of
 any level and allowing them to make the most out of their practice sessions, as well as offering
@@ -747,12 +776,11 @@ pub struct KnowledgeBaseLesson {
     ///the value should be written to a file. A JSON map of strings to list of strings works.
     pub metadata: Option&lt;BTreeMap&lt;String, Vec&lt;String&gt;&gt;&gt;,
 
-    /// The path to a markdown file containing the instructions common to all exercises in the
-    /// lesson.
-    pub instructions: Option&lt;String&gt;,
+    /// Indicates whether the `lesson.instructions.md` file is present in the lesson directory.
+    pub has_instructions: bool,
 
-    /// The path to a markdown file containing the material covered in the lesson.
-    pub material: Option&lt;String&gt;,
+    /// Indicates whether the `lesson.material.md` file is present in the lesson directory.
+    pub has_material: bool,
 }
 <span class="boring">}
 </span></code></pre></pre>
@@ -956,10 +984,12 @@ pub struct ImprovisationConfig {
     /// The dependencies on other improvisation courses. Specifying these dependencies here instead
     /// of the [CourseManifest](crate::data::CourseManifest) allows Trane to generate more
     /// fine-grained dependencies.
+    #[serde(default)]
     pub improvisation_dependencies: Vec&lt;Ustr&gt;,
 
     /// If true, the course contains passages only have rhythm and contain no melodic nor harmonic
     /// information. Lessons to learn the melody and harmony of the passages will not be generated.
+    #[serde(default)]
     pub rhythm_only: bool,
 
     /// The directory where the passages are stored. The name of each file (minus the extension)
@@ -1005,10 +1035,12 @@ pub struct Instrument {
 #[derive(Clone, Debug, Default, Deserialize, Serialize)]
 pub struct ImprovisationPreferences {
     /// The list of instruments the user wants to practice.
+    #[serde(default)]
     pub instruments: Vec&lt;Instrument&gt;,
 
     /// The list of instruments that only use rhythm. Exercises for these instruments will only
     /// show up in the rhythm lessons.
+    #[serde(default)]
     pub rhythm_instruments: Vec&lt;Instrument&gt;,
 }
 <span class="boring">}
@@ -1355,8 +1387,9 @@ a section of code does without having to read a line of code. Below is an exampl
         let starting_units = self.get_all_starting_units();
         let mut initial_stack: Vec&lt;StackItem&gt; = vec![];
         for course_id in starting_units {
+            // Set the depth to zero since all the starting units are at the same depth.
             let lesson_ids = self
-                .get_course_valid_starting_lessons(&amp;course_id, metadata_filter)
+                .get_course_valid_starting_lessons(&amp;course_id, 0, metadata_filter)
                 .unwrap_or_default();
 
             if lesson_ids.is_empty() {
@@ -1364,14 +1397,15 @@ a section of code does without having to read a line of code. Below is an exampl
                 // dependents are traversed.
                 initial_stack.push(StackItem {
                     unit_id: course_id,
-                    num_hops: 0,
+                    depth: 0,
                 });
             } else {
                 // Insert all the starting lessons in the stack.
-                initial_stack.extend(lesson_ids.into_iter().map(|unit_id| StackItem {
-                    unit_id,
-                    num_hops: 0,
-                }));
+                initial_stack.extend(
+                    lesson_ids
+                        .into_iter()
+                        .map(|unit_id| StackItem { unit_id, depth: 0 }),
+                );
             }
         }
 
@@ -1449,6 +1483,7 @@ pub struct ExerciseTrial {
     /// a study session which does not belong to a single lesson or course. For example, a student
     /// might want to only focus on guitar scales or ear training.
     #[builder(default)]
+    #[serde(default)]
     pub metadata: Option&lt;BTreeMap&lt;String, Vec&lt;String&gt;&gt;&gt;,
 
 <span class="boring">}

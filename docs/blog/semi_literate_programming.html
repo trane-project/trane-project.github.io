@@ -198,8 +198,9 @@ a section of code does without having to read a line of code. Below is an exampl
         let starting_units = self.get_all_starting_units();
         let mut initial_stack: Vec&lt;StackItem&gt; = vec![];
         for course_id in starting_units {
+            // Set the depth to zero since all the starting units are at the same depth.
             let lesson_ids = self
-                .get_course_valid_starting_lessons(&amp;course_id, metadata_filter)
+                .get_course_valid_starting_lessons(&amp;course_id, 0, metadata_filter)
                 .unwrap_or_default();
 
             if lesson_ids.is_empty() {
@@ -207,14 +208,15 @@ a section of code does without having to read a line of code. Below is an exampl
                 // dependents are traversed.
                 initial_stack.push(StackItem {
                     unit_id: course_id,
-                    num_hops: 0,
+                    depth: 0,
                 });
             } else {
                 // Insert all the starting lessons in the stack.
-                initial_stack.extend(lesson_ids.into_iter().map(|unit_id| StackItem {
-                    unit_id,
-                    num_hops: 0,
-                }));
+                initial_stack.extend(
+                    lesson_ids
+                        .into_iter()
+                        .map(|unit_id| StackItem { unit_id, depth: 0 }),
+                );
             }
         }
 
@@ -292,6 +294,7 @@ pub struct ExerciseTrial {
     /// a study session which does not belong to a single lesson or course. For example, a student
     /// might want to only focus on guitar scales or ear training.
     #[builder(default)]
+    #[serde(default)]
     pub metadata: Option&lt;BTreeMap&lt;String, Vec&lt;String&gt;&gt;&gt;,
 
 <span class="boring">}

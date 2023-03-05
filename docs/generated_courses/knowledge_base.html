@@ -253,12 +253,11 @@ pub struct KnowledgeBaseLesson {
     ///the value should be written to a file. A JSON map of strings to list of strings works.
     pub metadata: Option&lt;BTreeMap&lt;String, Vec&lt;String&gt;&gt;&gt;,
 
-    /// The path to a markdown file containing the instructions common to all exercises in the
-    /// lesson.
-    pub instructions: Option&lt;String&gt;,
+    /// Indicates whether the `lesson.instructions.md` file is present in the lesson directory.
+    pub has_instructions: bool,
 
-    /// The path to a markdown file containing the material covered in the lesson.
-    pub material: Option&lt;String&gt;,
+    /// Indicates whether the `lesson.material.md` file is present in the lesson directory.
+    pub has_material: bool,
 }
 <span class="boring">}
 </span></code></pre></pre>

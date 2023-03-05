@@ -1,6 +1,6 @@
 # Concepts and Theory
 
-## Theory
+## Concepts
 
 This section defines basic concepts used in Trane, useful both for using it and for creating new
 material.
@@ -16,7 +16,7 @@ calculations. Skills can often be divided into smaller tasks that can be practic
 example, learning a new piece of music can be broken down into learning individual sections of the
 piece. 
 
-### Mastery Score.
+### Mastery Score
 
 When presented an exercise, a user performs it and assigns it a score signifying their mastery of
 the task. The scores range from one to five, with one meaning the skill is just being introduced
@@ -25,7 +25,7 @@ it) and five meaning complete mastery of the material (e.g., effortlessly playin
 improvising on it).
 
 
-### Skills dependencies
+### Dependency Graph
 
 Just as skills can be broken down into multiple smaller skills, they can also be built up in order
 to perform more complicated tasks. This process requires that the dependency relationships between
@@ -48,16 +48,17 @@ There are three types of units in Trane:
 - Course: A set of lessons on a related topic which test and build up related skills. Courses can
   depend on other courses and lessons.
 
+Units are defined in plain text files that are read by Trane during startup. The format of these
+files is described in the section on [Writing Trane Courses](./writing_courses.md).
+
+## Library
+
 A Trane library is a set of courses stored under the same directory. Courses can be stored under any
 directory structure, but the content of each course follows a predetermined structure (See the
 section on [Writing Trane Courses](./writing_courses.md)). Trane stores its configuration
 under a directory called `.trane` in that directory. Users might want to have multiple separate
 libraries if they are learning separate skills (e.g., music and chess), and they want to keep their
 practice separate.
-
-Units are defined in JSON files called manifests, which are serialized versions of structs defined
-in the data module. The ID, name, description, dependencies, locations of any external files (e.g.,
-the files storing the front and back of a flashcard), etc., are defined in those files.
 
 ### Blacklist
 
@@ -67,9 +68,9 @@ on a blacklisted unit, the scheduling algorithm will act as if the blacklisted u
 mastered.
 
 A unit should be added to the blacklist if the user already has mastered the material (e.g., an
-accomplished musician will want to skip the course teaching the notes in the major scale). It can
-also be added if the user has no interest in learning the material (e.g., someone interested in
- learning the guitar might want to skip units which are focused on another instrument).
+accomplished guitarist will want to skip the course teaching how to tune the guitar). It can also be
+added if the user has no interest in learning the material (e.g., someone interested in learning the
+ guitar might want to skip units which are focused on another instrument).
 
 ### Filters
 
@@ -88,6 +89,13 @@ select specific exercises. There are three types of filters.
   filter are considered as mastered so that the scheduler can continue the search. For example, a
   user might want to only practice exercises from lessons and courses for the guitar and in a
   specific key.
+- Dependent filter: Given a set of courses or lessons, Trane will search for exercises in those and
+  all the units that are dependent on them. For example, a user might want to practice exercises
+  from all the lessons with intermediate or higher difficulty while skipping easier lessons.
+- Dependency filter: Given a set of courses or lessons and a depth, Trane will search for all the
+  units that are dependent on the given units up to the given depth. For example, a student that
+  encounters some difficulties in a course, might want to practice exercises from the course and all
+  the units that immediately precede it to refresh their memory.
 
 ### Review List
 
@@ -99,38 +107,65 @@ lesson is added to the review list, all of its exercises can appear in this mode
 
 This section describes the ideas behind Trane and its design.
 
-### Spaced Repetition
-
-Spaced repetition is a long-established way to efficiently memorize new information and to transfer
-that information to long-term memory. Trane applies spaced repetition to exercises that require
-memorization (e.g., recalling the notes in the chord A7) and to those which require mastery of an
-action (e.g., playing a section of a song). 
-
-The space repetition algorithm in Trane is fairly simple and relies on computing a score for a given
-exercise based on previous trials rather than computing the optimal time at which the exercise needs
-to be presented again. This will most likely result in exercises being presented more often than
-they would in other spaced repetition software. Trane is not focused on memorization but on the
-repetition of individual skills until they are mastered, so I do not believe this to be a problem.
-
 ### Mastery Learning
 
 Mastery learning states that students must achieve a level of mastery in a skill before moving on to
-learning the skills which depend on the current skill.
+learning the skills which depend on the current skill. Conversely, students must sufficiently master
+all the dependencies of a skill before they can learn it.
 
 Trane applies mastery learning by preventing the user from moving on to the dependents of a unit
 until the material in the unit is sufficiently mastered. It also excludes units whose dependencies
-have not been fully met. Otherwise, a user might be presented with material that lies too outside
-their current abilities and become frustrated. If a user's performance on a previously mastered unit
-degrades, Trane will make the user practice the material until it is mastered again.
+have not been fully met. Otherwise, a user might be presented with material that lies outside their
+current abilities and become frustrated. If a user's performance on a previously mastered unit
+degrades, Trane will ensure that the unit is mastered again before showing any of its dependents.
 
+### Spaced Repetition
+
+Spaced repetition is a long-established way to efficiently memorize new information and to transfer
+that information to long-term memory. When a concept or skill is first introduced, it is presented
+more frequently. Progressively, as the student gains mastery of it, the frequency is reduced,
+although mastered exercises are still shown from time to time for review and maintenance.
+
+Trane applies spaced repetition to exercises that require memorization (e.g., recalling the notes in
+the chord A7) and to those which require mastery of an action (e.g., playing a section of a song).
+The space repetition algorithm in Trane is fairly simple and relies on computing a score for a given
+exercise based on previous trials rather than computing the optimal time at which the exercise needs
+to be presented again. 
 
 ### Chunking
 
 Chunking consists of breaking up a complex skill into smaller components that can be practiced
-independently.
+independently, before the individual components are combined in more complex skills.
 
 Trane applies chunking by allowing users to define lessons and courses with arbitrary dependency
 relationships. For example, learning to improvise over chord progressions might be broken into units
 to learn the notes in each chord, learn the fingerings of each chord, or improvise over single
 chords. The user can then define a unit that exercises the union of all the previous skills and
 claim the other lessons as a dependency.
+
+## Interleaving
+
+Interleaving is the practice of mixing up the order in which skills are presented, instead of
+showing consecutive exercises that test the same or similar skills. This strategy has been shown to
+lead to improved retention and recall of the material.
+
+Trane applies interleaving as follows. In the first phase of computing a batch of exercises to
+study, Trane randomly selects branches of the dependency graph when searching for exercises that the
+student is allowed to practice. In the second phase, which consists of reducing the exercises found
+in the first phase into the final batch, Trane randomly selects which exercises to include in the
+batch. The probability of an exercise being included in the batch is weighted based on a number of
+factors, such as the exercise's score, the depth of the exercise within the dependency graph, and
+the number of times it has been shown in the same session.
+
+## Mixed Difficulties
+
+Similar to interleaving, mixed difficulties consists of mixing exercises of different difficulty
+when presenting them to the student. This strategy is meant to avoid showing too many easy
+exercises, which would bore the student and slow progress on more relevant exercises, or too many
+hard exercises, which would frustrate the student and lead to a loss of motivation.
+
+Trane applies mixed difficulties by selecting exercises from a range of difficulties. In the second
+phase outlined in the previous section, Trane groups exercises into buckets based on some ranges
+difficulties, and selects a fixed percentage from each bucket. A small percentage of the exercises
+will be selected from the easiest and hardest buckets, while the majority will be from one of the
+buckets in the middle.
