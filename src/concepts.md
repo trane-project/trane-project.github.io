@@ -93,9 +93,10 @@ select specific exercises. There are three types of filters.
   all the units that are dependent on them. For example, a user might want to practice exercises
   from all the lessons with intermediate or higher difficulty while skipping easier lessons.
 - Dependency filter: Given a set of courses or lessons and a depth, Trane will search for all the
-  units that are dependent on the given units up to the given depth. For example, a student that
-  encounters some difficulties in a course, might want to practice exercises from the course and all
-  the units that immediately precede it to refresh their memory.
+  units that are dependent on the given units up to the given depth, and start the exercise search
+  from there. For example, a student that encounters some difficulties in a course, might want to
+  practice exercises from the course and all the units that immediately precede it to refresh their
+  memory.
 
 ### Review List
 
