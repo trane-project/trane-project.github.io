@@ -4,16 +4,7 @@
 
 ## Installation instructions
 
-Github releases include a compiled binary. Download the one for your OS and architecture and put it
-somewhere where you and/or your shell can find it. There are releases for Linux, Windows, and Mac.
-Releases for ARM OS X are not available at the moment because cross-compilation is not working.
-
-## Build instructions
-
-You can also build `trane-cli` from source. The only requirement is an installation of the stable
-Rust tool chain. Running `cargo build` from the repository's root should do the job.
-
-You can also run `cargo install` to install the binary in the cargo bin directory.
+For installation instructions, refer to the [quick start guide](./quick_start.md).
 
 ## Starting guide
 
@@ -29,6 +20,16 @@ trane >>
 
 Entering enter executes the input command. Pressing CTRL-C cancels the command. Pressing CTRL-D
 sends an EOF signal to break out of the line reading loop.
+
+### Basic shortcuts
+
+- To execute a command, type the command you want followed by the Enter key.
+- To cancel a command, press CTRL-C.
+- To exit the CLI, press CTRL-D.
+- If the CLI suggests a command, you can press the right arrow key to accept the suggestion.
+- To look through the history of commands, press the up and down arrow keys.
+- To look up a specific command in the history, press CTRL-R and type the command you want to look
+  up. Pressing CTRL-R again will cycle through the commands that match the search.
 
 ### Entering your first command
 
@@ -119,34 +120,32 @@ At its simplest, the previous commands cover much of the most common operations.
 other commands.
 
 ```
-trane >> help
-trane 0.5.0
 A command-line interface for Trane
 
-USAGE:
-    trane <SUBCOMMAND>
+Usage: trane <COMMAND>
 
-OPTIONS:
-    -h, --help       Print help information
-    -V, --version    Print version information
+Commands:
+  answer        Show the answer to the current exercise, if it exists
+  blacklist     Subcommands to manipulate the unit blacklist
+  current       Display the current exercise
+  debug         Subcommands for debugging purposes
+  filter        Subcommands for dealing with unit filters
+  instructions  Subcommands for showing course and lesson instructions
+  list          Subcommands for listing course, lesson, and exercise IDs
+  mantra-count  Show the number of Tara Sarasvati mantras recited in the background during the current session
+  material      Subcommands for showing course and lesson materials
+  next          Submits the score for the current exercise and proceeds to the next
+  open          Open the course library at the given location
+  repository    Subcommands for manipulating git repositories containing Trane courses
+  review-list   Subcommands for manipulating the review list
+  score         Record the mastery score (1-5) for the current exercise
+  search        Search for courses, lessons, and exercises
+  scores        Show the most recent scores for the given exercise
+  help          Print this message or the help of the given subcommand(s)
 
-SUBCOMMANDS:
-    answer          Show the answer to the current exercise, if it exists
-    blacklist       Subcommands to manipulate the unit blacklist
-    current         Display the current exercise
-    debug           Subcommands for debugging purposes
-    filter          Subcommands for dealing with unit filters
-    help            Print this message or the help of the given subcommand(s)
-    instructions    Subcommands for showing course and lesson instructions
-    list            Subcommands for listing course, lesson, and exercise IDs
-    mantra-count    Show the number of Tara Sarasvati mantras recited in the background during
-                        the current session
-    material        Subcommands for showing course and lesson materials
-    next            Submits the score for the current exercise and proceeds to the next
-    open            Open the course library at the given location
-    review-list     Subcommands for manipulating the review list
-    score           Record the mastery score (1-5) for the current exercise
-    scores          Show the most recent scores for the given exercise
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
 ```
 
 There are however, some details which warrant further explanation.
