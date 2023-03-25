@@ -12,6 +12,7 @@
     - [trane-app](./trane-app.md)
     - [trane-server](./trane-server.md)
 - [User Preferences](./user_preferences.md)
+- [Saved Filters](./saved_filters.md)
 - [Official Trane Courses](./official_courses.md)
 - [Writing Trane Courses](./writing_courses.md)
     - [Generated Courses](./generated_courses.md)
