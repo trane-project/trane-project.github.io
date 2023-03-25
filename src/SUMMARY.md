@@ -8,7 +8,6 @@
 - [Using Trane](./using_trane.md)
     - [trane](./trane.md)
     - [trane-cli](./trane-cli.md)
-    - [trane-ffi](./trane-ffi.md)
     - [trane-app](./trane-app.md)
     - [trane-server](./trane-server.md)
 - [User Preferences](./user_preferences.md)
