@@ -60,6 +60,10 @@ This will download the contents of that repository into your computer in a direc
 `managed_courses`. You can verify that the repository was downloaded by executing the command
 `repository list`.
 
+Note: If you are using git to sync your Trane library, you should add the `managed_courses`
+directory to your `.gitignore` file. If you do not understand what the previous sentence means, you
+do not need to worry about it.
+
 ### Working on your first exercise
 
 Without exiting Trane, refresh the library by executing the command `open .`. Now that there are
