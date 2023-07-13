@@ -223,7 +223,7 @@ pub struct Instrument {
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// Settings for generating a new improvisation course that are specific to a user.
-#[derive(Clone, Debug, Default, Deserialize, Serialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ImprovisationPreferences {
     /// The list of instruments the user wants to practice.
     #[serde(default)]

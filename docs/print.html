@@ -600,13 +600,25 @@ under construction.</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// The user-specific configuration
-#[derive(Clone, Debug, Default, Deserialize, Serialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct UserPreferences {
     /// The preferences for generating improvisation courses.
+    #[serde(default)]
     pub improvisation: Option&lt;ImprovisationPreferences&gt;,
 
     /// The preferences for generating transcription courses.
+    #[serde(default)]
     pub transcription: Option&lt;TranscriptionPreferences&gt;,
+
+    /// The preferences for customizing the behavior of the scheduler.
+    #[serde(default)]
+    pub scheduler: Option&lt;SchedulerPreferences&gt;,
+
+    /// The paths to ignore when opening the course library. The paths are relative to the
+    /// repository root. All child paths are also ignored. For example, adding the directory
+    /// &quot;foo/bar&quot; will ignore any courses in &quot;foo/bar&quot; or any of its subdirectories.
+    #[serde(default)]
+    pub ignored_paths: Vec&lt;String&gt;,
 }
 <span class="boring">}
 </span></code></pre></pre>
@@ -990,8 +1002,8 @@ course is eliminated.</p>
 <p>Below there are a few examples of official Trane courses that are using this course generator to
 give you a better idea of how it is used:</p>
 <ul>
-<li><a href="https://github.com/trane-project/trane-saxophone/tree/master/courses/tenor_saxophone/long_tones">Long tones for the tenor
-saxophone</a>:
+<li><a href="https://github.com/trane-project/trane-saxophone/tree/master/courses/tenor_saxophone/long_tones">Tenor saxophone long
+tones</a>:
 A course to teach you how to produce long tones on the tenor saxophone, starting at the first
 octave and gradually working your way up.</li>
 <li><a href="https://github.com/trane-project/trane-math/tree/master/courses/olympiads/aops/aops_1">Art of Problem Solving
@@ -999,6 +1011,84 @@ octave and gradually working your way up.</li>
 &quot;Art of Problem Solving&quot; book series is intended to begin preparing students for competing in math
 Olympiads. This course translates the first volume of that series into a Trane course.</li>
 </ul>
+<h1 id="simple-course-builder"><a class="header" href="#simple-course-builder">Simple Course Builder</a></h1>
+<p>For simple courses that mostly have flashcards with a front and back, it's possible to declare the
+entire course in a single file with the help of the <code>SimpleKnowledgeBaseCourse</code> object. Simply write
+a JSON file that is the serialization of that type and call:</p>
+<pre><code class="language-bash">trane-simple-build &lt;PATH_TO_FILE&gt; &lt;OUTPUT_DIR&gt;
+</code></pre>
+<p>The <code>trane-simple-build</code> utility is found in the
+<a href="https://github.com/trane-project/trane-cli">trane-cli</a> repository. You can install it by cloning
+that repository and running the following command at the root of the repository:</p>
+<pre><code class="language-bash">cargo install --path .
+</code></pre>
+<p>Note that this assumes that you have installed the Rust toolchain. If you haven't, you can install
+it by following the instructions in the <a href="https://www.rust-lang.org/tools/install">Rust website</a>.</p>
+<p>Below is the specification of the <code>SimpleKnowledgeBaseCourse</code> type:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Represents a simple knowledge base course which only specifies the course manifest and a list of
+/// simple lessons. It is meant to help course authors write simple knowledge base courses by
+/// writing a simple configuration to a single JSON file.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct SimpleKnowledgeBaseCourse {
+    /// The manifest for this course.
+    pub manifest: CourseManifest,
+
+    /// The simple lessons in this course.
+    #[serde(default)]
+    pub lessons: Vec&lt;SimpleKnowledgeBaseLesson&gt;,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>and the specification of the <code>SimpleKnowledgeBaseLesson</code> type referenced by the course type:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Represents a simple knowledge base lesson which only specifies the short ID of the lesson, the
+/// dependencies of the lesson, and a list of simple exercises. The instructions, material, and
+/// metadata can be optionally specified as well. In a lot of cases, this is enough to deliver the
+/// full functionality of Trane. It is meant to help course authors write simple knowledge base
+/// courses by writing a simple configuration to a single JSON file.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct SimpleKnowledgeBaseLesson {
+    /// The short ID of the lesson.
+    pub short_id: Ustr,
+
+    /// The dependencies of the lesson.
+    #[serde(default)]
+    pub dependencies: Vec&lt;Ustr&gt;,
+
+    /// The simple exercises in the lesson.
+    #[serde(default)]
+    pub exercises: Vec&lt;SimpleKnowledgeBaseExercise&gt;,
+
+    /// The optional metadata for the lesson.
+    #[serde(default)]
+    pub metadata: Option&lt;BTreeMap&lt;String, Vec&lt;String&gt;&gt;&gt;,
+
+    /// A list of additional files to write in the lesson directory.
+    #[serde(default)]
+    pub additional_files: Vec&lt;AssetBuilder&gt;,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
+<p>The specification above might not be very clear, specially if you don't know Rust, so here are a few
+examples of existing courses that use this builder:</p>
+<ul>
+<li><a href="https://github.com/trane-project/trane-n-back/blob/master/n_back/course_config.json">trane-n-back</a>:
+A course that trains your working memory by playing the n-back game.</li>
+<li><a href="https://github.com/trane-project/trane-saxophone/blob/master/courses/tenor_saxophone/long_tones/course_config.json">Tenor saxophone long
+tones</a>:
+This course was mentioned above and while it's a valid knowledge base course, it's generated from
+this file.</li>
+</ul>
+<p>Usually when generating those courses, the following commands are used:</p>
+<pre><code class="language-bash">cd &lt;DIRECTORY_OF_COURSE_CONFIG_FILE&gt;
+trane-simple-build course_config.json .
+</code></pre>
+<p>Running the command generates all the lesson directories, lesson metadata files, and exercise files.
+The changes are then committed to the repository.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="music-piece-generator"><a class="header" href="#music-piece-generator">Music Piece Generator</a></h1>
 <p>This course generator is used to create courses that progressively teach mastery of a musical piece,
 starting at the smallest fragments and gradually building up to the entire piece. The course author
@@ -1178,7 +1268,7 @@ pub struct Instrument {
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// Settings for generating a new improvisation course that are specific to a user.
-#[derive(Clone, Debug, Default, Deserialize, Serialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ImprovisationPreferences {
     /// The list of instruments the user wants to practice.
     #[serde(default)]
@@ -1536,9 +1626,8 @@ design decisions that lead to structuring the code in this way. Below is an exam
 </span>//! Defines a cache that is used to retrieve unit scores and stores previously computed exercise and
 //! lesson scores
 //!
-//! During performance testing, it was found that caching exercise and lesson scores significantly
-//! improved the performance of exercise scheduling. Caching course scores had a negligible impact,
-//! so they are not cached, although they are still computed through this cache for consistency.
+//! During performance testing, it was found that caching scores scores significantly improved the
+//! performance of exercise scheduling.
 <span class="boring">}
 </span></code></pre></pre>
 <ul>
@@ -1574,6 +1663,7 @@ obvious, document why that is so. Below there are examples of both situations ta
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// The result of a single trial.
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
 pub struct ExerciseTrial {
     /// The score assigned to the exercise after the trial.
     pub score: f32,
