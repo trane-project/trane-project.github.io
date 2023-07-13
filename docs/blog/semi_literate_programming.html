@@ -238,9 +238,8 @@ design decisions that lead to structuring the code in this way. Below is an exam
 </span>//! Defines a cache that is used to retrieve unit scores and stores previously computed exercise and
 //! lesson scores
 //!
-//! During performance testing, it was found that caching exercise and lesson scores significantly
-//! improved the performance of exercise scheduling. Caching course scores had a negligible impact,
-//! so they are not cached, although they are still computed through this cache for consistency.
+//! During performance testing, it was found that caching scores scores significantly improved the
+//! performance of exercise scheduling.
 <span class="boring">}
 </span></code></pre></pre>
 <ul>
@@ -276,6 +275,7 @@ obvious, document why that is so. Below there are examples of both situations ta
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// The result of a single trial.
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
 pub struct ExerciseTrial {
     /// The score assigned to the exercise after the trial.
     pub score: f32,

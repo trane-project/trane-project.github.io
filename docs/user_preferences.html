@@ -149,13 +149,25 @@
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// The user-specific configuration
-#[derive(Clone, Debug, Default, Deserialize, Serialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct UserPreferences {
     /// The preferences for generating improvisation courses.
+    #[serde(default)]
     pub improvisation: Option&lt;ImprovisationPreferences&gt;,
 
     /// The preferences for generating transcription courses.
+    #[serde(default)]
     pub transcription: Option&lt;TranscriptionPreferences&gt;,
+
+    /// The preferences for customizing the behavior of the scheduler.
+    #[serde(default)]
+    pub scheduler: Option&lt;SchedulerPreferences&gt;,
+
+    /// The paths to ignore when opening the course library. The paths are relative to the
+    /// repository root. All child paths are also ignored. For example, adding the directory
+    /// &quot;foo/bar&quot; will ignore any courses in &quot;foo/bar&quot; or any of its subdirectories.
+    #[serde(default)]
+    pub ignored_paths: Vec&lt;String&gt;,
 }
 <span class="boring">}
 </span></code></pre></pre>
