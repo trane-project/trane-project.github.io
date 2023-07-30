@@ -4,6 +4,8 @@ This course generator is used to create courses that progressively teach mastery
 starting at the smallest fragments and gradually building up to the entire piece. The course author
 must divide up the piece into fragments and write them down in the configuration of the course. 
 
+## Specification
+
 The specification for the music asset containing the music sheet of the piece:
 ```rust
 @@music-asset

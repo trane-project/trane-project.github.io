@@ -23,12 +23,10 @@ This has several advantages:
 - Save on disk space. Normal courses can end up with a lot of manifests (one per the course, one per
   lesson, and another one per exercise). Generated courses only require at minimum one manifest per
   course but can contain more if there are lessons that are not generated.
-- Generated courses enable custom learning experiences. For example, the improvisation course
-  generator can take a folder containing the sheet music of any number of musical passages and
-  create a course that guides the student through improvising on those passages. Lessons for every
-  key and instrument the student is interested in practicing are automatically generated when
-  needed. Lessons for practicing listening and singing the passage, and improvising on their rhythm,
-  melody and harmony are also automatically generated.
+- Generated courses enable custom learning experiences. For example, the transcription course takes
+  a set of musical passages, which could either be entire songs or just a few bars, and generates a
+  course that guides the student through internalizing the song in their ear and their instruments
+  of choice.
 
 ## How to Write a Generated Course
 
