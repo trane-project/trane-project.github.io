@@ -19,6 +19,7 @@
         - [Music Piece Course Generator](./generated_courses/music_piece.md)
         - [Transcription Course Generator](./generated_courses/transcription.md)
             - [Transcription Course Instructions](./generated_courses/transcription/course_instructions.md)
+            - [Guide to Musical Transcription](./generated_courses/transcription/transcription_guide.md)
 - [Licensing](./licensing.md)
 - [Contributing to Trane](./contributing.md)
 - [FAQ](./faq.md)

@@ -9,8 +9,14 @@ verso_build = "verso_build"
 # The path to the assets directory, which needs to be copied separately as
 # verso|recto only support UTF-8 text files.
 assets = "src/assets"
+# The paths to where the Markdown slide decks are stored.
+decks = "src/assets/decks"
 
 build:
+	# Build the transcription deck. Requires that Latex, Pandoc, and Beamer are
+	# installed.
+	pandoc -t beamer $(decks)/transcription.md -o $(decks)/transcription.pdf
+
 	# Clean the verso_build directory.
 	rm -rf $(verso_build)
 

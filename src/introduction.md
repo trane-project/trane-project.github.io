@@ -1,6 +1,6 @@
 # Introduction
 
-![John Coltrane](assets/coltrane.jpg)
+![John Coltrane](./assets/coltrane.jpg)
 
 Trane is an automated practice system for the acquisition of arbitrary, complex, and highly
 hierarchical skills. That's quite a mouthful, so let's break it down.
