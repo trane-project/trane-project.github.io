@@ -178,25 +178,22 @@ You can focus on different elements or sections each time you practice.
 
 ## Advanced Singing
 
- At this stage, you should sing the passage with more detail and precision using solfège. The
- recommended solfège system is movable do, la-based minor. In this system, the note for the key is
- always represented by do, and the modes are represented by the different syllables. The minor mode,
- for example, starts with the syllable la. This system has the advantage that the same syllables can
- be used for all keys. Using the numbers one to seven is also equivalent.
+At this stage, you should sing the passage with more detail and precision using solfège. The
+recommended solfège system is movable do, with a la-based minor. In this system, the note for the
+key is always represented by do, and the modes are represented by the different syllables. The minor
+mode, for example, starts with the syllable la. This system has the advantage that the same
+syllables can be used for all keys. Using the numbers one to seven is also equivalent. You should
+also transpose the passage up or down a random number of semitones.
 
 ## Advanced Transcription
 
-At this stage, you can sing and play over the context implied by the passage, and sing it with more
-detail and precision in a variety of keys. It's at this point that you can engage in what is
-traditionally called transcription.
+At this stage, you play over the passage, and sing it with more detail and precision. It's at this
+point that you can engage in what is traditionally called transcription. You should also transpose
+the passage up or down a random number of semitones.
 
-Play over the passage using your instrument, and try to reproduce it in more detail than in the
-basic transcription lesson.
-
-You should also transpose the passage up or down a random number of semitones. You should still use
-the passage as a basis for improvisation, but the focus is much narrower than in the basic
-transcription lesson, and the actual music played in the passage take precedence over the context
-implied by it.
+The passage is still used as a basis for improvisation, but the focus is much narrower than in the
+basic transcription lesson, and the actual music played in the passage take precedence over the
+context implied by it.
 
 ## Trane
 
