@@ -1,7 +1,7 @@
 # Summary
 
 [Introduction](./introduction.md)
-[Guide to Playing by Ear](./generated_courses/transcription/transcription_guide.md)
+[Guide to Learning Music by Ear](./generated_courses/transcription/transcription_guide.md)
 
 - [Quick Start](./quick_start.md)
 - [Concepts and Theory](./concepts.md)

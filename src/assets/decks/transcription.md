@@ -1,13 +1,13 @@
-# The Trane Project's Guide to Playing by Ear
+# The Trane Project's Guide to Learning by Ear
 
 ## Introduction
 
-The goal of this presentation is to present the culmination of a process to attempt to find or
-develop a method for musical learning that was both fun, effective, and most importantly, musical.
+The goal of this document is to present the culmination of a process to attempt to find or develop a
+method for musical learning by ear that was both fun, effective, and most importantly, musical.
 
-This process is still ongoing and so is this deck. It covers the development, organization, and
+This process is still ongoing and so is this document. It covers the development, organization, and
 instructions of a process meant to replicate, restore, and augment the traditional apprenticeship
-model of musical learning.
+model of musical learning through the aural tradition.
 
 For the most part, the musical ideas are not mine. My contribution has been to reimagine them in the
 context of modern technology, both in the recording and playback side, as well as in the software
@@ -19,9 +19,9 @@ The process is a description of my personal strategy. I claim not only that it w
 the only thing that works. It is what I wish had been my first lesson in music. Had it been, I would
 be much farther along. Had it been everyone's, our musical culture would be imaginably richer.
 
-Every other way works in the extent to which they get the student to engage in learning by ear,
-either by design or by accident. One can, for example, use notation to recall a passage. The active
-perception and reproduction of the sounds themselves is, however, what drives the learning process.
+Every other way works in the extent to which they get the student to hear the music, either by
+design or by accident. One can, for example, use notation to recall a passage. The active perception
+and reproduction of the sounds themselves is, however, what drives the learning process.
 
 ## [You want it to be one way, but it's the other way](https://www.youtube.com/watch?v=PwuckTkE7T4)
 
@@ -33,7 +33,6 @@ avoids dealing with the actual music: notation, theory, scales, patterns.
 
 We hope that each of these lets us hack our way into the music. If only we played the right scales,
 chords, patterns, then our music would match the ideal which we long for.
-
 
 ## You want it to be one way, but it's the other way
 
