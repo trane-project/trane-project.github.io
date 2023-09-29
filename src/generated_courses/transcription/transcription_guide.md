@@ -26,7 +26,7 @@ The instructions are usually as follows:
 
 The most common problems that students find when trying this method are:
 
-1. Beginners often find very hard to find the exact notes that were played.
+1. Beginners often find it very hard to find the exact notes that were played.
 2. One is often told to listen to the recording, stop it, and then play the notes back. This relies
    on the student's musical memory, which is not very reliable at the beginning, adding to the
    frustration.
@@ -77,36 +77,35 @@ You can focus on different elements or sections each time you practice each phas
 First listen to the musical passage until you can audiate it clearly in your head. Then sing over
 the passage. At this stage it's not required to be accurate as possible. Rather, learn to sing the
 main elements of the passage and experiment with different melodies over it. The goal is to learn to
-navigate the context implied by the passage. You can use your instrument to keep you in check if you
-want.
+navigate the context implied by the passage using your voice. You can use your instrument to keep
+you in check.
 
 ### Transcription
 
 With the basic context implied by the passage now internalized in your ear, try to play over it
 using your instrument. The goal at this point is not to accurately reproduce the passage, but rather
 about learning to navigate that context and use it as a basis for improvisation. Feel free to
-experiment, and find out for yourself what works and what does not. 
+experiment, and find out for yourself what works and what doesn't.
 
 ### Advanced Singing
 
 At this stage, you should sing the passage with more detail and precision using solfège. You also
-pitch the music up and down a random number of semitones to practice in a variety of keys.
+pitch the music up and down a random number of semitones to practice in a variety of keys. However,
+while the focus is narrower, you should still experiment and play with the music.
 
 The recommended solfège system is movable do, with a la-based minor. In this system, the note for
 the root of the key is always represented by do, and the modes are represented by the different
 syllables. The minor mode, for example, starts with the syllable la. This system has the advantage
-that the same syllables can be used for all keys. For the syllables used in the recommended solfège
+that the same syllables can be used for all modes. For the syllables used in the recommended solfège
 system, see this [link](https://en.wikipedia.org/wiki/Solf%C3%A8ge#Minor).
 
 ### Advanced Transcription
 
 At this stage, you play over the passage, and sing it with more detail and precision. It's at this
 point that you can engage in what is traditionally called transcription. You should also transpose
-the passage up or down a random number of semitones.
-
-The passage is still used as a basis for improvisation, but the focus is much narrower than in the
-basic transcription lesson, and the actual music played in the passage take precedence over the
-context implied by it.
+the passage up or down a random number of semitones. The passage is still used as a basis for
+improvisation, but the focus is much narrower than in the basic transcription lesson, and more
+attention is paid to details such as articulation, phrasing, etc.
 
 ## Transcription Tips
 
@@ -116,10 +115,10 @@ on a note in the key or the two notes surrounding your guess are in the key.
 
 This tip, simple as it might appear, is very profound. In practical terms, this tip means that you
 can navigate almost any melodic and harmonic situation without fear of getting lost. If you do get
-lost, all you have to do to regain your footing is to once again play any note. You are never more
-than a half step away from a note in the key.
+lost, all you have to do to regain your footing is to once again play any note, hear if you are on
+or off-key, and act accordingly. You are never more than a half step away from a note in the key.
 
-Initially you have a perception of a key being on or off-key. As your ear develops, you will start
+Initially you have a perception of a note being on or off-key. As your ear develops, you will start
 to notice the degree of the note.
 
 ## More Resources
