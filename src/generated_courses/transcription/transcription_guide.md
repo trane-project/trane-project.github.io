@@ -156,4 +156,4 @@ height="700px" />
 
 Below is a video of the slides being presented with some additional commentary and musical examples.
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=hosNMLdQ6Rg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hosNMLdQ6Rg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
