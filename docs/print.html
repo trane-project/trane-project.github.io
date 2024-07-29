@@ -321,7 +321,7 @@ background and how to use Trane to help you with this process.</p>
 height="700px" /></p>
 <h2 id="video"><a class="header" href="#video">Video</a></h2>
 <p>Below is a video of the slides being presented with some additional commentary and musical examples.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3ZTUBvYjWnw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=hosNMLdQ6Rg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="quick-start"><a class="header" href="#quick-start">Quick Start</a></h1>
 <h2 id="for-technical-users"><a class="header" href="#for-technical-users">For technical users</a></h2>
 <p>This section assumes you know the terminal for your operating system, and can install software in a
@@ -743,16 +743,19 @@ under construction.</p>
 pub struct UserPreferences {
     /// The preferences for generating transcription courses.
     #[serde(default)]
+    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
     pub transcription: Option&lt;TranscriptionPreferences&gt;,
 
     /// The preferences for customizing the behavior of the scheduler.
     #[serde(default)]
+    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
     pub scheduler: Option&lt;SchedulerPreferences&gt;,
 
     /// The paths to ignore when opening the course library. The paths are relative to the
     /// repository root. All child paths are also ignored. For example, adding the directory
     /// &quot;foo/bar&quot; will ignore any courses in &quot;foo/bar&quot; or any of its subdirectories.
     #[serde(default)]
+    #[serde(skip_serializing_if = &quot;Vec::is_empty&quot;)]
     pub ignored_paths: Vec&lt;String&gt;,
 }
 <span class="boring">}
@@ -973,12 +976,12 @@ list of values, and <code>Option</code> is used to represent files that are not 
 /// `e.front.md` and `e.back.md` in a course with ID `a::b::c` inside a lesson directory named
 /// `d.lesson` will generate and exercise with ID `a::b::c::d::e`.
 ///
-/// Each the optional fields mirror one of the fields in the
-/// [ExerciseManifest](crate::data::ExerciseManifest) and their values can be set by writing a JSON
-/// file inside the lesson directory with the name `&lt;SHORT_EXERCISE_ID&gt;.&lt;PROPERTY_NAME&gt;.json`. This
-/// file should contain a JSON serialization of the desired value. For example, to set the
-/// exercise's name for an exercise with a short ID value of `ex1`, one would write a file named
-/// `ex1.name.json` containing a JSON string with the desired name.
+/// Each the optional fields mirror one of the fields in the [`ExerciseManifest`] and their values
+/// can be set by writing a JSON file inside the lesson directory with the name
+/// `&lt;SHORT_EXERCISE_ID&gt;.&lt;PROPERTY_NAME&gt;.json`. This file should contain a JSON serialization of the
+/// desired value. For example, to set the exercise's name for an exercise with a short ID value of
+/// `ex1`, one would write a file named `ex1.name.json` containing a JSON string with the desired
+/// name.
 ///
 /// Trane will ignore any markdown files that do not match the exercise name pattern or that do not
 /// have a matching pair of front and back files.
@@ -1025,12 +1028,12 @@ pub struct KnowledgeBaseExercise {
 /// contains a directory of name `d.lesson` will generate the manifest for a lesson with ID
 /// `a::b::c::d`.
 ///
-/// All the optional fields mirror one of the fields in the
-/// [LessonManifest](crate::data::LessonManifest) and their values can be set by writing a JSON file
-/// inside the lesson directory with the name `lesson.&lt;PROPERTY_NAME&gt;.json`. This file should
-/// contain a JSON serialization of the desired value. For example, to set the lesson's dependencies
-/// one would write a file named `lesson.dependencies.json` containing a JSON array of strings, each
-/// of them the ID of a dependency.
+/// All the optional fields mirror one of the fields in the [`LessonManifest`] and their values can be
+/// set by writing a JSON file inside the lesson directory with the name
+/// `lesson.&lt;PROPERTY_NAME&gt;.json`. This file should contain a JSON serialization of the desired
+/// value. For example, to set the lesson's dependencies one would write a file named
+/// `lesson.dependencies.json` containing a JSON array of strings, each of them the ID of a
+/// dependency.
 ///
 /// The material and instructions of the lesson do not follow this convention. Instead, the files
 /// `lesson.instructoins.md` and `lesson.material.md` contain the instructions and material of the
@@ -1203,10 +1206,12 @@ pub struct SimpleKnowledgeBaseLesson {
 
     /// The optional metadata for the lesson.
     #[serde(default)]
+    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
     pub metadata: Option&lt;BTreeMap&lt;String, Vec&lt;String&gt;&gt;&gt;,
 
     /// A list of additional files to write in the lesson directory.
     #[serde(default)]
+    #[serde(skip_serializing_if = &quot;Vec::is_empty&quot;)]
     pub additional_files: Vec&lt;AssetBuilder&gt;,
 }
 <span class="boring">}
@@ -1341,8 +1346,7 @@ instructions</a> page.</p>
 #[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
 pub struct TranscriptionConfig {
     /// The dependencies on other transcription courses. Specifying these dependencies here instead
-    /// of the [CourseManifest](crate::data::CourseManifest) allows Trane to generate more
-    /// fine-grained dependencies.
+    /// of the [CourseManifest] allows Trane to generate more fine-grained dependencies.
     #[serde(default)]
     pub transcription_dependencies: Vec&lt;Ustr&gt;,
 
@@ -1352,6 +1356,7 @@ pub struct TranscriptionConfig {
     /// The directory can be written relative to the root of the course or as an absolute path. The
     /// first option is recommended. An empty value will safely default to not reading any files.
     #[serde(default)]
+    #[serde(skip_serializing_if = &quot;String::is_empty&quot;)]
     pub passage_directory: String,
 
     /// A list of passages to include in the course in addition to the ones in the passage
@@ -1360,7 +1365,7 @@ pub struct TranscriptionConfig {
     pub inlined_passages: Vec&lt;TranscriptionPassages&gt;,
 
     /// If true, the course will skip creating the singing lesson. This is useful when the course
-    /// contains backing tracks that have not melodies, for example. Both the singing and the
+    /// contains backing tracks that have no melodies, for example. Both the singing and the
     /// advanced singing lessons will be skipped. Because other transcription courses that depend on
     /// this lesson will use the singing lesson to create the dependency, the lesson will be
     /// created, but will be empty.
@@ -1384,9 +1389,14 @@ pub struct TranscriptionPassages {
     /// The asset to transcribe.
     pub asset: TranscriptionAsset,
 
-    /// The ranges `[start, end]` of the passages to transcribe. Stored as a map maping a unique ID
-    /// to the start and end of the passage. A map is used to get the indices instead of getting
-    /// them from a vector because reordering the passages would change the resulting exercise IDs.
+    /// The ranges `[start, end]` of the passages to transcribe. Stored as a map mapping a unique ID
+    /// to the start and end of the passage. A map is used instead of a list because reordering the
+    /// passages would change the resulting exercise IDs.
+    ///
+    /// If the map is empty, one passage is assumed to cover the entire asset and the ID for the
+    /// exercises will not include a passage ID.
+    #[serde(default)]
+    #[serde(skip_serializing_if = &quot;HashMap::is_empty&quot;)]
     pub intervals: HashMap&lt;usize, (String, String)&gt;,
 }
 <span class="boring">}
@@ -1409,18 +1419,22 @@ pub enum TranscriptionAsset {
 
         /// The name of the artist(s) who performs the track.
         #[serde(default)]
+        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
         artist_name: Option&lt;String&gt;,
 
         /// The name of the album in which the track appears.
         #[serde(default)]
+        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
         album_name: Option&lt;String&gt;,
 
         /// The duration of the track.
         #[serde(default)]
+        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
         duration: Option&lt;String&gt;,
 
-        /// A link to an external copy (e.g. youtube video) of the track.
+        /// A link to an external copy (e.g., YouTube link) of the track.
         #[serde(default)]
+        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
         external_link: Option&lt;TranscriptionLink&gt;,
     },
 }
@@ -1438,6 +1452,7 @@ pub enum TranscriptionLink {
 
 impl TranscriptionLink {
     /// Returns the URL of the link.
+    #[must_use]
     pub fn url(&amp;self) -&gt; &amp;str {
         match self {
             TranscriptionLink::YouTube(url) =&gt; url,
@@ -1459,6 +1474,19 @@ pub struct TranscriptionPreferences {
     /// carefully before you start practicing.
     #[serde(default)]
     pub instruments: Vec&lt;Instrument&gt;,
+
+    /// A path used to download transcription assets to the local filesystem. If not specified,
+    /// assets cannot be downloaded.
+    #[serde(default)]
+    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+    pub download_path: Option&lt;String&gt;,
+
+    /// An alias for the download path. This is useful when the download path is a long path or it's
+    /// accessible from multiple locations (e.g., Windows and a terminal running on the WSL). Only
+    /// used to present the download path to the user.
+    #[serde(default)]
+    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+    pub download_path_alias: Option&lt;String&gt;,
 }
 <span class="boring">}
 </span></code></pre></pre>
@@ -1707,7 +1735,7 @@ a section of code does without having to read a line of code. Below is an exampl
         for course_id in starting_units {
             // Set the depth to zero since all the starting units are at the same depth.
             let lesson_ids = self
-                .get_course_valid_starting_lessons(&amp;course_id, 0, metadata_filter)
+                .get_course_valid_starting_lessons(course_id, 0, metadata_filter)
                 .unwrap_or_default();
 
             if lesson_ids.is_empty() {
@@ -1756,20 +1784,22 @@ the codebase. Below is the relevant section from Trane's <code>lib.rs</code> fil
 </ul>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>//! Here's an overview of some of the most important modules in this crate and their purpose:
-//! - [data](crate::data): Contains the basic data structures used by Trane.
-//! - [graph](crate::graph): Defines the graph used by Trane to list the units of material and the
-//!   dependencies among them.
-//! - [course_library](crate::course_library): Reads a collection of courses, lessons, and exercises
-//!   from the file system and provides basic utilities for working with them.
-//! - [scheduler](crate::scheduler): Defines the algorithm used by Trane to select exercises to
-//!   present to the user.
-//! - [practice_stats](crate::practice_stats): Stores the results of practice sessions for use in
-//!   determining the next batch of exercises.
-//! - [blacklist](crate::blacklist): Defines the list of units the student wishes to hide, either
-//!   because their material has already been mastered or they do not wish to learn it.
-//! - [scorer](crate::scorer): Calculates a score for an exercise based on the results and
-//!   timestamps of previous trials.
+</span>//! Below is an overview of some of the most important modules in this crate and their purpose.
+//! Refer to the documentation of each module for more details.
+//!
+//! - [`data`]: Contains the basic data structures used by Trane.
+//! - [`graph`]: Defines the graph used by Trane to list the units of material and the dependencies
+//!   among them.
+//! - [`course_library`]: Reads a collection of courses, lessons, and exercises from the file system
+//!   and provides basic utilities for working with them.
+//! - [`scheduler`]: Defines the algorithm used by Trane to select exercises to present to the user.
+//! - [`practice_stats`]: Stores the results of practice sessions for use in determining the next
+//!   batch of exercises.
+//! - [`blacklist`]: Defines the list of units the student wishes to hide, either because their
+//!   material has already been mastered or they do not wish to learn it.
+//! - [`scorer`]: Calculates a score for an exercise based on the results and timestamps of previous
+//!   trials.
+//!
 <span class="boring">}
 </span></code></pre></pre>
 <ul>
@@ -1802,6 +1832,7 @@ pub struct ExerciseTrial {
     /// might want to only focus on guitar scales or ear training.
     #[builder(default)]
     #[serde(default)]
+    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
     pub metadata: Option&lt;BTreeMap&lt;String, Vec&lt;String&gt;&gt;&gt;,
 
 <span class="boring">}

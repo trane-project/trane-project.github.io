@@ -154,16 +154,19 @@
 pub struct UserPreferences {
     /// The preferences for generating transcription courses.
     #[serde(default)]
+    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
     pub transcription: Option&lt;TranscriptionPreferences&gt;,
 
     /// The preferences for customizing the behavior of the scheduler.
     #[serde(default)]
+    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
     pub scheduler: Option&lt;SchedulerPreferences&gt;,
 
     /// The paths to ignore when opening the course library. The paths are relative to the
     /// repository root. All child paths are also ignored. For example, adding the directory
     /// &quot;foo/bar&quot; will ignore any courses in &quot;foo/bar&quot; or any of its subdirectories.
     #[serde(default)]
+    #[serde(skip_serializing_if = &quot;Vec::is_empty&quot;)]
     pub ignored_paths: Vec&lt;String&gt;,
 }
 <span class="boring">}

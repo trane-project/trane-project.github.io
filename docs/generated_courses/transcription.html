@@ -156,8 +156,7 @@ instructions</a> page.</p>
 #[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
 pub struct TranscriptionConfig {
     /// The dependencies on other transcription courses. Specifying these dependencies here instead
-    /// of the [CourseManifest](crate::data::CourseManifest) allows Trane to generate more
-    /// fine-grained dependencies.
+    /// of the [CourseManifest] allows Trane to generate more fine-grained dependencies.
     #[serde(default)]
     pub transcription_dependencies: Vec&lt;Ustr&gt;,
 
@@ -167,6 +166,7 @@ pub struct TranscriptionConfig {
     /// The directory can be written relative to the root of the course or as an absolute path. The
     /// first option is recommended. An empty value will safely default to not reading any files.
     #[serde(default)]
+    #[serde(skip_serializing_if = &quot;String::is_empty&quot;)]
     pub passage_directory: String,
 
     /// A list of passages to include in the course in addition to the ones in the passage
@@ -175,7 +175,7 @@ pub struct TranscriptionConfig {
     pub inlined_passages: Vec&lt;TranscriptionPassages&gt;,
 
     /// If true, the course will skip creating the singing lesson. This is useful when the course
-    /// contains backing tracks that have not melodies, for example. Both the singing and the
+    /// contains backing tracks that have no melodies, for example. Both the singing and the
     /// advanced singing lessons will be skipped. Because other transcription courses that depend on
     /// this lesson will use the singing lesson to create the dependency, the lesson will be
     /// created, but will be empty.
@@ -199,9 +199,14 @@ pub struct TranscriptionPassages {
     /// The asset to transcribe.
     pub asset: TranscriptionAsset,
 
-    /// The ranges `[start, end]` of the passages to transcribe. Stored as a map maping a unique ID
-    /// to the start and end of the passage. A map is used to get the indices instead of getting
-    /// them from a vector because reordering the passages would change the resulting exercise IDs.
+    /// The ranges `[start, end]` of the passages to transcribe. Stored as a map mapping a unique ID
+    /// to the start and end of the passage. A map is used instead of a list because reordering the
+    /// passages would change the resulting exercise IDs.
+    ///
+    /// If the map is empty, one passage is assumed to cover the entire asset and the ID for the
+    /// exercises will not include a passage ID.
+    #[serde(default)]
+    #[serde(skip_serializing_if = &quot;HashMap::is_empty&quot;)]
     pub intervals: HashMap&lt;usize, (String, String)&gt;,
 }
 <span class="boring">}
@@ -224,18 +229,22 @@ pub enum TranscriptionAsset {
 
         /// The name of the artist(s) who performs the track.
         #[serde(default)]
+        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
         artist_name: Option&lt;String&gt;,
 
         /// The name of the album in which the track appears.
         #[serde(default)]
+        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
         album_name: Option&lt;String&gt;,
 
         /// The duration of the track.
         #[serde(default)]
+        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
         duration: Option&lt;String&gt;,
 
-        /// A link to an external copy (e.g. youtube video) of the track.
+        /// A link to an external copy (e.g., YouTube link) of the track.
         #[serde(default)]
+        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
         external_link: Option&lt;TranscriptionLink&gt;,
     },
 }
@@ -253,6 +262,7 @@ pub enum TranscriptionLink {
 
 impl TranscriptionLink {
     /// Returns the URL of the link.
+    #[must_use]
     pub fn url(&amp;self) -&gt; &amp;str {
         match self {
             TranscriptionLink::YouTube(url) =&gt; url,
@@ -274,6 +284,19 @@ pub struct TranscriptionPreferences {
     /// carefully before you start practicing.
     #[serde(default)]
     pub instruments: Vec&lt;Instrument&gt;,
+
+    /// A path used to download transcription assets to the local filesystem. If not specified,
+    /// assets cannot be downloaded.
+    #[serde(default)]
+    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+    pub download_path: Option&lt;String&gt;,
+
+    /// An alias for the download path. This is useful when the download path is a long path or it's
+    /// accessible from multiple locations (e.g., Windows and a terminal running on the WSL). Only
+    /// used to present the download path to the user.
+    #[serde(default)]
+    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+    pub download_path_alias: Option&lt;String&gt;,
 }
 <span class="boring">}
 </span></code></pre></pre>
