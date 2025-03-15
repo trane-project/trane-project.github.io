@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,11 +7,10 @@
 
 
         <!-- Custom HTML head -->
-        
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="../favicon.svg">
         <link rel="shortcut icon" href="../favicon.png">
@@ -25,23 +24,26 @@
         <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="../custom.css">
 
-    </head>
-    <body>
+
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
-
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -57,50 +59,58 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
 
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../generated_courses/transcription/transcription_guide.html">Guide to Learning Music by Ear</a></li><li class="chapter-item expanded "><a href="../quick_start.html"><strong aria-hidden="true">1.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="../concepts.html"><strong aria-hidden="true">2.</strong> Concepts and Theory</a></li><li class="chapter-item expanded "><a href="../vision.html"><strong aria-hidden="true">3.</strong> Vision</a></li><li class="chapter-item expanded "><a href="../using_trane.html"><strong aria-hidden="true">4.</strong> Using Trane</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../trane.html"><strong aria-hidden="true">4.1.</strong> trane</a></li><li class="chapter-item expanded "><a href="../trane-cli.html"><strong aria-hidden="true">4.2.</strong> trane-cli</a></li><li class="chapter-item expanded "><a href="../trane-app.html"><strong aria-hidden="true">4.3.</strong> trane-app</a></li><li class="chapter-item expanded "><a href="../trane-server.html"><strong aria-hidden="true">4.4.</strong> trane-server</a></li></ol></li><li class="chapter-item expanded "><a href="../user_preferences.html"><strong aria-hidden="true">5.</strong> User Preferences</a></li><li class="chapter-item expanded "><a href="../saved_filters.html"><strong aria-hidden="true">6.</strong> Saved Filters</a></li><li class="chapter-item expanded "><a href="../official_courses.html"><strong aria-hidden="true">7.</strong> Official Trane Courses</a></li><li class="chapter-item expanded "><a href="../writing_courses.html"><strong aria-hidden="true">8.</strong> Writing Trane Courses</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../generated_courses.html"><strong aria-hidden="true">8.1.</strong> Generated Courses</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../generated_courses/knowledge_base.html"><strong aria-hidden="true">8.1.1.</strong> Knowledge Base Course Generator</a></li><li class="chapter-item expanded "><a href="../generated_courses/music_piece.html"><strong aria-hidden="true">8.1.2.</strong> Music Piece Course Generator</a></li><li class="chapter-item expanded "><a href="../generated_courses/transcription.html" class="active"><strong aria-hidden="true">8.1.3.</strong> Transcription Course Generator</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../generated_courses/transcription/course_instructions.html"><strong aria-hidden="true">8.1.3.1.</strong> Transcription Course Instructions</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../licensing.html"><strong aria-hidden="true">9.</strong> Licensing</a></li><li class="chapter-item expanded "><a href="../contributing.html"><strong aria-hidden="true">10.</strong> Contributing to Trane</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">11.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="../blog.html"><strong aria-hidden="true">12.</strong> Development Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../blog/semi_literate_programming.html"><strong aria-hidden="true">12.1.</strong> Semi-Literate Programming</a></li><li class="chapter-item expanded "><a href="../blog/100_code_coverage.html"><strong aria-hidden="true">12.2.</strong> Reaching 100% Code Coverage in Rust</a></li></ol></li><li class="chapter-item expanded "><a href="../a_love_supreme.html">A Love Supreme</a></li></ol>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -133,7 +143,7 @@
                 </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -153,11 +163,13 @@ instructions</a> page.</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// The configuration used to generate a transcription course.
-#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub struct TranscriptionConfig {
     /// The dependencies on other transcription courses. Specifying these dependencies here instead
     /// of the [CourseManifest] allows Trane to generate more fine-grained dependencies.
     #[serde(default)]
+    #[ts(as = "Vec&lt;String&gt;")]
     pub transcription_dependencies: Vec&lt;Ustr&gt;,
 
     /// The directory where the passages are stored as JSON files whose contents are serialized
@@ -166,7 +178,7 @@ pub struct TranscriptionConfig {
     /// The directory can be written relative to the root of the course or as an absolute path. The
     /// first option is recommended. An empty value will safely default to not reading any files.
     #[serde(default)]
-    #[serde(skip_serializing_if = &quot;String::is_empty&quot;)]
+    #[serde(skip_serializing_if = "String::is_empty")]
     pub passage_directory: String,
 
     /// A list of passages to include in the course in addition to the ones in the passage
@@ -188,13 +200,13 @@ pub struct TranscriptionConfig {
     #[serde(default)]
     pub skip_advanced_lessons: bool,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>The specification for how the passages are declared:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// A collection of passages from a track that can be used for a transcription course.
-#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub struct TranscriptionPassages {
     /// The asset to transcribe.
     pub asset: TranscriptionAsset,
@@ -206,17 +218,17 @@ pub struct TranscriptionPassages {
     /// If the map is empty, one passage is assumed to cover the entire asset and the ID for the
     /// exercises will not include a passage ID.
     #[serde(default)]
-    #[serde(skip_serializing_if = &quot;HashMap::is_empty&quot;)]
+    #[serde(skip_serializing_if = "HashMap::is_empty")]
     pub intervals: HashMap&lt;usize, (String, String)&gt;,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>The specification for how the transcription assets (the description of the song to transcribe) are
 declared:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// An asset used for the transcription course generator.
-#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub enum TranscriptionAsset {
     /// A track of recorded music that is not included along with the course. Used to reference
     /// commercial music for which there is no legal way to distribute the audio.
@@ -229,32 +241,32 @@ pub enum TranscriptionAsset {
 
         /// The name of the artist(s) who performs the track.
         #[serde(default)]
-        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+        #[serde(skip_serializing_if = "Option::is_none")]
         artist_name: Option&lt;String&gt;,
 
         /// The name of the album in which the track appears.
         #[serde(default)]
-        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+        #[serde(skip_serializing_if = "Option::is_none")]
         album_name: Option&lt;String&gt;,
 
         /// The duration of the track.
         #[serde(default)]
-        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+        #[serde(skip_serializing_if = "Option::is_none")]
         duration: Option&lt;String&gt;,
 
         /// A link to an external copy (e.g., YouTube link) of the track.
         #[serde(default)]
-        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+        #[serde(skip_serializing_if = "Option::is_none")]
         external_link: Option&lt;TranscriptionLink&gt;,
     },
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>The specification for how the external links are declared:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// A link to an external resource for a transcription asset.
-#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub enum TranscriptionLink {
     /// A link to a YouTube video.
     YouTube(String),
@@ -269,15 +281,15 @@ impl TranscriptionLink {
         }
     }
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>The transcription courses allow you to specify which instruments you want to use for the courses in
 the user preferences. Refer to the <a href="../user_preferences.html">User Preferences</a> page for more details.</p>
 <p>The specification for the user preferences for the transcription course is as follows:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// Settings for generating a new transcription course that are specific to a user.
-#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub struct TranscriptionPreferences {
     /// The list of instruments the user wants to practice. Note that changing the instrument ID
     /// will change the IDs of the exercises and lose your progress, so it should be chosen
@@ -288,33 +300,32 @@ pub struct TranscriptionPreferences {
     /// A path used to download transcription assets to the local filesystem. If not specified,
     /// assets cannot be downloaded.
     #[serde(default)]
-    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub download_path: Option&lt;String&gt;,
 
     /// An alias for the download path. This is useful when the download path is a long path or it's
     /// accessible from multiple locations (e.g., Windows and a terminal running on the WSL). Only
     /// used to present the download path to the user.
     #[serde(default)]
-    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub download_path_alias: Option&lt;String&gt;,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>These preferences require that you declare the instruments that you want to use for the
 transcription. The specification for them is:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// Describes an instrument that can be used to practice in a generated course.
-#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub struct Instrument {
-    /// The name of the instrument. For example, &quot;Tenor Saxophone&quot;.
+    /// The name of the instrument. For example, "Tenor Saxophone".
     pub name: String,
 
-    /// An ID for this instrument used to generate lesson IDs. For example, &quot;tenor_saxophone&quot;.
+    /// An ID for this instrument used to generate lesson IDs. For example, "tenor_saxophone".
     pub id: String,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <h2 id="example-courses"><a class="header" href="#example-courses">Example courses</a></h2>
 <p>Here are a few examples of existing transcription courses:</p>
 <ul>
@@ -334,7 +345,7 @@ D</a></li>
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../generated_courses/transcription/course_instructions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../generated_courses/transcription/course_instructions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -348,7 +359,7 @@ D</a></li>
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../generated_courses/transcription/course_instructions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../generated_courses/transcription/course_instructions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -358,21 +369,22 @@ D</a></li>
 
 
 
-        <script type="text/javascript">
+        <script>
             window.playground_copyable = true;
         </script>
 
 
-        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 
 
+    </div>
     </body>
 </html>

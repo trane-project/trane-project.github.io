@@ -1,6 +1,6 @@
-# Introduction
+<img src="./assets/coltrane.jpg" alt="Cover" width="500" class="cover" />
 
-![John Coltrane](./assets/coltrane.jpg)
+<h1 class="title">Trane</h1>
 
 Trane is an automated practice system for the acquisition of arbitrary, complex, and highly
 hierarchical skills. That's quite a mouthful, so let's break it down.

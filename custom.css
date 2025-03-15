@@ -1,3 +1,50 @@
+/* Reduce header margins */
+h1, h2, h3, h4, h5, h6 {
+  margin-block: 0.83em;
+  text-align: left;
+}
+
+/* Spectral font */
+@font-face {
+  font-family: 'Spectral';
+  src: url('./assets/fonts/Spectral-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Spectral';
+  src: url('./assets/fonts/Spectral-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Spectral';
+  src: url('./assets/fonts/Spectral-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* Center cover image  and title */
+.cover {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.title {
+  text-align: center;
+}
+
+/* Increase font of sidebar */
+.chapter li a {
+  font-size: 1em;
+  text-align: left;
+}
+
+/* Root element styles */
 :root {
   --content-max-width: 900px;
+  font-family: 'Spectral', serif;
+  font-size: 0.7em;
+  text-align: justify;
+  text-justify: inter-word;
 }

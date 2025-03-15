@@ -1,18 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>The Trane Book</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex">
 
 
         <!-- Custom HTML head -->
-        
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -26,23 +25,26 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="custom.css">
 
-    </head>
-    <body>
+
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
-
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -58,50 +60,58 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
 
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="generated_courses/transcription/transcription_guide.html">Guide to Learning Music by Ear</a></li><li class="chapter-item expanded "><a href="quick_start.html"><strong aria-hidden="true">1.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="concepts.html"><strong aria-hidden="true">2.</strong> Concepts and Theory</a></li><li class="chapter-item expanded "><a href="vision.html"><strong aria-hidden="true">3.</strong> Vision</a></li><li class="chapter-item expanded "><a href="using_trane.html"><strong aria-hidden="true">4.</strong> Using Trane</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="trane.html"><strong aria-hidden="true">4.1.</strong> trane</a></li><li class="chapter-item expanded "><a href="trane-cli.html"><strong aria-hidden="true">4.2.</strong> trane-cli</a></li><li class="chapter-item expanded "><a href="trane-app.html"><strong aria-hidden="true">4.3.</strong> trane-app</a></li><li class="chapter-item expanded "><a href="trane-server.html"><strong aria-hidden="true">4.4.</strong> trane-server</a></li></ol></li><li class="chapter-item expanded "><a href="user_preferences.html"><strong aria-hidden="true">5.</strong> User Preferences</a></li><li class="chapter-item expanded "><a href="saved_filters.html"><strong aria-hidden="true">6.</strong> Saved Filters</a></li><li class="chapter-item expanded "><a href="official_courses.html"><strong aria-hidden="true">7.</strong> Official Trane Courses</a></li><li class="chapter-item expanded "><a href="writing_courses.html"><strong aria-hidden="true">8.</strong> Writing Trane Courses</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="generated_courses.html"><strong aria-hidden="true">8.1.</strong> Generated Courses</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="generated_courses/knowledge_base.html"><strong aria-hidden="true">8.1.1.</strong> Knowledge Base Course Generator</a></li><li class="chapter-item expanded "><a href="generated_courses/music_piece.html"><strong aria-hidden="true">8.1.2.</strong> Music Piece Course Generator</a></li><li class="chapter-item expanded "><a href="generated_courses/transcription.html"><strong aria-hidden="true">8.1.3.</strong> Transcription Course Generator</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="generated_courses/transcription/course_instructions.html"><strong aria-hidden="true">8.1.3.1.</strong> Transcription Course Instructions</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="licensing.html"><strong aria-hidden="true">9.</strong> Licensing</a></li><li class="chapter-item expanded "><a href="contributing.html"><strong aria-hidden="true">10.</strong> Contributing to Trane</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">11.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="blog.html"><strong aria-hidden="true">12.</strong> Development Blog</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="blog/semi_literate_programming.html"><strong aria-hidden="true">12.1.</strong> Semi-Literate Programming</a></li><li class="chapter-item expanded "><a href="blog/100_code_coverage.html"><strong aria-hidden="true">12.2.</strong> Reaching 100% Code Coverage in Rust</a></li></ol></li><li class="chapter-item expanded "><a href="a_love_supreme.html">A Love Supreme</a></li></ol>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -134,7 +144,7 @@
                 </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -144,8 +154,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
-<p><img src="./assets/coltrane.jpg" alt="John Coltrane" /></p>
+                        <img src="./assets/coltrane.jpg" alt="Cover" width="500" class="cover" />
+<h1 id="trane" class="title"><a class="header" href="#trane">Trane</a></h1>
 <p>Trane is an automated practice system for the acquisition of arbitrary, complex, and highly
 hierarchical skills. That's quite a mouthful, so let's break it down.</p>
 <ul>
@@ -161,7 +171,7 @@ appropriate for the current moment.</li>
 <li><strong>Arbitrary</strong>: Although originally envisioned for practicing Jazz improvisation, Trane is not
 limited to a specific domain. Trane primarily works via plain-text files that are easily sharable
 and extendable. This allows student to create their own materials, to use materials created by
-others, and to seamlessly combine them. </li>
+others, and to seamlessly combine them.</li>
 <li><strong>Complex and hierarchical skills</strong>: Consider the job of a master improviser, such as the namesake
 of this software, John Coltrane. Through years of practice, Coltrane developed mastery over a
 large set of interconnected skills. A few examples include the breathing control to play the fiery
@@ -183,9 +193,9 @@ process, but applied to arbitrary skills, specified in plain-text files that are
 augment.</p>
 <p>Trane is named after John Coltrane, whose nickname Trane was often used in wordplay with the word
 train (as in the vehicle) to describe the overwhelming power of his playing. It is used here as a
-play on its homophone (as in &quot;<em>trane</em> a new skill&quot;).</p>
+play on its homophone (as in "<em>trane</em> a new skill").</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-trane-projects-guide-to-learning-music-by-ear"><a class="header" href="#the-trane-projects-guide-to-learning-music-by-ear">The Trane Project's Guide to Learning Music by Ear</a></h1>
-<h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>This document describes a process of transcribing music with the purpose of learning it by ear. This
 process is not my creation, but rather a distillation of the ideas of many musicians who have come
 to their own conclusion about how music is learned by ear. The result is a process that it is
@@ -348,13 +358,13 @@ prompt like this:</p>
 <p>Inside this command-line interface, type <code>open .</code> followed by the Enter key. You should see a
 message saying that the library is open. To see a new exercise, type <code>next</code>.  Since there are no
 materials downloaded yet, you'll get a message saying there was an error retrieving an exercise.</p>
-<p>If you have difficulties navigating the command-line interface, refer to the &quot;Basic shortcuts&quot;
+<p>If you have difficulties navigating the command-line interface, refer to the "Basic shortcuts"
 section in the <a href="./trane-cli.html">trane-cli</a> documentation.</p>
 <h3 id="downloading-material-for-trane"><a class="header" href="#downloading-material-for-trane">Downloading material for Trane.</a></h3>
 <p>For this guide, we'll use the official Trane course
 <a href="https://github.com/trane-project/trane-music">trane-music</a>. Go to that webpage and click on the
-green button that says &quot;Code&quot;. In the &quot;Local&quot; tab, there are options for cloning the repository.
-Click on the option that says &quot;HTTPS&quot; and copy the URL shown. In this example, it is
+green button that says "Code". In the "Local" tab, there are options for cloning the repository.
+Click on the option that says "HTTPS" and copy the URL shown. In this example, it is
 <code>https://github.com/trane-project/trane-music.git</code>.</p>
 <p>In the terminal, type the following command:</p>
 <pre><code>repository add https://github.com/trane-project/trane-music.git
@@ -389,7 +399,7 @@ range of tasks, including memorization. For example, learning the multiplication
 when considering the need to retrieve an answer quickly and without error when performing mental
 calculations. Skills can often be divided into smaller tasks that can be practiced separately. For
 example, learning a new piece of music can be broken down into learning individual sections of the
-piece. </p>
+piece.</p>
 <h3 id="mastery-score"><a class="header" href="#mastery-score">Mastery Score</a></h3>
 <p>When presented an exercise, a user performs it and assigns it a score signifying their mastery of
 the task. The scores range from one to five, with one meaning the skill is just being introduced
@@ -404,7 +414,7 @@ learned properly until S1 is sufficiently mastered. For the reverse relationship
 dependent skill of S1.</p>
 <p>The set of all these relationships between skills forms a directed acyclic graph and is called the
 dependency graph. Trane uses this graph to make sense of a student's progress and determine which
-skills should be introduced next and which previously practiced skills should be reviewed. </p>
+skills should be introduced next and which previously practiced skills should be reviewed.</p>
 <h3 id="units"><a class="header" href="#units">Units</a></h3>
 <p>There are three types of units in Trane:</p>
 <ul>
@@ -482,7 +492,7 @@ although mastered exercises are still shown from time to time for review and mai
 the chord A7) and to those which require mastery of an action (e.g., playing a section of a song).
 The space repetition algorithm in Trane is fairly simple and relies on computing a score for a given
 exercise based on previous trials rather than computing the optimal time at which the exercise needs
-to be presented again. </p>
+to be presented again.</p>
 <h3 id="chunking"><a class="header" href="#chunking">Chunking</a></h3>
 <p>Chunking consists of breaking up a complex skill into smaller components that can be practiced
 independently, before the individual components are combined in more complex skills.</p>
@@ -589,7 +599,7 @@ build new courses.</li>
 <li><code>trane-server</code>: An upcoming HTTP REST server for Trane to allow software not written in Rust and
 software incompatible with the GPLv3 license to use Trane.</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="trane"><a class="header" href="#trane">trane</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="trane-1"><a class="header" href="#trane-1">trane</a></h1>
 <p><a href="https://github.com/trane-project/trane">trane</a> is the core library responsible for opening and
 interacting with Trane courses. It also includes the data formats for Trane and the utilities to
 build new courses.</p>
@@ -739,27 +749,27 @@ under construction.</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// The user-specific configuration
-#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub struct UserPreferences {
     /// The preferences for generating transcription courses.
     #[serde(default)]
-    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub transcription: Option&lt;TranscriptionPreferences&gt;,
 
     /// The preferences for customizing the behavior of the scheduler.
     #[serde(default)]
-    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub scheduler: Option&lt;SchedulerPreferences&gt;,
 
     /// The paths to ignore when opening the course library. The paths are relative to the
     /// repository root. All child paths are also ignored. For example, adding the directory
-    /// &quot;foo/bar&quot; will ignore any courses in &quot;foo/bar&quot; or any of its subdirectories.
+    /// "foo/bar" will ignore any courses in "foo/bar" or any of its subdirectories.
     #[serde(default)]
-    #[serde(skip_serializing_if = &quot;Vec::is_empty&quot;)]
+    #[serde(skip_serializing_if = "Vec::is_empty")]
     pub ignored_paths: Vec&lt;String&gt;,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>The user preferences can be set in the <code>user_preferences.json</code> file inside the <code>.trane</code> directory in
 a Trane library. The value is a serialized JSON object that matches the Rust type shown above. If
 none is found, Trane will create it with the default values.</p>
@@ -775,7 +785,8 @@ on the user preferences for that course.</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// A saved filter for easy reference.
-#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub struct SavedFilter {
     /// A unique ID for the filter.
     pub id: String,
@@ -786,38 +797,37 @@ pub struct SavedFilter {
     /// The filter to apply.
     pub filter: UnitFilter,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>Below there are some examples of saved filters.</p>
 <p>A filter to show only exercises for ear training.</p>
 <pre><code class="language-json">{
-    &quot;id&quot;: &quot;ear_training&quot;,
-    &quot;description&quot;: &quot;Ear traning courses&quot;,
-    &quot;filter&quot;: {
-        &quot;MetadataFilter&quot;: {
-            &quot;filter&quot;: {
-                &quot;course_filter&quot;: {
-                    &quot;CombinedFilter&quot;: {
-                        &quot;op&quot;: &quot;Any&quot;,
-                        &quot;filters&quot;: [
+    "id": "ear_training",
+    "description": "Ear traning courses",
+    "filter": {
+        "MetadataFilter": {
+            "filter": {
+                "course_filter": {
+                    "CombinedFilter": {
+                        "op": "Any",
+                        "filters": [
                             {
-                                &quot;BasicFilter&quot;: {
-                                    &quot;key&quot;: &quot;course_series&quot;,
-                                    &quot;value&quot;: &quot;sing_the_numbers&quot;,
-                                    &quot;filter_type&quot;: &quot;Include&quot;
+                                "BasicFilter": {
+                                    "key": "course_series",
+                                    "value": "sing_the_numbers",
+                                    "filter_type": "Include"
                                 }
                             },
                             {
-                                &quot;BasicFilter&quot;: {
-                                    &quot;key&quot;: &quot;course_series&quot;,
-                                    &quot;value&quot;: &quot;progressive_sight_singing&quot;,
-                                    &quot;filter_type&quot;: &quot;Include&quot;
+                                "BasicFilter": {
+                                    "key": "course_series",
+                                    "value": "progressive_sight_singing",
+                                    "filter_type": "Include"
                                 }
                             }
                         ]
                     }
                 },
-                &quot;op&quot;: &quot;All&quot;
+                "op": "All"
             }
         }
     }
@@ -825,20 +835,20 @@ pub struct SavedFilter {
 </code></pre>
 <p>A filter to only show exercises for the guitar.</p>
 <pre><code class="language-json">{
-    &quot;id&quot;: &quot;guitar&quot;,
-    &quot;description&quot;: &quot;All guitar courses&quot;,
-    &quot;filter&quot;: {
-        &quot;MetadataFilter&quot;: {
-            &quot;filter&quot;: {
-                &quot;course_filter&quot;: {
-                    &quot;BasicFilter&quot;: {
-                        &quot;key&quot;: &quot;instrument&quot;,
-                        &quot;value&quot;: &quot;guitar&quot;,
-                        &quot;filter_type&quot;: &quot;Include&quot;
+    "id": "guitar",
+    "description": "All guitar courses",
+    "filter": {
+        "MetadataFilter": {
+            "filter": {
+                "course_filter": {
+                    "BasicFilter": {
+                        "key": "instrument",
+                        "value": "guitar",
+                        "filter_type": "Include"
                     }
                 },
-                &quot;lesson_filter&quot;: null,
-                &quot;op&quot;: &quot;Any&quot;
+                "lesson_filter": null,
+                "op": "Any"
             }
         }
     }
@@ -907,7 +917,7 @@ in the course.</li>
 config and the files in the course directory to generate all the manifests needed. This means that
 once those manifests are generated, Trane makes no distinction between normal and generated
 courses. Generated courses can include individual lessons that are specified via their manifests.
-Generated courses can depend on any other course or lesson. </li>
+Generated courses can depend on any other course or lesson.</li>
 <li>Less maintenance required for course authors. Trane's data formats and APIs are still subject to
 change. Since generated courses do not require you to write all but the course manifest, most
 changes to those formats should not require any changes on your part.</li>
@@ -937,12 +947,16 @@ with them in the same way as you would with any other course.</li>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// A configuration used for generating special types of courses on the fly.
-#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub enum CourseGenerator {
     /// The configuration for generating a knowledge base course. Currently, there are no
     /// configuration options, but the struct was added to implement the [GenerateManifests] trait
     /// and for future extensibility.
     KnowledgeBase(KnowledgeBaseConfig),
+
+    /// The configuration for generating a literacy course.
+    Literacy(LiteracyConfig),
 
     /// The configuration for generating a music piece course.
     MusicPiece(MusicPieceConfig),
@@ -950,8 +964,7 @@ pub enum CourseGenerator {
     /// The configuration for generating a transcription course.
     Transcription(TranscriptionConfig),
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>Refer to the documentation for each type of generated course for the specification for each type of
 config.</p>
 <h2 id="example-configs"><a class="header" href="#example-configs">Example configs</a></h2>
@@ -1014,8 +1027,7 @@ pub struct KnowledgeBaseExercise {
     /// the type is provided, but most users should not need to use it.
     pub exercise_type: Option&lt;ExerciseType&gt;,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>And here's the specification for a lesson:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -1078,8 +1090,7 @@ pub struct KnowledgeBaseLesson {
     /// Indicates whether the `lesson.material.md` file is present in the lesson directory.
     pub has_material: bool,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>If we translate this specification into an example course with two lessons of two exercises each,
 the file structure is as follows:</p>
 <pre><code class="language-text">course_root/
@@ -1121,18 +1132,18 @@ course is eliminated.</p>
 <h2 id="example-configuration"><a class="header" href="#example-configuration">Example Configuration</a></h2>
 <p>Example of a course manifest for a knowledge base course:</p>
 <pre><code class="language-json">{
-  &quot;id&quot;: &quot;trane::example::knowledge_base&quot;,
-  &quot;name&quot;: &quot;Example Knowledge Base Course&quot;,
-  &quot;dependencies&quot;: [],
-  &quot;description&quot;: &quot;An example knowledge base course.&quot;,
-  &quot;authors&quot;: [
-    &quot;The Trane Project&quot;
+  "id": "trane::example::knowledge_base",
+  "name": "Example Knowledge Base Course",
+  "dependencies": [],
+  "description": "An example knowledge base course.",
+  "authors": [
+    "The Trane Project"
   ],
-  &quot;metadata&quot;: null,
-  &quot;course_material&quot;: null,
-  &quot;course_instructions&quot;: null,
-  &quot;generator_config&quot;: {
-    &quot;KnowledgeBase&quot;: {}
+  "metadata": null,
+  "course_material": null,
+  "course_instructions": null,
+  "generator_config": {
+    "KnowledgeBase": {}
   }
 }
 </code></pre>
@@ -1146,7 +1157,7 @@ A course to teach you how to produce long tones on the tenor saxophone, starting
 octave and gradually working your way up.</li>
 <li><a href="https://github.com/trane-project/trane-math/tree/master/courses/olympiads/aops/aops_1">Art of Problem Solving
 1</a>: The
-&quot;Art of Problem Solving&quot; book series is intended to begin preparing students for competing in math
+"Art of Problem Solving" book series is intended to begin preparing students for competing in math
 Olympiads. This course translates the first volume of that series into a Trane course.</li>
 </ul>
 <h1 id="simple-course-builder"><a class="header" href="#simple-course-builder">Simple Course Builder</a></h1>
@@ -1177,8 +1188,7 @@ pub struct SimpleKnowledgeBaseCourse {
     #[serde(default)]
     pub lessons: Vec&lt;SimpleKnowledgeBaseLesson&gt;,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>and the specification of the <code>SimpleKnowledgeBaseLesson</code> type referenced by the course type:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -1206,16 +1216,15 @@ pub struct SimpleKnowledgeBaseLesson {
 
     /// The optional metadata for the lesson.
     #[serde(default)]
-    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub metadata: Option&lt;BTreeMap&lt;String, Vec&lt;String&gt;&gt;&gt;,
 
     /// A list of additional files to write in the lesson directory.
     #[serde(default)]
-    #[serde(skip_serializing_if = &quot;Vec::is_empty&quot;)]
+    #[serde(skip_serializing_if = "Vec::is_empty")]
     pub additional_files: Vec&lt;AssetBuilder&gt;,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
 <p>The specification above might not be very clear, specially if you don't know Rust, so here are a few
 examples of existing courses that use this builder:</p>
@@ -1236,13 +1245,14 @@ The changes are then committed to the repository.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="music-piece-generator"><a class="header" href="#music-piece-generator">Music Piece Generator</a></h1>
 <p>This course generator is used to create courses that progressively teach mastery of a musical piece,
 starting at the smallest fragments and gradually building up to the entire piece. The course author
-must divide up the piece into fragments and write them down in the configuration of the course. </p>
+must divide up the piece into fragments and write them down in the configuration of the course.</p>
 <h2 id="specification-1"><a class="header" href="#specification-1">Specification</a></h2>
 <p>The specification for the music asset containing the music sheet of the piece:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// Represents a music asset to be practiced.
-#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub enum MusicAsset {
     /// A link to a SoundSlice.
     SoundSlice(String),
@@ -1250,13 +1260,13 @@ pub enum MusicAsset {
     /// The path to a local file. For example, the path to a PDF of the sheet music.
     LocalFile(String),
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>The specification for how musical passages are declared and divided up:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// Represents a music passage to be practiced.
-#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub struct MusicPassage {
     /// The start of the passage.
     pub start: String,
@@ -1271,13 +1281,13 @@ pub struct MusicPassage {
     /// passages in a list would also change the IDs of the generated lessons.
     pub sub_passages: HashMap&lt;usize, MusicPassage&gt;,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>The specification for the course configuration for music piece courses:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// The config to create a course that teaches a piece of music.
-#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub struct MusicPieceConfig {
     /// The asset containing the music to be practiced.
     pub music_asset: MusicAsset,
@@ -1285,8 +1295,7 @@ pub struct MusicPieceConfig {
     /// The passages in which the music is divided for practice.
     pub passages: MusicPassage,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>The top musical passage should always ask the student to play the entire piece. Each of the
 dependencies asks the student to play a smaller fragment of the piece. There can be an arbitrary
 number of nested passages, which allow pieces to be divided into arbitrarily small fragments. To
@@ -1296,34 +1305,34 @@ link to a SoundSlice or as the path to a local file.</p>
 <h2 id="example-configuration-1"><a class="header" href="#example-configuration-1">Example configuration</a></h2>
 <p>Below is an example course generator config for this type of course.</p>
 <pre><code class="language-json">{
-  &quot;id&quot;: &quot;trane::example::knowledge_base&quot;,
-  &quot;name&quot;: &quot;Example Knowledge Base Course&quot;,
-  &quot;dependencies&quot;: [],
-  &quot;description&quot;: &quot;An example knowledge base course.&quot;,
-  &quot;authors&quot;: [
-    &quot;The Trane Project&quot;
+  "id": "trane::example::knowledge_base",
+  "name": "Example Knowledge Base Course",
+  "dependencies": [],
+  "description": "An example knowledge base course.",
+  "authors": [
+    "The Trane Project"
   ],
-  &quot;metadata&quot;: null,
-  &quot;course_material&quot;: null,
-  &quot;course_instructions&quot;: null,
-  &quot;generator_config&quot;: {
-    &quot;MusicPiece&quot;: {
-      &quot;music_asset&quot;: {
-        &quot;LocalFile&quot;: &quot;music_sheet.pdf&quot;
+  "metadata": null,
+  "course_material": null,
+  "course_instructions": null,
+  "generator_config": {
+    "MusicPiece": {
+      "music_asset": {
+        "LocalFile": "music_sheet.pdf"
       },
-      &quot;passages&quot;: {
-        &quot;start&quot;: &quot;start of the piece&quot;,
-        &quot;end&quot;: &quot;end of the piece&quot;,
-        &quot;sub_passages&quot;: [
+      "passages": {
+        "start": "start of the piece",
+        "end": "end of the piece",
+        "sub_passages": [
           {
-            &quot;start&quot;: &quot;start of bar 1&quot;,
-            &quot;end&quot;: &quot;end of bar 10&quot;,
-            &quot;sub_passages&quot;: []
+            "start": "start of bar 1",
+            "end": "end of bar 10",
+            "sub_passages": []
           },
           {
-            &quot;start&quot;: &quot;start of bar 10&quot;,
-            &quot;end&quot;: &quot;end of bar 20&quot;,
-            &quot;sub_passages&quot;: []
+            "start": "start of bar 10",
+            "end": "end of bar 20",
+            "sub_passages": []
           }
         ]
       }
@@ -1343,11 +1352,13 @@ instructions</a> page.</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// The configuration used to generate a transcription course.
-#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub struct TranscriptionConfig {
     /// The dependencies on other transcription courses. Specifying these dependencies here instead
     /// of the [CourseManifest] allows Trane to generate more fine-grained dependencies.
     #[serde(default)]
+    #[ts(as = "Vec&lt;String&gt;")]
     pub transcription_dependencies: Vec&lt;Ustr&gt;,
 
     /// The directory where the passages are stored as JSON files whose contents are serialized
@@ -1356,7 +1367,7 @@ pub struct TranscriptionConfig {
     /// The directory can be written relative to the root of the course or as an absolute path. The
     /// first option is recommended. An empty value will safely default to not reading any files.
     #[serde(default)]
-    #[serde(skip_serializing_if = &quot;String::is_empty&quot;)]
+    #[serde(skip_serializing_if = "String::is_empty")]
     pub passage_directory: String,
 
     /// A list of passages to include in the course in addition to the ones in the passage
@@ -1378,13 +1389,13 @@ pub struct TranscriptionConfig {
     #[serde(default)]
     pub skip_advanced_lessons: bool,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>The specification for how the passages are declared:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// A collection of passages from a track that can be used for a transcription course.
-#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub struct TranscriptionPassages {
     /// The asset to transcribe.
     pub asset: TranscriptionAsset,
@@ -1396,17 +1407,17 @@ pub struct TranscriptionPassages {
     /// If the map is empty, one passage is assumed to cover the entire asset and the ID for the
     /// exercises will not include a passage ID.
     #[serde(default)]
-    #[serde(skip_serializing_if = &quot;HashMap::is_empty&quot;)]
+    #[serde(skip_serializing_if = "HashMap::is_empty")]
     pub intervals: HashMap&lt;usize, (String, String)&gt;,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>The specification for how the transcription assets (the description of the song to transcribe) are
 declared:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// An asset used for the transcription course generator.
-#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub enum TranscriptionAsset {
     /// A track of recorded music that is not included along with the course. Used to reference
     /// commercial music for which there is no legal way to distribute the audio.
@@ -1419,32 +1430,32 @@ pub enum TranscriptionAsset {
 
         /// The name of the artist(s) who performs the track.
         #[serde(default)]
-        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+        #[serde(skip_serializing_if = "Option::is_none")]
         artist_name: Option&lt;String&gt;,
 
         /// The name of the album in which the track appears.
         #[serde(default)]
-        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+        #[serde(skip_serializing_if = "Option::is_none")]
         album_name: Option&lt;String&gt;,
 
         /// The duration of the track.
         #[serde(default)]
-        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+        #[serde(skip_serializing_if = "Option::is_none")]
         duration: Option&lt;String&gt;,
 
         /// A link to an external copy (e.g., YouTube link) of the track.
         #[serde(default)]
-        #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+        #[serde(skip_serializing_if = "Option::is_none")]
         external_link: Option&lt;TranscriptionLink&gt;,
     },
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>The specification for how the external links are declared:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// A link to an external resource for a transcription asset.
-#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub enum TranscriptionLink {
     /// A link to a YouTube video.
     YouTube(String),
@@ -1459,15 +1470,15 @@ impl TranscriptionLink {
         }
     }
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>The transcription courses allow you to specify which instruments you want to use for the courses in
 the user preferences. Refer to the <a href="generated_courses/../user_preferences.html">User Preferences</a> page for more details.</p>
 <p>The specification for the user preferences for the transcription course is as follows:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// Settings for generating a new transcription course that are specific to a user.
-#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub struct TranscriptionPreferences {
     /// The list of instruments the user wants to practice. Note that changing the instrument ID
     /// will change the IDs of the exercises and lose your progress, so it should be chosen
@@ -1478,33 +1489,32 @@ pub struct TranscriptionPreferences {
     /// A path used to download transcription assets to the local filesystem. If not specified,
     /// assets cannot be downloaded.
     #[serde(default)]
-    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub download_path: Option&lt;String&gt;,
 
     /// An alias for the download path. This is useful when the download path is a long path or it's
     /// accessible from multiple locations (e.g., Windows and a terminal running on the WSL). Only
     /// used to present the download path to the user.
     #[serde(default)]
-    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub download_path_alias: Option&lt;String&gt;,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>These preferences require that you declare the instruments that you want to use for the
 transcription. The specification for them is:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// Describes an instrument that can be used to practice in a generated course.
-#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub struct Instrument {
-    /// The name of the instrument. For example, &quot;Tenor Saxophone&quot;.
+    /// The name of the instrument. For example, "Tenor Saxophone".
     pub name: String,
 
-    /// An ID for this instrument used to generate lesson IDs. For example, &quot;tenor_saxophone&quot;.
+    /// An ID for this instrument used to generate lesson IDs. For example, "tenor_saxophone".
     pub id: String,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <h2 id="example-courses-1"><a class="header" href="#example-courses-1">Example courses</a></h2>
 <p>Here are a few examples of existing transcription courses:</p>
 <ul>
@@ -1759,8 +1769,7 @@ a section of code does without having to read a line of code. Below is an exampl
         initial_stack.shuffle(&amp;mut thread_rng());
         initial_stack
     }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <ul>
 <li>Each file (or module, package, etc. depending on the language) should have a top-level comment
 that explains the purpose of the file and how it fits into the larger system. This comment should
@@ -1770,13 +1779,11 @@ design decisions that lead to structuring the code in this way. Below is an exam
 </ul>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>//! Defines a cache that is used to retrieve unit scores and stores previously computed exercise and
-//! lesson scores
+</span>//! Defines the system used to retrieve scores and rewards for units and come up with a final score.
 //!
 //! During performance testing, it was found that caching scores scores significantly improved the
 //! performance of exercise scheduling.
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <ul>
 <li>The main file (or module, package, etc.) should explain what the whole library or program does and
 also contain a short explanation of the structure of the code to allow readers to better navigate
@@ -1800,8 +1807,7 @@ the codebase. Below is the relevant section from Trane's <code>lib.rs</code> fil
 //! - [`scorer`]: Calculates a score for an exercise based on the results and timestamps of previous
 //!   trials.
 //!
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <ul>
 <li>Document what each struct, enum, field, function, etc. does, even if it seems obvious to you. It's
 hard to gauge what will be obvious to the readers of your code, which include future you. If the
@@ -1812,7 +1818,8 @@ obvious, document why that is so. Below there are examples of both situations ta
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// The result of a single trial.
-#[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Serialize, TS)]
+#[ts(export)]
 pub struct ExerciseTrial {
     /// The score assigned to the exercise after the trial.
     pub score: f32,
@@ -1820,23 +1827,20 @@ pub struct ExerciseTrial {
     /// The timestamp at which the trial happened.
     pub timestamp: i64,
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>    //// A mapping of String keys to a list of String values. For example, (&quot;genre&quot;, [&quot;jazz&quot;]) could
-    /// be attached to a course named &quot;Basic Jazz Chords on Guitar&quot;.
+</span>    //// A mapping of String keys to a list of String values. For example, ("genre", ["jazz"]) could
+    /// be attached to a course named "Basic Jazz Chords on Guitar".
     ///
     /// The purpose of this metadata is to allow students to focus on more specific material during
     /// a study session which does not belong to a single lesson or course. For example, a student
     /// might want to only focus on guitar scales or ear training.
     #[builder(default)]
     #[serde(default)]
-    #[serde(skip_serializing_if = &quot;Option::is_none&quot;)]
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub metadata: Option&lt;BTreeMap&lt;String, Vec&lt;String&gt;&gt;&gt;,
-
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <ul>
 <li>Document situations in which the design was changed and the reasons why. This is part of using the
 documentation of your code to tell the story behind the design decisions. Below is an example from
@@ -1848,12 +1852,11 @@ Trane's <code>practice_stats</code> module.</li>
             // this migration is immediately canceled by the one right below. They cannot be removed
             // from the migration list without breaking databases created in an earlier version than
             // the one which removes them, so they are kept here for now.
-            M::up(&quot;CREATE INDEX unit_scores ON practice_stats (unit_uid);&quot;)
-                .down(&quot;DROP INDEX unit_scores&quot;),
-            M::up(&quot;DROP INDEX unit_scores&quot;)
-                .down(&quot;CREATE INDEX unit_scores ON practice_stats (unit_uid);&quot;),
-<span class="boring">}
-</span></code></pre></pre>
+            M::up("CREATE INDEX unit_scores ON practice_stats (unit_uid);")
+                .down("DROP INDEX unit_scores"),
+            M::up("DROP INDEX unit_scores")
+                .down("CREATE INDEX unit_scores ON practice_stats (unit_uid);"),
+<span class="boring">}</span></code></pre></pre>
 <h2 id="tools-for-semi-literate-programming"><a class="header" href="#tools-for-semi-literate-programming">Tools for semi-literate programming</a></h2>
 <p>Here are a few of the tools that helped me while revamping the documentation for Trane.</p>
 <ul>
@@ -1879,7 +1882,7 @@ explain how I got there, the tools I used, the problems I ran into, and the less
 Hopefully this will save time to someone else who is trying to add test coverage to a Rust project.</p>
 <h2 id="the-tools"><a class="header" href="#the-tools">The Tools</a></h2>
 <p>I used <a href="https://github.com/mozilla/grcov">grcov</a> to generate the coverage information. This requires
-that the tests are run in the nightly version of Rust with special flags that create the 
+that the tests are run in the nightly version of Rust with special flags that create the
 coverage information. I used the <a href="https://github.com/rraval/actions-rs-grcov">grcov</a> GitHub Action
 to generate the report. This is a fork of the original repository, which appears to be abandoned.
 The fork is needed to support excluding lines from the coverage report (more on that later).</p>
@@ -1946,13 +1949,12 @@ from the <code>practice_stats</code> module, which stores the results of the use
 let connection = self.pool.get()?;
 let mut stmt = connection
     .prepare_cached(
-        &quot;SELECT score, timestamp from practice_stats WHERE unit_uid = (
+        "SELECT score, timestamp from practice_stats WHERE unit_uid = (
           SELECT unit_uid FROM uids WHERE unit_id = ?1)
-          ORDER BY timestamp DESC LIMIT ?2;&quot;,
+          ORDER BY timestamp DESC LIMIT ?2;",
     )
-    .with_context(|| &quot;cannot prepare statement&quot;)?; //grcov-excl-line
-<span class="boring">}
-</span></code></pre></pre>
+    .with_context(|| "cannot prepare statement")?; //grcov-excl-line
+<span class="boring">}</span></code></pre></pre>
 </li>
 <li>Adding an entry to the search index is also a fallible operation, but there are already tests
 that verify that search work, so there's little value in having a test that triggers this
@@ -1968,8 +1970,7 @@ the file system for use with Trane:
       &amp;lesson_manifest.description,
       &amp;lesson_manifest.metadata,
   )?; // grcov-excl-line
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 </li>
 </ul>
 <p>The second step was to configure grcov to exclude entire sections of code from the report. For
@@ -1993,8 +1994,7 @@ from the final report. Here's an example of some of the code that was excluded:<
         self.review_list.read().all_review_list_entries()
     }
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>Once those two steps were configured, the coverage was around 90%. The remaining 10% consisted of
 edge cases that had not been tested yet. For example, there was no test to ensure that trying to
 open a Trane library with an invalid path would fail. Below is a list of example commits that
@@ -2010,7 +2010,7 @@ module.</a></li>
 <p>There are about a dozen more commits that gradually took the coverage to 100%. Finally, the commit
 linked at the top of the post was the first one to reach 100% code coverage. This commit adds a test
 to verify that the score cache does not return a score for courses that have all of its lessons
-added to the blacklist. </p>
+added to the blacklist.</p>
 <h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
 <p>The effort to get to 100% code coverage was not very time-consuming and uncovered some minor bugs
 that had gone unnoticed. However, the core of the logic was already covered by existing tests and
@@ -2019,7 +2019,7 @@ confidence to make changes to the code base without worrying about introducing n
 existing behavior.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="a-love-supreme"><a class="header" href="#a-love-supreme">A Love Supreme</a></h1>
 <blockquote>
-<p>This album is a humble offering to Him. An attempt to say &quot;THANK YOU GOD&quot; through our work, even
+<p>This album is a humble offering to Him. An attempt to say "THANK YOU GOD" through our work, even
 as we do in our hearts and with our tongues. May He help and strengthen all men in every good
 endeavor.</p>
 </blockquote>
@@ -2027,9 +2027,8 @@ endeavor.</p>
 <li><em>A Love Supreme</em> liner notes</li>
 </ul>
 <p>Trane and all associated projects are dedicated to the memory of John Coltrane. Trane is free
-software as are all of its official courses and the authors are committed to keep it so in the same
-spirit of love and generosity of his music. May all users of Trane learn and master the skills they
-desire for the benefit of all beings.</p>
+software and the authors are committed to keep it so in the same spirit of love and generosity of
+his music. May all users of Trane learn and master the skills they desire and benefit all beings.</p>
 
                     </main>
 
@@ -2051,26 +2050,27 @@ desire for the benefit of all beings.</p>
 
 
 
-        <script type="text/javascript">
+        <script>
             window.playground_copyable = true;
         </script>
 
 
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
 
-        <script type="text/javascript">
+        <script>
         window.addEventListener('load', function() {
             window.setTimeout(window.print, 100);
         });
         </script>
 
+    </div>
     </body>
 </html>

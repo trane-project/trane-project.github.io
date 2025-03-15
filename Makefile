@@ -15,7 +15,7 @@ decks = "src/assets/decks"
 build:
 	# Build the transcription deck. Requires that Latex, Pandoc, and Beamer are
 	# installed.
-	pandoc -t beamer $(decks)/transcription.md -o $(decks)/transcription.pdf
+	# pandoc -t beamer $(decks)/transcription.md -o $(decks)/transcription.pdf
 
 	# Clean the verso_build directory.
 	rm -rf $(verso_build)

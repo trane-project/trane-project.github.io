@@ -7,6 +7,5 @@
 - *A Love Supreme* liner notes
 
 Trane and all associated projects are dedicated to the memory of John Coltrane. Trane is free
-software as are all of its official courses and the authors are committed to keep it so in the same
-spirit of love and generosity of his music. May all users of Trane learn and master the skills they
-desire for the benefit of all beings.
+software and the authors are committed to keep it so in the same spirit of love and generosity of
+his music. May all users of Trane learn and master the skills they desire and benefit all beings.
