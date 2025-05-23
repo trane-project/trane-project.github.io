@@ -156,6 +156,15 @@
                     <main>
                         <img src="./assets/coltrane.jpg" alt="Cover" width="500" class="cover" />
 <h1 id="trane" class="title"><a class="header" href="#trane">Trane</a></h1>
+<hr />
+<p>The first end-to-end application of trane, <a href="https://picturesareforbabies.com">Pictures Are For
+Babies</a>, is coming. It combines the power of trane with the latest
+research on reading and writing acquisition to create the most complete and ambitious literacy
+program in history.</p>
+<p>If you are interested in that project, subscribe to the
+<a href="https://picturesareforbabies.substack.com">newsletter</a> to receive product updates, development
+notes, and articles on literacy education and history.</p>
+<hr />
 <p>Trane is an automated practice system for the acquisition of arbitrary, complex, and highly
 hierarchical skills. That's quite a mouthful, so let's break it down.</p>
 <ul>
@@ -1766,7 +1775,7 @@ a section of code does without having to read a line of code. Below is an exampl
         }
 
         // Shuffle the lessons to follow a different ordering each time a new batch is requested.
-        initial_stack.shuffle(&amp;mut thread_rng());
+        initial_stack.shuffle(&amp;mut rng());
         initial_stack
     }
 <span class="boring">}</span></code></pre></pre>
@@ -1804,8 +1813,8 @@ the codebase. Below is the relevant section from Trane's <code>lib.rs</code> fil
 //!   batch of exercises.
 //! - [`blacklist`]: Defines the list of units the student wishes to hide, either because their
 //!   material has already been mastered or they do not wish to learn it.
-//! - [`scorer`]: Calculates a score for an exercise based on the results and timestamps of previous
-//!   trials.
+//! - [`exercise_scorer`]: Calculates a score for an exercise based on the results and timestamps of
+//!   previous trials.
 //!
 <span class="boring">}</span></code></pre></pre>
 <ul>

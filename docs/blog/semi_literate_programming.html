@@ -231,7 +231,7 @@ a section of code does without having to read a line of code. Below is an exampl
         }
 
         // Shuffle the lessons to follow a different ordering each time a new batch is requested.
-        initial_stack.shuffle(&amp;mut thread_rng());
+        initial_stack.shuffle(&amp;mut rng());
         initial_stack
     }
 <span class="boring">}</span></code></pre></pre>
@@ -269,8 +269,8 @@ the codebase. Below is the relevant section from Trane's <code>lib.rs</code> fil
 //!   batch of exercises.
 //! - [`blacklist`]: Defines the list of units the student wishes to hide, either because their
 //!   material has already been mastered or they do not wish to learn it.
-//! - [`scorer`]: Calculates a score for an exercise based on the results and timestamps of previous
-//!   trials.
+//! - [`exercise_scorer`]: Calculates a score for an exercise based on the results and timestamps of
+//!   previous trials.
 //!
 <span class="boring">}</span></code></pre></pre>
 <ul>

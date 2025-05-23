@@ -2,6 +2,19 @@
 
 <h1 class="title">Trane</h1>
 
+---
+
+The first end-to-end application of trane, [Pictures Are For
+Babies](https://picturesareforbabies.com), is coming. It combines the power of trane with the latest
+research on reading and writing acquisition to create the most complete and ambitious literacy
+program in history.
+
+If you are interested in that project, subscribe to the
+[newsletter](https://picturesareforbabies.substack.com) to receive product updates, development
+notes, and articles on literacy education and history.
+
+---
+
 Trane is an automated practice system for the acquisition of arbitrary, complex, and highly
 hierarchical skills. That's quite a mouthful, so let's break it down.
 
